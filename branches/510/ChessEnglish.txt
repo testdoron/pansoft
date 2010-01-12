@@ -1,4 +1,6 @@
-﻿Chess set       国际象棋棋具
+﻿askdkskdfkakdkfaksdkfasdf
+
+Chess set       国际象棋棋具
 Colour          棋色
 White           白方   
 Black           黑方
