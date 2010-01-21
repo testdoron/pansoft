@@ -18,20 +18,24 @@ namespace PanSoft.ProductMgnt
     public class IdService : WebService
     {
         IDGenerator idg = new IDGenerator();
+
+        /// <summary>
+        /// 获取一个全局Id
+        /// </summary>
+        /// <returns></returns>
         [WebMethod]
         public string GetId()
         {
             return idg.Generate();
         }
 
+        /// <summary>
+        /// 获取一组指定数量的ID
+        /// </summary>
+        /// <param name="count">指定数量</param>
+        /// <returns></returns>
         [WebMethod]
-        public string GetIdName(string name, int count)
-        {
-            return idg.Generate() + " | " + name + " | " + count.ToString();
-        }
-
-        [WebMethod]
-        public string[] GetArray(int count)
+        public string[] GetIdArray(int count)
         {
             List<string> strs = new List<string>();
             for (int i = 0; i < count; i++)
@@ -39,42 +43,6 @@ namespace PanSoft.ProductMgnt
                 strs.Add(idg.Generate());
             }
             return strs.ToArray();
-        }
-
-        [WebMethod]
-        public MyClass[] GetMyClass(int count)
-        {
-            List<MyClass> strs = new List<MyClass>();
-            for (int i = 0; i < count; i++)
-            {
-                strs.Add(new MyClass(idg.Generate(), (i + 2976734) * i));
-            }
-            return strs.ToArray();
-        }
-
-        public class MyClass
-        {
-            IDGenerator idg = new IDGenerator();
-
-            public MyClass()
-            {
-                this.ID = idg.Generate();
-                this.Arg = DateTime.Now.Ticks;
-                this.CurrTime = DateTime.Now;
-                this.Guid = Guid.NewGuid();
-            }
-            public MyClass(string id, int arg)
-            {
-                this.ID = id;
-                this.Arg = arg;
-                this.CurrTime = DateTime.Now;
-                this.Guid = Guid.NewGuid();
-            }
-
-            public string ID { get; set; }
-            public long Arg { get; set; }
-            public DateTime CurrTime { get; set; }
-            public Guid Guid { get; set; }
         }
 
     }
