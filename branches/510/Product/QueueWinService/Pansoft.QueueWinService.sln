@@ -68,6 +68,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pansoft.QueueListInterfaces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pansoft.QueueListImplementations", "Pansoft.QueueListImplementations\Pansoft.QueueListImplementations.csproj", "{08308566-83DD-427E-A62B-C3CBBCACD51C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionServer", "SolutionServer", "{12733D44-921B-41D8-84F0-E293EA3C4C18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pansoft.SolutionsInterfaces", "Pansoft.SolutionsInterfaces\Pansoft.SolutionsInterfaces.csproj", "{91D3254D-2541-49CE-BAB7-A60AB3DDB03F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pansoft.SolutionsImplementations", "Pansoft.SolutionsImplementations\Pansoft.SolutionsImplementations.csproj", "{6B819F45-1140-48E2-9022-710E1C278F8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pansoft.SolutionsImplementations.Xml", "Pansoft.SolutionsImplementations.Xml\Pansoft.SolutionsImplementations.Xml.csproj", "{6CA73FFF-73C4-44E5-AF59-AAE20396B013}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -150,6 +158,18 @@ Global
 		{08308566-83DD-427E-A62B-C3CBBCACD51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08308566-83DD-427E-A62B-C3CBBCACD51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08308566-83DD-427E-A62B-C3CBBCACD51C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91D3254D-2541-49CE-BAB7-A60AB3DDB03F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91D3254D-2541-49CE-BAB7-A60AB3DDB03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91D3254D-2541-49CE-BAB7-A60AB3DDB03F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91D3254D-2541-49CE-BAB7-A60AB3DDB03F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B819F45-1140-48E2-9022-710E1C278F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B819F45-1140-48E2-9022-710E1C278F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B819F45-1140-48E2-9022-710E1C278F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B819F45-1140-48E2-9022-710E1C278F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CA73FFF-73C4-44E5-AF59-AAE20396B013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CA73FFF-73C4-44E5-AF59-AAE20396B013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CA73FFF-73C4-44E5-AF59-AAE20396B013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CA73FFF-73C4-44E5-AF59-AAE20396B013}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,5 +197,8 @@ Global
 		{3D42F530-74F2-4089-A35B-3840737212D3} = {20C17E4C-44D5-48EF-AB0C-9116D7279CA9}
 		{F10273C6-74CF-4EBD-8639-287333DFDEDF} = {8B41A6E6-AAB7-471B-BF89-B7ACCD5B35D1}
 		{08308566-83DD-427E-A62B-C3CBBCACD51C} = {8B41A6E6-AAB7-471B-BF89-B7ACCD5B35D1}
+		{91D3254D-2541-49CE-BAB7-A60AB3DDB03F} = {12733D44-921B-41D8-84F0-E293EA3C4C18}
+		{6B819F45-1140-48E2-9022-710E1C278F8C} = {12733D44-921B-41D8-84F0-E293EA3C4C18}
+		{6CA73FFF-73C4-44E5-AF59-AAE20396B013} = {12733D44-921B-41D8-84F0-E293EA3C4C18}
 	EndGlobalSection
 EndGlobal
