@@ -1,1 +1,0 @@
-﻿<%@ WebService Language="C#" CodeBehind="IdService.asmx.cs" Class="PanSoft.ProductMgnt.IdService" %>
