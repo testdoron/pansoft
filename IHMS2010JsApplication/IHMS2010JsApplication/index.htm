@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<html>
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>IHMS2010</title>
-    <link rel="shortcut icon" href="ihms2010.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="lib/extjs/resources/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="lib/extjs/pan/panihms.css" />
     <link rel="stylesheet" type="text/css" href="javascripts/modules/modules.css" />
@@ -13,40 +13,8 @@
     <script type="text/javascript" src="lib/extjs/ext-all.js"></script>
     <script type="text/javascript" src="lib/extjs/pan/panihms.js"></script>
 </head>
+
 <body scroll="no">
-    <!--------------------------->
-    <!--    gean javascript    -->
-    <!--------------------------->
-
-    <script type="text/javascript">
-        var GeanJs = {
-            version: '1.1.0',
-            email: 'nsimple.cn@gmail.com',
-            description: 'N simple javascript framework by www.nsimple.cn! Need jQuery.'
-        }
-    </script>
-
-    <script type="text/javascript">
-        /*获得浏览器可视界面的高度*/
-        GeanJs.GetBrowserHeight = function() {
-            if ($.browser.msie) {
-                return document.compatMode == "CSS1Compat" ? document.documentElement.clientHeight : document.body.clientHeight;
-            }
-            else {
-                return self.innerHeight;
-            }
-        }
-
-        //获得浏览器可视界面的宽度
-        GeanJs.GetBrowserWidth = function() {
-            if ($.browser.msie) {
-                return document.compatMode == "CSS1Compat" ? document.documentElement.clientWidth : document.body.clientWidth;
-            }
-            else {
-                return self.innerWidth;
-            }
-        }
-    </script>
 
     <!------------------------------------>
     <!--       数据定义：IHMSData     -->
@@ -68,9 +36,9 @@
             "Modules": {
                 "BusinessGrid": {
                     "Text": "业务量统计与查询"
-                    }
                 }
             }
+        }
     </script>
     
     <!-- IHMSData.ConfigJson -->
@@ -84,75 +52,129 @@
     </script>
     
     <!-- IHMSData.CompanyGroup -->
-    <script type="text/javascript">    
-    IHMSData.CompanyGroup = 
+    <script type="text/javascript">
+        IHMSData.CompanyGroup =
     {
-        "name": "平安银行北京分行",
+        "name": "平安银行北京分行将台路分行",
         "items": [
-                    { "name": "平安银行北京分行将台路分行" }, 
-                    { "name": "平安银行北京分行亚运村分行" }, 
-                    { "name": "平安银行北京分行平安大街分行" },
-                    { 
-                        "name": "平安银行北京分行昌平分行"
-                        "items": 
-                        [
-                            { "name": "平安银行北京分行昌平南关大街分行" }, 
-                            { "name": "平安银行北京分行昌平西关大街分行" }, 
-                            { "name": "平安银行北京分行昌平北关大街分行" }, 
-                            { "name": "平安银行北京分行昌平东关大街分行" }
-                        ]
-                    }, 
-                    {
-                        "name": "平安银行北京分行顺义分行",
-                        "items": 
-                        [
-                            { "name": "平安银行北京分行顺义北海道分行" }, 
-                            { "name": "平安银行北京分行顺义芝加哥分行" }, 
-                            { "name": "平安银行北京分行顺义危地马拉分行" },
-                            { "name": "平安银行北京分行顺义纽约分行" }
-                        ]
-                     },
-                  ]
+        {
+            "name": "平安银行北京分行将台路分行"
+        },
+        {
+            "name": "平安银行北京分行亚运村分行"
+        },
+        {
+            "name": "平安银行北京分行平安大街分行"
+        },
+        {
+            "name": "平安银行北京分行昌平分行",
+            "items": [
+                {
+                    "name": "平安银行北京分行昌平南关大街分行"
+                },
+                {
+                    "name": "平安银行北京分行昌平西关大街分行"
+                },
+                {
+                    "name": "平安银行北京分行昌平北关大街分行"
+                },
+                {
+                    "name": "平安银行北京分行昌平东关大街分行"
+                }
+            ]
+        },
+        {
+            "name": "平安银行北京分行顺义分行",
+            "items": [
+                {
+                    "name": "平安银行北京分行顺义北海道分行"
+                },
+                {
+                    "name": "平安银行北京分行顺义芝加哥分行"
+                },
+                {
+                    "name": "平安银行北京分行顺义危地马拉分行"
+                },
+                {
+                    "name": "平安银行北京分行顺义纽约分行"
+                }
+            ]
+        }
+    ]
     }
     
     </script>
 
+    <!--以下script段载入相应的模块及开始菜单-->
+    <script type="text/javascript">
+        ihmsModule = new Ext.app.App({
+            init: function() {
+                Ext.QuickTips.init(); //把 ext:qtip 的值用于显示提示
+            },
+            getModules: function() {
+                return [        // 以下是模块的载入，在我们的权限中，模块即为资源
+                // 所以以下模块的实例需用Jsp根据当前用户的权限来载入相应的实例
+                    new ihmsModule.BusinessGrid(),
+					];
+            },
+
+            // 组装开始菜单
+            getStartConfig: function() {
+            return {
+                    title: IHMSData.UITxt.StartMenuWorkerTxt.concat(' : ').concat(IHMSData.ConfigJson.WorkerName),
+                    iconCls: 'user',
+                    toolItems: [{
+                        text: IHMSData.UITxt.StartMenuSettingTxt,
+                        iconCls: 'settings',
+                        scope: this
+                    }, '-', {
+                        text: IHMSData.UITxt.StartMenuLogoutTxt,
+                        iconCls: 'logout',
+                        scope: this
+                    }]
+                    };
+                }
+            });
+
+            
+    </script>
+    
     <!------------------------------------>
-    <!--       模块定义：ihmsModule     -->
+    <!--       模块：IHMSModule         -->
     <!------------------------------------>
-    <!-- 业务量报表 -->
+
+    <!--模块：BusinessGrid(业务量报表)-->
     <script type="text/javascript">
         ihmsModule.BusinessGrid = Ext.extend(Ext.app.Module, {
             id: 'BusinessGrid',
-            init: function() {
+            init: function(){
                 this.launcher = {
-                    text: IHMSData.UITxt.Modules.BusinessGrid.text,
+                    text: IHMSData.UITxt.Modules.BusinessGrid.Text,
                     iconCls: 'icon-BusinessGrid',
                     handler: this.createWindow,
                     scope: this
                 }
             },
-            createWindow: function() {
+            createWindow: function(){
                 var desktop = this.app.getDesktop();
                 var win = desktop.getWindow('BusinessGrid');
                 if (!win) {
                     win = desktop.createWindow({
                         id: 'BusinessGrid',
-                        title: IHMSData.UITxt.Modules.BusinessGrid.text,
-                        width: GeanJs.GetBrowserWidth() - 150,
-                        height: GeanJs.GetBrowserHeight() - 80,
+                        title: IHMSData.UITxt.Modules.BusinessGrid.Text,
+                        width: 500,
+                        height: 300,
                         iconCls: 'icon-BusinessGrid',
                         shim: true,
                         animCollapse: false,
                         border: true,
-                        constrainHeader: true
-
-                        //layout: 'fit',
+                        constrainHeader: true,
                     });
                 }
                 win.show();
             }
         });
+    
     </script>
 
     <!--桌面部份-->
@@ -160,7 +182,7 @@
         <dl id="x-shortcuts">
             <!-- 快捷方式的id按被调用的窗体 + ‘-shortcut’ 组成 -->
             <dt id="BusinessGrid-shortcut"><a href="#">
-                <img src="lib/extjs/pan/images/s.gif" alt="" />
+                <img src="lib/extjs/pan/images/s.gif" />
                 <div id="BusinessGrid-txt">
                 </div>
             </a></dt>
@@ -176,52 +198,19 @@
         <div class="x-clear">
         </div>
     </div>
-    <!--对TITLE节点进行操作，打印用户单位名称及软件与软件版本号-->
-
+    
+    <!--页面载入后的一些操作-->
     <script type="text/javascript">
         $("title").empty();
+        //对TITLE节点进行操作，打印用户单位名称及软件与软件版本号
         $("title").append(
             IHMSData.CompanyGroup.name.concat(" - ").
             concat(IHMSData.ConfigJson.SoftwareName).
             concat(" ").
             concat(IHMSData.ConfigJson.SoftwareVersion));
-
+        $("#BusinessGrid-txt").append(IHMSData.UITxt.Modules.BusinessGrid.Text);
     </script>
-
-    <!--载入相应的模块的图标快捷方式及开始菜单-->
-    <script type="text/javascript">
-        ihmsModule = new Ext.app.App({
-            init: function() {
-                Ext.QuickTips.init(); //把 ext:qtip 的值用于显示提示
-            },
-            getModules: function() {
-                return [
-                // 以下是模块的载入，在我们的权限中，模块即为资源
-                // 所以以下模块的实例需用Jsp根据当前用户的权限来载入相应的实例
-                    new ihmsModule.BusinessGrid(),
-					];
-            },
-
-            // 组装开始菜单
-            getStartConfig: function() {
-            return {
-                    title: IHMSData.UITxt.StartMenuWorkerTxt.concat(' : ').concat(IHMSData.ConfigJson.WorkerName),
-                    iconCls: 'user',
-                    toolItems: [{
-                        text: IHMSData.UITxt.startMenuSettingTxt,
-                        iconCls: 'settings',
-                        scope: this
-                    }, '-', {
-                        text: IHMSData.UITxt.startMenuLogoutTxt,
-                        iconCls: 'logout',
-                        scope: this
-                    }]
-                    };
-                }
-            });
-
-            $("#BusinessGrid-txt").append(IHMSData.UITxt.Modules.BusinessGrid.Text);
-        </script>
-
+    
 </body>
+
 </html>
