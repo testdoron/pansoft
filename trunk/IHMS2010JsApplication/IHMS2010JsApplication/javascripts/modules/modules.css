@@ -1,0 +1,11 @@
+.icon-BusinessGrid {
+    background-image:url( images/grid.png ) !important;
+}
+
+/* shortcuts */
+#BusinessGrid-shortcut img {
+    width:48px;
+    height:48px;
+    background-image: url(images/grid48x48.png);
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/grid48x48.png', sizingMethod='scale');
+}
