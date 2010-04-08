@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IHMS2010JsApplication", "IHMS2010JsApplication\IHMS2010JsApplication.csproj", "{4743D573-E62D-4A60-8173-38C572F9E722}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4743D573-E62D-4A60-8173-38C572F9E722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4743D573-E62D-4A60-8173-38C572F9E722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4743D573-E62D-4A60-8173-38C572F9E722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4743D573-E62D-4A60-8173-38C572F9E722}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
