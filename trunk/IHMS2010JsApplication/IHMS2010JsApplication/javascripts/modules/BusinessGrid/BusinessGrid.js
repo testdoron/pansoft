@@ -33,8 +33,8 @@ ihmsModule.BusinessGrid = Ext.extend(Ext.app.Module, {
             win = desktop.createWindow({
                 id: 'BusinessGrid',
                 title: uiTxt.modules.BusinessGrid.text,
-                width: getBrowserWidth() - 150,
-                height: getBrowserHeight() - 80,
+                width: 500,
+                height: 300,
                 iconCls: 'icon-BusinessGrid',
                 shim: true,
                 animCollapse: false,

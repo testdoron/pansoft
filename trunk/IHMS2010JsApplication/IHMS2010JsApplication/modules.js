@@ -1,11 +1,34 @@
+ihmsModule.BusinessGrid = Ext.extend(Ext.app.Module, {
+    id: 'BusinessGrid',
+    init: function() {
+        this.launcher = {
+            text: IHMSData.UITxt.Modules.BusinessGrid.Text,
+            iconCls: 'icon-BusinessGrid',
+            handler: this.createWindow,
+            scope: this
+        }
+    },
+    createWindow: function() {
+        var desktop = this.app.getDesktop();
+        var win = desktop.getWindow('BusinessGrid');
+        if (!win) {
+            win = desktop.createWindow({
+                id: 'BusinessGrid',
+                title: IHMSData.UITxt.Modules.BusinessGrid.Text,
+                width: GeanJs.GetBrowserWidth() - 150,
+                height: GeanJs.GetBrowserHeight() - 80,
+                iconCls: 'icon-BusinessGrid',
+                shim: true,
+                animCollapse: false,
+                border: true,
+                constrainHeader: true
 
-
-
-
-
-/*
- * Example windows
- */
+                //layout: 'fit',
+            });
+        }
+        win.show();
+    }
+});
 
 
 
