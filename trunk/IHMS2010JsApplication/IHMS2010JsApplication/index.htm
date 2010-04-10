@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IHMS2010</title>
     <link rel="stylesheet" type="text/css" href="lib/extjs/resources/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="lib/extjs/pan/panihms.css" />
@@ -295,7 +295,7 @@
                         border: false,
                         constrainHeader: true,
                         plain: true,
-                        //layout: 'fix',
+                        layout: 'border', //将容器分为五个区域:east,south,west,north,center 
 
                         items: [
                             new Ext.Panel({
@@ -310,6 +310,7 @@
                             ,
                             new Ext.TabPanel
                             ({
+                                title: 'TabPanel', 
                                 region: 'center',
                                 margins: '3 3 3 0',
                                 activeTab: 0,
@@ -330,7 +331,6 @@
                         ]
                     });
                 }
-                //alert("win show.");
                 win.show();
             }
         });
