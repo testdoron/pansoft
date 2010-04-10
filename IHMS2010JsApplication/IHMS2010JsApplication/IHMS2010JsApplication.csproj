@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ihms2010.ico" />
-    <Content Include="index-demo.htm" />
+    <Content Include="other\index-demo.htm" />
     <Content Include="index.htm" />
     <Content Include="javascripts\common\companyGroupTree.js" />
     <Content Include="javascripts\data\dataDefine.js" />
@@ -1183,7 +1183,7 @@
     <Content Include="lib\jQuery\jquery-1.4.1-vsdoc.js" />
     <Content Include="lib\jQuery\jquery-1.4.1.js" />
     <Content Include="lib\jQuery\jquery-1.4.1.min.js" />
-    <Content Include="modules.js" />
+    <Content Include="other\modules.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\extjs\resources\images\access\form\clear-trigger.psd" />
@@ -1210,6 +1210,7 @@
     <None Include="lib\extjs\resources\images\yourtheme\window\right-corners.psd" />
     <None Include="lib\extjs\resources\images\yourtheme\window\top-bottom.psd" />
     <None Include="lib\extjs\resources\resources.jsb" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

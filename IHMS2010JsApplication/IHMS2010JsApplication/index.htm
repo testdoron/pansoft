@@ -1,7 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IHMS2010</title>
@@ -14,21 +12,21 @@
     <script type="text/javascript" src="lib/extjs/ext-all.js"></script>
     <script type="text/javascript" src="lib/extjs/pan/panihms.js"></script>
 </head>
-
 <body scroll="no">
-
     <!------------------------------------>
     <!--       数据定义：GeanJs         -->
     <!------------------------------------>
+
     <script type="text/javascript">
         var GeanJs = {
             version: '2.0.1',
             email: 'nsimple.cn@gmail.com'
         }
     </script>
-    
+
     <!-- GeanJs.GetBrowserHeight, GeanJs.GetBrowserWidth -->
-    <script type ="text/javascript">
+
+    <script type="text/javascript">
         //获得浏览器可视界面的高度
         GeanJs.GetBrowserHeight = function() {
             if ($.browser.msie) {
@@ -50,19 +48,19 @@
         }
     </script>
 
-
-
     <!------------------------------------>
     <!--       数据定义：IHMSData       -->
     <!------------------------------------>
+
     <script type="text/javascript">
         var IHMSData = {
             version: '2010.6.0',
             email: 'lukan.pan@gmail.com'
         }
     </script>
-    
+
     <!-- IHMSData.UITxt -->
+
     <script type="text/javascript">
         IHMSData.UITxt = {
             "StartMenuWorkerTxt": "登录用户",
@@ -75,89 +73,95 @@
             }
         }
     </script>
-    
+
     <!-- IHMSData.ConfigJson -->
+
     <script type="text/javascript">
         IHMSData.ConfigJson = {
             "SoftwareName": "力合智能大厅管理系统2010",
             "SoftwareVersion": "Base1",
-            "WorkerName": "马英豪"
+            "WorkerName": "马英豪",
         }
     
     </script>
-    
+
     <!-- IHMSData.CompanyGroup -->
+
     <script type="text/javascript">
         IHMSData.CompanyGroup =
     {
-        "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-        "name": "平安银行北京分行将台路分行",
+        "id": "0000 - root - 0000",
+        "name": "平安银行北京分行",
         "items": [
-        {
-            "id": "B8467904-B3DD-480c-8C5F-35C9BF0F328B",
-            "name": "平安银行北京分行将台路分行"
-        },
-        {
-            "id": "0D36E698-5177-46aa-ACDD-D7216B5591D0",
-            "name": "平安银行北京分行亚运村分行"
-        },
-        {
-            "id": "B40B9DC8-2771-4adf-9A1A-789E7538FC72",
-            "name": "平安银行北京分行平安大街分行"
-        },
-        {
-            "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-            "name": "平安银行北京分行昌平分行",
-            "items": [
-                {
-                    "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-                    "name": "平安银行北京分行昌平南关大街分行"
-                },
-                {
-                    "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-                    "name": "平安银行北京分行昌平西关大街分行"
-                },
-                {
-                    "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-                    "name": "平安银行北京分行昌平北关大街分行"
-                },
-                {
-                    "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-                    "name": "平安银行北京分行昌平东关大街分行"
-                }
-            ]
-        },
-        {
-            "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-            "name": "平安银行北京分行顺义分行",
-            "items": [
-                {
-                    "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-                    "name": "平安银行北京分行顺义北海道分行"
-                },
-                {
-                    "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-                    "name": "平安银行北京分行顺义芝加哥分行"
-                },
-                {
-                    "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-                    "name": "平安银行北京分行顺义危地马拉分行"
-                },
-                {
-                    "id": "201B1B92-AECA-4bc1-B1C1-0FC70B1B826D",
-                    "name": "平安银行北京分行顺义纽约分行"
-                }
-            ]
-        }
-    ]
+                    {
+                        "id": "111",
+                        "name": "平安银行北京分行将台路分行"
+                    },
+                    {
+                        "id": "222",
+                        "name": "平安银行北京分行亚运村分行"
+                    },
+                    {
+                        "id": "333",
+                        "name": "平安银行北京分行平安大街分行"
+                    },
+                    {
+                        "id": "444",
+                        "name": "平安银行北京分行昌平分行",
+                        "items": [
+                            {
+                                "id": "444 - 111",
+                                "name": "平安银行北京分行昌平南关大街分行"
+                            },
+                            {
+                                "id": "444 - 222",
+                                "name": "平安银行北京分行昌平西关大街分行"
+                            },
+                            {
+                                "id": "444 - 333",
+                                "name": "平安银行北京分行昌平北关大街分行"
+                            },
+                            {
+                                "id": "444 - 444",
+                                "name": "平安银行北京分行昌平东关大街分行"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "555",
+                        "name": "平安银行北京分行顺义分行",
+                        "items": [
+                            {
+                                "id": "555 - 111",
+                                "name": "平安银行北京分行顺义北海道分行"
+                            },
+                            {
+                                "id": "555 - 222",
+                                "name": "平安银行北京分行顺义芝加哥分行"
+                            },
+                            {
+                                "id": "555 - 333",
+                                "name": "平安银行北京分行顺义危地马拉分行"
+                            },
+                            {
+                                "id": "555 - 444",
+                                "name": "平安银行北京分行顺义纽约分行"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "666",
+                        "name": "平安银行北京分行长安街分行"
+                    }
+                ]
     }
     
     </script>
 
-   
     <!------------------------------------>
     <!--   一些公用的组件 UICommon      -->
     <!------------------------------------>
+
     <script type="text/javascript">
         var UICommon = {
             version: '2010.6.0',
@@ -165,77 +169,11 @@
         }
     </script>
 
-    <!--用户组织的Group树-->
-    <script type="text/javascript">
-        //定义树的根节点
-        UICommon.CompanyGroupTreeRoot = new Ext.tree.TreeNode({
-            id: IHMSData.CompanyGroup.id, //根节点id
-            text: IHMSData.CompanyGroup.name
-        });
-
-        //定义机构的树
-        UICommon.CompanyGroupTree = new Ext.tree.TreePanel({
-                title: 'companyGroupTree',
-                region: 'west',
-                split: true,
-                width: 300,
-                collapsible: true,
-                margins: '3 0 3 3',
-                cmargins: '3 3 3 3',
-                
-                useArrows: true,
-                autoScroll: true,//自动滚动 
-                animate: true,//开启动画效果 
-                enableDD: false,//不允许子节点拖动 
-                containerScroll: true,
-                rootVisible: true//设为false将隐藏根节点，很多情况下，我们选择隐藏根节点增加美观性 
-                //loader: treeloader
-                });
-                
-        //设置根节点
-        companyGroupTree.setRootNode(UICommon.CompanyGroupTreeRoot);
-    </script>
-    
-    <script type ="text/javascript">
-        // tabs for the center
-        var tabs = new Ext.TabPanel({
-            region: 'center',
-            margins: '3 3 3 0',
-            activeTab: 0,
-            defaults: { autoScroll: true },
-
-            items: [{
-                    title: 'Bogus Tab',
-                    html: Ext.example.bogusMarkup
-                }, {
-                    title: 'Another Tab',
-                    html: Ext.example.bogusMarkup
-                }, {
-                    title: 'Closable Tab',
-                    html: Ext.example.bogusMarkup,
-                    closable: true
-                }]
-            });
-
-            // Panel for the west
-            var nav = new Ext.Panel({
-                title: 'Navigation',
-                region: 'west',
-                split: true,
-                width: 200,
-                collapsible: true,
-                margins: '3 0 3 3',
-                cmargins: '3 3 3 3'
-            });
-
-    </script>
-
-
     <!------------------------------------>
     <!--       模块：IHMSModule         -->
     <!------------------------------------>
-    
     <!--载入相应的模块及开始菜单-->
+
     <script type="text/javascript">
         IHMSModule = new Ext.app.App({
             init: function() {
@@ -269,6 +207,35 @@
     </script>
 
     <!--模块：BusinessGrid(业务量报表)-->
+    <!--定义机构树-->
+    <script type="text/javascript">
+        //定义树的根节点
+        var companyGroupTreeRoot = new Ext.tree.TreeNode({
+            id: IHMSData.CompanyGroup.id,
+            text: IHMSData.CompanyGroup.name
+        });
+
+        loadGroup(companyGroupTreeRoot, IHMSData.CompanyGroup.items);
+
+        var node;
+        function loadGroup(treenode, array) {
+            for (var i = 0; i < array.length; i++) {
+                node = new Ext.tree.TreeNode({
+                    id: array[i].id,
+                    text: array[i].name
+                });
+                treenode.appendChild(node);
+//                alert(treenode + " ---> items: " + jQuery.isEmptyObject(array[i].items));
+                if (!jQuery.isEmptyObject(array[i].items)) {
+//                    alert(array[i].items.length);
+                    if (array[i].items.length > 0) {
+                        loadGroup(node, array[i].items);
+                    }
+                };
+            };
+        }
+    </script>
+    <!---->
     <script type="text/javascript">
         IHMSModule.BusinessGrid = Ext.extend(Ext.app.Module, {
             id: 'BusinessGrid',
@@ -295,48 +262,59 @@
                         border: false,
                         constrainHeader: true,
                         plain: true,
-                        layout: 'border', //将容器分为五个区域:east,south,west,north,center 
+                        layout: 'border', //将容器分为五个区域:east,south,west,north,center
 
+                        //items: [ companyTreePanel, statisticsReportPanel ]
+                        
                         items: [
-                            new Ext.Panel({
-                                title: 'Navigation',
-                                region: 'west',
-                                split: true,
-                                width: 200,
-                                collapsible: true,
-                                margins: '3 0 3 3',
-                                cmargins: '3 3 3 3'
-                            })
-                            ,
-                            new Ext.TabPanel
-                            ({
-                                title: 'TabPanel', 
-                                region: 'center',
-                                margins: '3 3 3 0',
-                                activeTab: 0,
-                                defaults: { autoScroll: true },
-                                items: 
-                                [{
-                                    title: 'Bogus Tab',
-                                    html: ''
-                                    }, {
-                                    title: 'Another Tab',
-                                    html: ''
-                                    }, {
-                                    title: 'Closable Tab',
-                                    html: '',
-                                    closable: true
-                                }]
-                            })
+                                new Ext.tree.TreePanel({
+                                    title: 'CompanyTreePanel',
+                                    region: 'west',
+                                    width: 230,
+                                    margins: '3 0 3 3',
+                                    cmargins: '3 3 3 3',
+                                    
+                                    collapsible: true,
+                                    useArrows: true,
+                                    autoScroll: true,
+                                    animate: true,
+                                    enableDD: true,
+                                    containerScroll: true,
+                                    split: true,
+                                    //border: false,
+                                    // auto create TreeLoader
+                                    //dataUrl: 'get-nodes.php',
+
+                                    root: companyGroupTreeRoot
+                                    
+//                                        nodeType: 'async',
+//                                        text: IHMSData.CompanyGroup.name,
+//                                        id: IHMSData.CompanyGroup.id,
+//                                        draggable: false
+//                                    }
+                                }),
+                                new Ext.TabPanel({
+                                        title: 'TabPanel',
+                                        region: 'center',
+                                        margins: '3 3 3 0',
+                                        activeTab: 0,
+                                        defaults: { autoScroll: true },
+                                        items:
+                                        [{
+                                            title: '统计图表',
+                                            html: ''
+                                        }, {
+                                            title: '统计数据',
+                                            html: ''
+                                        }]
+                                })
                         ]
                     });
                 }
                 win.show();
             }
         });
-    
     </script>
-
 
 
     <!--桌面部份-->
@@ -344,7 +322,7 @@
         <dl id="x-shortcuts">
             <!-- 快捷方式的id按被调用的窗体 + ‘-shortcut’ 组成 -->
             <dt id="BusinessGrid-shortcut"><a href="#">
-                <img src="lib/extjs/pan/images/s.gif" />
+                <img src="lib/extjs/pan/images/s.gif" alt="BusinessGrid" />
                 <div id="BusinessGrid-txt">
                 </div>
             </a></dt>
@@ -360,10 +338,8 @@
         <div class="x-clear">
         </div>
     </div>
-    
-    
-    
     <!--页面载入后的一些操作-->
+
     <script type="text/javascript">
         $("title").empty();
         //对TITLE节点进行操作，打印用户单位名称及软件与软件版本号
@@ -374,7 +350,6 @@
             concat(IHMSData.ConfigJson.SoftwareVersion));
         $("#BusinessGrid-txt").append(IHMSData.UITxt.Modules.BusinessGrid.Text);
     </script>
-    
-</body>
 
+</body>
 </html>
