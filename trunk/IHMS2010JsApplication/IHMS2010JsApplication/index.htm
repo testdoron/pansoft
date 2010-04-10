@@ -7,9 +7,18 @@
     <link rel="stylesheet" type="text/css" href="lib/extjs/pan/panihms.css" />
     <link rel="stylesheet" type="text/css" href="javascripts/modules/modules.css" />
 
+    <script type="text/javascript">
+        document.getElementById('loading-msg').innerHTML = 'Loading Core API...';
+    </script>
     <script type="text/javascript" src="lib/jQuery/jquery-1.4.1.min.js"></script>
     <script type="text/javascript" src="lib/extjs/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript">
+        document.getElementById('loading-msg').innerHTML = 'Loading UI Components...';
+    </script>
     <script type="text/javascript" src="lib/extjs/ext-all.js"></script>
+    <script type="text/javascript">
+        document.getElementById('loading-msg').innerHTML = 'Initializing...';
+    </script>
     <script type="text/javascript" src="lib/extjs/pan/panihms.js"></script>
 </head>
 <body scroll="no">
@@ -66,6 +75,7 @@
             "StartMenuWorkerTxt": "登录用户",
             "StartMenuSettingTxt": "系统选项",
             "StartMenuLogoutTxt": "退出系统",
+            "companyGroupTreeRoot": "组织机构",
             "Modules": {
                 "BusinessGrid": {
                     "Text": "业务量统计与查询"
@@ -133,25 +143,67 @@
                         "items": [
                             {
                                 "id": "555 - 111",
-                                "name": "平安银行北京分行顺义北海道分行"
+                                "name": "平安银行北京分行顺义府前西街分行"
                             },
                             {
                                 "id": "555 - 222",
-                                "name": "平安银行北京分行顺义芝加哥分行"
+                                "name": "平安银行北京分行顺义府前东街分行",
+                                "items": [
+                                    {
+                                        "id": "555 - 222 - 111",
+                                        "name": "平安银行北京分行顺义东兴路分行"
+                                    },
+                                    {
+                                        "id": "555 - 222 - 222",
+                                        "name": "平安银行北京分行顺义下关路分行"
+                                    },
+                                    {
+                                        "id": "555 - 222 - 333",
+                                        "name": "平安银行北京分行顺义滨河南路分行"
+                                    }]
                             },
                             {
                                 "id": "555 - 333",
-                                "name": "平安银行北京分行顺义危地马拉分行"
+                                "name": "平安银行北京分行顺义五里仓分行"
                             },
                             {
                                 "id": "555 - 444",
-                                "name": "平安银行北京分行顺义纽约分行"
+                                "name": "平安银行北京分行顺义西环路分行"
                             }
                         ]
                     },
                     {
                         "id": "666",
                         "name": "平安银行北京分行长安街分行"
+                    },
+                    {
+                        "id": "101010",
+                        "name": "平安银行北京分行西直门分行"
+                    },
+                    {
+                        "id": "111111",
+                        "name": "平安银行北京分行东直门分行"
+                    },
+                    {
+                        "id": "121212",
+                        "name": "平安银行北京分行崇文门分行"
+                    },
+                    {
+                        "id": "131313",
+                        "name": "平安银行北京分行鼓楼分行"
+                    },
+                    {
+                        "id": "141414",
+                        "name": "平安银行北京分行左安门分行",
+                        "items": [
+                            {
+                                "id": "141414 - 111",
+                                "name": "平安银行北京分行左安门方庄分行"
+                            },
+                            {
+                                "id": "141414 - 222",
+                                "name": "平安银行北京分行左安门芳星园分行"
+                            }]                     
                     }
                 ]
     }
@@ -207,7 +259,7 @@
     </script>
 
     <!--模块：BusinessGrid(业务量报表)-->
-    <!--定义机构树-->
+    <!--定义机构树: companyGroupTreeRoot-->
     <script type="text/javascript">
         //定义树的根节点
         var companyGroupTreeRoot = new Ext.tree.TreeNode({
@@ -234,6 +286,37 @@
                 };
             };
         }
+
+        var companyTreePanel = new Ext.tree.TreePanel({
+            title: IHMSData.UITxt.companyGroupTreeRoot,
+            region: 'west',
+            width: 230,
+            margins: '3 0 3 3',
+            cmargins: '3 3 3 3',
+
+            collapsible: true,
+            useArrows: true,
+            autoScroll: true,
+            animate: true,
+            enableDD: true,
+            containerScroll: true,
+            split: true,
+            //TODO: auto create by TreeLoader
+            //dataUrl: Java Action,
+            root: companyGroupTreeRoot
+        });
+
+        companyTreePanel.on("click", function(node) {
+            Ext.Msg.show({
+                title: ' 提示',
+                msg: "你单击了:<br />" + node.id + "<br />" + node.text,
+                animEl: node.ui.textNode
+            });
+        });  
+
+
+        
+
     </script>
     <!---->
     <script type="text/javascript">
@@ -265,34 +348,9 @@
                         layout: 'border', //将容器分为五个区域:east,south,west,north,center
 
                         //items: [ companyTreePanel, statisticsReportPanel ]
-                        
-                        items: [
-                                new Ext.tree.TreePanel({
-                                    title: 'CompanyTreePanel',
-                                    region: 'west',
-                                    width: 230,
-                                    margins: '3 0 3 3',
-                                    cmargins: '3 3 3 3',
-                                    
-                                    collapsible: true,
-                                    useArrows: true,
-                                    autoScroll: true,
-                                    animate: true,
-                                    enableDD: true,
-                                    containerScroll: true,
-                                    split: true,
-                                    //border: false,
-                                    // auto create TreeLoader
-                                    //dataUrl: 'get-nodes.php',
 
-                                    root: companyGroupTreeRoot
-                                    
-//                                        nodeType: 'async',
-//                                        text: IHMSData.CompanyGroup.name,
-//                                        id: IHMSData.CompanyGroup.id,
-//                                        draggable: false
-//                                    }
-                                }),
+                        items: [companyTreePanel
+                                ,
                                 new Ext.TabPanel({
                                         title: 'TabPanel',
                                         region: 'center',
@@ -312,11 +370,20 @@
                     });
                 }
                 win.show();
+                companyTreePanel.expandAll();
             }
         });
     </script>
 
 
+    <!--    <div id="loading-mask" style="">
+    </div>
+    <div id="loading">
+        <div class="loading-indicator">
+            <img src="lib/extjs/pan/shared/extjs/images/extanim32.gif" width="32" height="32" style="margin-right: 8px;
+                float: left; vertical-align: top;" alt="" />Ext JS 3.2 - <a href="http://extjs.com">extjs.com</a><br />
+            <span id="loading-msg">Loading styles and images...</span></div>
+    </div>-->
     <!--桌面部份-->
     <div id="x-desktop">
         <dl id="x-shortcuts">
