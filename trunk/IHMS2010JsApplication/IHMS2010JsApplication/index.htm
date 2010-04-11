@@ -11,7 +11,7 @@
     <script type="text/javascript" src="lib/jQuery/jquery-1.4.1.min.js"></script>
     <script type="text/javascript" src="lib/extjs/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="lib/extjs/ext-all.js"></script>
-    <script type="text/javascript" src="lib/am/amcolumn_1.6.4.2/amcolumn/swfobject.js"></script>
+    <script type="text/javascript" src="lib/am/amcolumn/swfobject.js"></script>
     <script type="text/javascript" src="lib/extjs/pan/panihms.js"></script>
 </head>
 
@@ -142,8 +142,8 @@
     <script type="text/javascript">
         function GetCompanyWorkload() 
         {
-            var so = new SWFObject("lib/am/amcolumn_1.6.4.2/amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
-            so.addVariable("path", "lib/am/amcolumn_1.6.4.2/amcolumn/");
+            var so = new SWFObject("lib/am/amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
+            so.addVariable("path", "lib/am/amcolumn/");
             so.addVariable("settings_file", encodeURIComponent("amcolumn_settings.xml"));
             //so.addVariable("data_file", escape("data.aspx"));
             so.addVariable("preloader_color", "#999999");
