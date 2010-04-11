@@ -1,11 +1,66 @@
-.icon-BusinessGrid {
-    background-image:url( images/grid.png ) !important;
+.icon-CustomManagement {
+    background-image:url( images/CustomManagement.png ) !important;
 }
 
-/* shortcuts */
+#CustomManagement-shortcut img {
+    width:48px;
+    height:48px;
+    background-image: url(images/CustomManagement.1.png);
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/CustomManagement.1.png', sizingMethod='scale');
+}
+
+.icon-OperationManagement {
+    background-image:url( images/OperationManagement.1.png ) !important;
+}
+
+#OperationManagement-shortcut img {
+    width:48px;
+    height:48px;
+    background-image: url(images/OperationManagement.1.png);
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/OperationManagement.1.png', sizingMethod='scale');
+}
+
+.icon-DeviceManagement {
+    background-image:url( images/DeviceManagement.1.png ) !important;
+}
+
+#DeviceManagement-shortcut img {
+    width:48px;
+    height:48px;
+    background-image: url(images/DeviceManagement.1.png);
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/DeviceManagement.1.png', sizingMethod='scale');
+}
+
+.icon-BusinessGrid {
+    background-image:url( images/StatisticsManagement.1.png ) !important;
+}
+
 #BusinessGrid-shortcut img {
     width:48px;
     height:48px;
-    background-image: url(images/grid48x48.png);
-    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/grid48x48.png', sizingMethod='scale');
+    background-image: url(images/StatisticsManagement.1.png);
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/StatisticsManagement.1.png', sizingMethod='scale');
+}
+
+.icon-BookingManagement {
+    background-image:url( images/BookingManagement.1.png ) !important;
+}
+
+#BookingManagement-shortcut img {
+    width:48px;
+    height:48px;
+    background-image: url(images/BookingManagement.1.png);
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/BookingManagement.1.png', sizingMethod='scale');
+}
+
+
+.icon-SystemManagement {
+    background-image:url( images/SystemManagement.1.png ) !important;
+}
+
+#SystemManagement-shortcut img {
+    width:48px;
+    height:48px;
+    background-image: url(images/SystemManagement.1.png);
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/SystemManagement.1.png', sizingMethod='scale');
 }
