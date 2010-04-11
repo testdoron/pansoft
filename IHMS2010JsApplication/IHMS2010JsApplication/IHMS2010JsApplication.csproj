@@ -1219,8 +1219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="css\" />
-    <Folder Include="images\" />
     <Folder Include="lib\extjs\resources\images\vista\dd\" />
     <Folder Include="lib\extjs\resources\images\vista\tree\" />
   </ItemGroup>
