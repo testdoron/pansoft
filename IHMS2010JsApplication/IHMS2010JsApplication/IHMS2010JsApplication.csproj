@@ -1233,10 +1233,12 @@
     <Content Include="javascripts\modules\images\StatisticsManagement.icon.png" />
     <Content Include="javascripts\modules\images\SystemManagement.1.png" />
     <Content Include="javascripts\modules\images\SystemManagement.2.png" />
+    <Content Include="lib\am\amcolumn\amcharts_key.txt" />
     <Content Include="lib\am\amcolumn\amcolumn.swf" />
     <Content Include="lib\am\amcolumn\amcolumn_data.txt" />
     <Content Include="lib\am\amcolumn\amcolumn_data.xml" />
-    <Content Include="lib\am\amcolumn\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn\amcolumn_settings.example.xml" />
+    <Content Include="lib\am\amcolumn\amcolumn_CompanyWorkload_settings.xml" />
     <Content Include="lib\am\amcolumn\export.aspx" />
     <Content Include="lib\am\amcolumn\fonts\arial.swf" />
     <Content Include="lib\am\amcolumn\fonts\garamond.swf" />
@@ -1248,6 +1250,7 @@
     <Content Include="lib\am\amcolumn\plugins\value_indicator.swf" />
     <Content Include="lib\am\amcolumn\swfobject.js" />
     <Content Include="lib\am\amcolumn\licence.1.6.4.2.txt" />
+    <Content Include="lib\am\ampie\amcharts_key.txt" />
     <Content Include="lib\am\ampie\licence.1.6.4.1.txt" />
     <Content Include="lib\am\ampie\ampie.swf" />
     <Content Include="lib\am\ampie\ampie_data.txt" />
@@ -1258,6 +1261,7 @@
     <Content Include="lib\am\ampie\patterns\horizontal.swf" />
     <Content Include="lib\am\ampie\patterns\vertical.swf" />
     <Content Include="lib\am\ampie\swfobject.js" />
+    <Content Include="other\chartData.xml" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
