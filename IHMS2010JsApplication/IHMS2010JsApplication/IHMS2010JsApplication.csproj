@@ -49,9 +49,6 @@
     <Content Include="javascripts\common\companyGroupTree.js" />
     <Content Include="javascripts\data\dataDefine.js" />
     <Content Include="javascripts\modules\BusinessGrid\BusinessGrid.js" />
-    <Content Include="javascripts\modules\images\grid.png" />
-    <Content Include="javascripts\modules\images\grid48x48.png" />
-    <Content Include="javascripts\modules\images\im48x48.png" />
     <Content Include="javascripts\modules\modules.css" />
     <Content Include="lib\extjs\adapter\ext\ext-base-debug.js" />
     <Content Include="lib\extjs\adapter\ext\ext-base.js" />
@@ -1210,6 +1207,14 @@
     <None Include="lib\extjs\resources\images\yourtheme\window\top-bottom.psd" />
     <None Include="lib\extjs\resources\resources.jsb" />
     <Content Include="index.htm" />
+    <Content Include="javascripts\modules\images\BookingManagement.1.png" />
+    <Content Include="javascripts\modules\images\CustomManagement.1.png" />
+    <Content Include="javascripts\modules\images\CustomManagement.2.png" />
+    <Content Include="javascripts\modules\images\DeviceManagement.1.png" />
+    <Content Include="javascripts\modules\images\OperationManagement.1.png" />
+    <Content Include="javascripts\modules\images\StatisticsManagement.1.png" />
+    <Content Include="javascripts\modules\images\SystemManagement.1.png" />
+    <Content Include="javascripts\modules\images\SystemManagement.2.png" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>

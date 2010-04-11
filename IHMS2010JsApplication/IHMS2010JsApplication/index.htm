@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>IHMS2010</title>
@@ -7,25 +8,16 @@
     <link rel="stylesheet" type="text/css" href="lib/extjs/pan/panihms.css" />
     <link rel="stylesheet" type="text/css" href="javascripts/modules/modules.css" />
 
-    <script type="text/javascript">
-        document.getElementById('loading-msg').innerHTML = 'Loading Core API...';
-    </script>
     <script type="text/javascript" src="lib/jQuery/jquery-1.4.1.min.js"></script>
     <script type="text/javascript" src="lib/extjs/adapter/ext/ext-base.js"></script>
-    <script type="text/javascript">
-        document.getElementById('loading-msg').innerHTML = 'Loading UI Components...';
-    </script>
     <script type="text/javascript" src="lib/extjs/ext-all.js"></script>
-    <script type="text/javascript">
-        document.getElementById('loading-msg').innerHTML = 'Initializing...';
-    </script>
     <script type="text/javascript" src="lib/extjs/pan/panihms.js"></script>
 </head>
+
 <body scroll="no">
     <!------------------------------------>
     <!--       数据定义：GeanJs         -->
     <!------------------------------------>
-
     <script type="text/javascript">
         var GeanJs = {
             version: '2.0.1',
@@ -34,7 +26,6 @@
     </script>
 
     <!-- GeanJs.GetBrowserHeight, GeanJs.GetBrowserWidth -->
-
     <script type="text/javascript">
         //获得浏览器可视界面的高度
         GeanJs.GetBrowserHeight = function() {
@@ -60,16 +51,14 @@
     <!------------------------------------>
     <!--       数据定义：IHMSData       -->
     <!------------------------------------>
-
     <script type="text/javascript">
         var IHMSData = {
             version: '2010.6.0',
             email: 'lukan.pan@gmail.com'
         }
     </script>
-
+    
     <!-- IHMSData.UITxt -->
-
     <script type="text/javascript">
         IHMSData.UITxt = {
             "StartMenuWorkerTxt": "登录用户",
@@ -77,26 +66,27 @@
             "StartMenuLogoutTxt": "退出系统",
             "companyGroupTreeRoot": "组织机构",
             "Modules": {
-                "BusinessGrid": {
-                    "Text": "业务量统计与查询"
-                }
+                "CustomManagement": { "Text": "客户管理" },
+                "OperationManagement": { "Text": "业务管理" },
+                "DeviceManagement": { "Text": "设备管理" },
+                "BusinessGrid": { "Text": "统计分析" },//StatisticsManagement
+                "BookingManagement": { "Text": "预约管理" },
+                "SystemManagement": { "Text": "系统管理" }
             }
         }
     </script>
-
+    
     <!-- IHMSData.ConfigJson -->
-
     <script type="text/javascript">
         IHMSData.ConfigJson = {
             "SoftwareName": "力合智能大厅管理系统2010",
             "SoftwareVersion": "Base1",
-            "WorkerName": "马英豪",
+            "WorkerName": "马英豪"
         }
     
     </script>
-
+    
     <!-- IHMSData.CompanyGroup -->
-
     <script type="text/javascript">
         IHMSData.CompanyGroup =
     {
@@ -220,12 +210,78 @@
             email: 'lukan.pan@gmail.com'
         }
     </script>
+    
+    <!--机构树面板: UICommon.CompanyGroupTreePanel-->
+    <script type="text/javascript">
+
+        //创建机构树面板
+        UICommon.CompanyGroupTreePanel = function() {
+
+            //机构树的根节点
+            var rootNode = new Ext.tree.TreeNode({
+                id: IHMSData.CompanyGroup.id,
+                text: IHMSData.CompanyGroup.name
+            });
+
+            //递归读取机构树
+            loadGroup(rootNode, IHMSData.CompanyGroup.items);
+
+            var node;
+            //机构树的读取函数(递归)
+            function loadGroup(treenode, array) {
+                for (var i = 0; i < array.length; i++) {
+                    node = new Ext.tree.TreeNode({
+                        id: array[i].id,
+                        text: array[i].name
+                    });
+                    treenode.appendChild(node);
+                    if (!jQuery.isEmptyObject(array[i].items)) {
+                        if (array[i].items.length > 0) {
+                            loadGroup(node, array[i].items);
+                        }
+                    };
+                };
+            }
+
+            //机构树面板
+            var panel = new Ext.tree.TreePanel({
+                title: IHMSData.UITxt.companyGroupTreeRoot,
+                region: 'west',
+                width: 230,
+                margins: '3 0 3 3',
+                cmargins: '3 3 3 3',
+
+                collapsible: true,
+                useArrows: true,
+                autoScroll: true,
+                animate: true,
+                enableDD: true,
+                containerScroll: true,
+                split: true,
+                //TODO: auto create by TreeLoader
+                //dataUrl: Java Action,
+                root: rootNode
+            });
+
+            //定义机构树面板节点的点击事件
+            panel.on("click", function(node) {
+                Ext.Msg.show({
+                    title: ' 提示',
+                    msg: "你单击了:<br />" + node.id + "<br />" + node.text,
+                    animEl: node.ui.textNode
+                });
+            });
+
+            return panel;
+        }
+    </script>
+
 
     <!------------------------------------>
     <!--       模块：IHMSModule         -->
     <!------------------------------------>
+    
     <!--载入相应的模块及开始菜单-->
-
     <script type="text/javascript">
         IHMSModule = new Ext.app.App({
             init: function() {
@@ -252,73 +308,13 @@
                         text: IHMSData.UITxt.StartMenuLogoutTxt,
                         iconCls: 'logout',
                         scope: this
-                    }]
+}]
                     };
                 }
             });
     </script>
 
     <!--模块：BusinessGrid(业务量报表)-->
-    <!--定义机构树: companyGroupTreeRoot-->
-    <script type="text/javascript">
-        //定义树的根节点
-        var companyGroupTreeRoot = new Ext.tree.TreeNode({
-            id: IHMSData.CompanyGroup.id,
-            text: IHMSData.CompanyGroup.name
-        });
-
-        loadGroup(companyGroupTreeRoot, IHMSData.CompanyGroup.items);
-
-        var node;
-        function loadGroup(treenode, array) {
-            for (var i = 0; i < array.length; i++) {
-                node = new Ext.tree.TreeNode({
-                    id: array[i].id,
-                    text: array[i].name
-                });
-                treenode.appendChild(node);
-//                alert(treenode + " ---> items: " + jQuery.isEmptyObject(array[i].items));
-                if (!jQuery.isEmptyObject(array[i].items)) {
-//                    alert(array[i].items.length);
-                    if (array[i].items.length > 0) {
-                        loadGroup(node, array[i].items);
-                    }
-                };
-            };
-        }
-
-        var companyTreePanel = new Ext.tree.TreePanel({
-            title: IHMSData.UITxt.companyGroupTreeRoot,
-            region: 'west',
-            width: 230,
-            margins: '3 0 3 3',
-            cmargins: '3 3 3 3',
-
-            collapsible: true,
-            useArrows: true,
-            autoScroll: true,
-            animate: true,
-            enableDD: true,
-            containerScroll: true,
-            split: true,
-            //TODO: auto create by TreeLoader
-            //dataUrl: Java Action,
-            root: companyGroupTreeRoot
-        });
-
-        companyTreePanel.on("click", function(node) {
-            Ext.Msg.show({
-                title: ' 提示',
-                msg: "你单击了:<br />" + node.id + "<br />" + node.text,
-                animEl: node.ui.textNode
-            });
-        });  
-
-
-        
-
-    </script>
-    <!---->
     <script type="text/javascript">
         IHMSModule.BusinessGrid = Ext.extend(Ext.app.Module, {
             id: 'BusinessGrid',
@@ -347,10 +343,8 @@
                         plain: true,
                         layout: 'border', //将容器分为五个区域:east,south,west,north,center
 
-                        //items: [ companyTreePanel, statisticsReportPanel ]
-
-                        items: [companyTreePanel
-                                ,
+                        items: [//IHMSModule.CreateStatisticsManagementPanel()
+                                //,
                                 new Ext.TabPanel({
                                         title: 'TabPanel',
                                         region: 'center',
@@ -370,28 +364,39 @@
                     });
                 }
                 win.show();
-                companyTreePanel.expandAll();
+                //companyTreePanel.expandAll();
             }
         });
     </script>
 
 
-    <!--    <div id="loading-mask" style="">
-    </div>
-    <div id="loading">
-        <div class="loading-indicator">
-            <img src="lib/extjs/pan/shared/extjs/images/extanim32.gif" width="32" height="32" style="margin-right: 8px;
-                float: left; vertical-align: top;" alt="" />Ext JS 3.2 - <a href="http://extjs.com">extjs.com</a><br />
-            <span id="loading-msg">Loading styles and images...</span></div>
-    </div>-->
     <!--桌面部份-->
     <div id="x-desktop">
         <dl id="x-shortcuts">
             <!-- 快捷方式的id按被调用的窗体 + ‘-shortcut’ 组成 -->
+            <dt id="CustomManagement-shortcut"><a href="#">
+                <img src="lib/extjs/pan/images/s.gif" alt="CustomManagement" /><br />
+                <span id="CustomManagement-txt"></span>
+            </a></dt>
+            <dt id="OperationManagement-shortcut"><a href="#">
+                <img src="lib/extjs/pan/images/s.gif" alt="OperationManagement" /><br />
+                <span id="OperationManagement-txt"></span>
+            </a></dt>
+            <dt id="DeviceManagement-shortcut"><a href="#">
+                <img src="lib/extjs/pan/images/s.gif" alt="DeviceManagement" /><br />
+                <span id="DeviceManagement-txt"></span>
+            </a></dt>
             <dt id="BusinessGrid-shortcut"><a href="#">
-                <img src="lib/extjs/pan/images/s.gif" alt="BusinessGrid" />
-                <div id="BusinessGrid-txt">
-                </div>
+                <img src="lib/extjs/pan/images/s.gif" alt="BusinessGrid" /><br />
+                <span id="BusinessGrid-txt"></span>
+            </a></dt>
+            <dt id="BookingManagement-shortcut"><a href="#">
+                <img src="lib/extjs/pan/images/s.gif" alt="BookingManagement" /><br />
+                <span id="BookingManagement-txt"></span>
+            </a></dt>
+            <dt id="SystemManagement-shortcut"><a href="#">
+                <img src="lib/extjs/pan/images/s.gif" alt="SystemManagement" /><br />
+                <span id="SystemManagement-txt"></span>
             </a></dt>
             <!-- shortcut end -->
         </dl>
@@ -405,8 +410,9 @@
         <div class="x-clear">
         </div>
     </div>
+    
+    
     <!--页面载入后的一些操作-->
-
     <script type="text/javascript">
         $("title").empty();
         //对TITLE节点进行操作，打印用户单位名称及软件与软件版本号
@@ -415,8 +421,14 @@
             concat(IHMSData.ConfigJson.SoftwareName).
             concat(" ").
             concat(IHMSData.ConfigJson.SoftwareVersion));
+        $("#CustomManagement-txt").append(IHMSData.UITxt.Modules.CustomManagement.Text);
+        $("#OperationManagement-txt").append(IHMSData.UITxt.Modules.OperationManagement.Text);
+        $("#DeviceManagement-txt").append(IHMSData.UITxt.Modules.DeviceManagement.Text);
         $("#BusinessGrid-txt").append(IHMSData.UITxt.Modules.BusinessGrid.Text);
+        $("#BookingManagement-txt").append(IHMSData.UITxt.Modules.BookingManagement.Text);
+        $("#SystemManagement-txt").append(IHMSData.UITxt.Modules.SystemManagement.Text);
     </script>
 
 </body>
+
 </html>
