@@ -46,7 +46,6 @@
   <ItemGroup>
     <Content Include="ihms2010.ico" />
     <Content Include="other\index-demo.htm" />
-    <Content Include="index.htm" />
     <Content Include="javascripts\common\companyGroupTree.js" />
     <Content Include="javascripts\data\dataDefine.js" />
     <Content Include="javascripts\modules\BusinessGrid\BusinessGrid.js" />
@@ -1210,6 +1209,7 @@
     <None Include="lib\extjs\resources\images\yourtheme\window\right-corners.psd" />
     <None Include="lib\extjs\resources\images\yourtheme\window\top-bottom.psd" />
     <None Include="lib\extjs\resources\resources.jsb" />
+    <Content Include="index.htm" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
