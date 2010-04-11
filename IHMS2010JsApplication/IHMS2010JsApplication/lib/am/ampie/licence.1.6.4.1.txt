@@ -1,4 +1,4 @@
-*********************************************************************************
+﻿*********************************************************************************
 This AmCharts software, Pie&Donut chart is free under a linkware license
 
 This means you may not remove or hide in any other way link to amcharts
