@@ -11,6 +11,7 @@
     <script type="text/javascript" src="lib/jQuery/jquery-1.4.1.min.js"></script>
     <script type="text/javascript" src="lib/extjs/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="lib/extjs/ext-all.js"></script>
+    <script type="text/javascript" src="lib/am/amcolumn_1.6.4.2/amcolumn/swfobject.js"></script>
     <script type="text/javascript" src="lib/extjs/pan/panihms.js"></script>
 </head>
 
@@ -89,115 +90,65 @@
     <!-- IHMSData.CompanyGroup -->
     <script type="text/javascript">
         IHMSData.CompanyGroup =
-    {
-        "id": "0000 - root - 0000",
-        "name": "平安银行北京分行",
-        "items": [
-                    {
-                        "id": "111",
-                        "name": "平安银行北京分行将台路分行"
-                    },
-                    {
-                        "id": "222",
-                        "name": "平安银行北京分行亚运村分行"
-                    },
-                    {
-                        "id": "333",
-                        "name": "平安银行北京分行平安大街分行"
-                    },
-                    {
-                        "id": "444",
-                        "name": "平安银行北京分行昌平分行",
-                        "items": [
-                            {
-                                "id": "444 - 111",
-                                "name": "平安银行北京分行昌平南关大街分行"
-                            },
-                            {
-                                "id": "444 - 222",
-                                "name": "平安银行北京分行昌平西关大街分行"
-                            },
-                            {
-                                "id": "444 - 333",
-                                "name": "平安银行北京分行昌平北关大街分行"
-                            },
-                            {
-                                "id": "444 - 444",
-                                "name": "平安银行北京分行昌平东关大街分行"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "555",
-                        "name": "平安银行北京分行顺义分行",
-                        "items": [
-                            {
-                                "id": "555 - 111",
-                                "name": "平安银行北京分行顺义府前西街分行"
-                            },
-                            {
-                                "id": "555 - 222",
-                                "name": "平安银行北京分行顺义府前东街分行",
-                                "items": [
-                                    {
-                                        "id": "555 - 222 - 111",
-                                        "name": "平安银行北京分行顺义东兴路分行"
-                                    },
-                                    {
-                                        "id": "555 - 222 - 222",
-                                        "name": "平安银行北京分行顺义下关路分行"
-                                    },
-                                    {
-                                        "id": "555 - 222 - 333",
-                                        "name": "平安银行北京分行顺义滨河南路分行"
-                                    }]
-                            },
-                            {
-                                "id": "555 - 333",
-                                "name": "平安银行北京分行顺义五里仓分行"
-                            },
-                            {
-                                "id": "555 - 444",
-                                "name": "平安银行北京分行顺义西环路分行"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "666",
-                        "name": "平安银行北京分行长安街分行"
-                    },
-                    {
-                        "id": "101010",
-                        "name": "平安银行北京分行西直门分行"
-                    },
-                    {
-                        "id": "111111",
-                        "name": "平安银行北京分行东直门分行"
-                    },
-                    {
-                        "id": "121212",
-                        "name": "平安银行北京分行崇文门分行"
-                    },
-                    {
-                        "id": "131313",
-                        "name": "平安银行北京分行鼓楼分行"
-                    },
-                    {
-                        "id": "141414",
-                        "name": "平安银行北京分行左安门分行",
-                        "items": [
-                            {
-                                "id": "141414 - 111",
-                                "name": "平安银行北京分行左安门方庄分行"
-                            },
-                            {
-                                "id": "141414 - 222",
-                                "name": "平安银行北京分行左安门芳星园分行"
-                            }]                     
-                    }
-                ]
-    }
+        {
+            "id": "0000 - root - 0000",
+            "name": "平安银行北京分行",
+            "items": [
+                        { "id": "111", "name": "平安银行北京分行将台路分行" },
+                        { "id": "222", "name": "平安银行北京分行亚运村分行" },
+                        { "id": "333", "name": "平安银行北京分行平安大街分行" },
+                        { "id": "444", "name": "平安银行北京分行昌平分行",
+                            "items": 
+                            [
+                                { "id": "444 - 111", "name": "平安银行北京分行昌平南关大街分行" },
+                                { "id": "444 - 222", "name": "平安银行北京分行昌平西关大街分行" },
+                                { "id": "444 - 333", "name": "平安银行北京分行昌平北关大街分行" },
+                                { "id": "444 - 444", "name": "平安银行北京分行昌平东关大街分行" }
+                            ]
+                        },
+                        { "id": "555", "name": "平安银行北京分行顺义分行",
+                            "items": 
+                            [
+                                { "id": "555 - 111", "name": "平安银行北京分行顺义府前西街分行" },
+                                { "id": "555 - 222", "name": "平安银行北京分行顺义府前东街分行",
+                                    "items": 
+                                    [
+                                        { "id": "555 - 222 - 111", "name": "平安银行北京分行顺义东兴路分行" },
+                                        { "id": "555 - 222 - 222", "name": "平安银行北京分行顺义下关路分行" },
+                                        { "id": "555 - 222 - 333", "name": "平安银行北京分行顺义滨河南路分行" }
+                                    ]
+                                },
+                                { "id": "555 - 333", "name": "平安银行北京分行顺义五里仓分行" },
+                                { "id": "555 - 444", "name": "平安银行北京分行顺义西环路分行" }
+                            ]
+                        },
+                        { "id": "666", "name": "平安银行北京分行长安街分行" },
+                        { "id": "101010", "name": "平安银行北京分行西直门分行" },
+                        { "id": "111111", "name": "平安银行北京分行东直门分行" },
+                        { "id": "121212", "name": "平安银行北京分行崇文门分行" },
+                        { "id": "131313", "name": "平安银行北京分行鼓楼分行" },
+                        { "id": "141414", "name": "平安银行北京分行左安门分行",
+                            "items": 
+                            [
+                                { "id": "141414 - 111", "name": "平安银行北京分行左安门方庄分行" },
+                                { "id": "141414 - 222", "name": "平安银行北京分行左安门芳星园分行" }
+                            ]                     
+                        }
+                    ]
+        }
+    </script>
     
+    <!-- IHMSData.CompanyGroup -->
+    <script type="text/javascript">
+        function GetCompanyWorkload() 
+        {
+            var so = new SWFObject("lib/am/amcolumn_1.6.4.2/amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
+            so.addVariable("path", "lib/am/amcolumn_1.6.4.2/amcolumn/");
+            so.addVariable("settings_file", encodeURIComponent("amcolumn_settings.xml"));
+            //so.addVariable("data_file", escape("data.aspx"));
+            so.addVariable("preloader_color", "#999999");
+            so.write("StatisticsChartBlock");
+        }
     </script>
 
     <!------------------------------------>
@@ -211,14 +162,16 @@
         }
     </script>
     
-    <!--机构树面板: UICommon.CompanyGroupTreePanel-->
+    <!--机构树面板: BuildCompanyGroupTreePanel-->
     <script type="text/javascript">
 
         //创建机构树面板
-        UICommon.CompanyGroupTreePanel = function() {
+        function BuildCompanyGroupTreePanel()
+        {
 
             //机构树的根节点
-            var rootNode = new Ext.tree.TreeNode({
+            var rootNode = new Ext.tree.TreeNode
+            ({
                 id: IHMSData.CompanyGroup.id,
                 text: IHMSData.CompanyGroup.name
             });
@@ -228,15 +181,20 @@
 
             var node;
             //机构树的读取函数(递归)
-            function loadGroup(treenode, array) {
-                for (var i = 0; i < array.length; i++) {
-                    node = new Ext.tree.TreeNode({
+            function loadGroup(treenode, array) 
+            {
+                for (var i = 0; i < array.length; i++) 
+                {
+                    node = new Ext.tree.TreeNode
+                    ({
                         id: array[i].id,
                         text: array[i].name
                     });
                     treenode.appendChild(node);
-                    if (!jQuery.isEmptyObject(array[i].items)) {
-                        if (array[i].items.length > 0) {
+                    if (!jQuery.isEmptyObject(array[i].items)) 
+                    {
+                        if (array[i].items.length > 0) 
+                        {
                             loadGroup(node, array[i].items);
                         }
                     };
@@ -244,10 +202,11 @@
             }
 
             //机构树面板
-            var panel = new Ext.tree.TreePanel({
+            var panel = new Ext.tree.TreePanel
+            ({
                 title: IHMSData.UITxt.companyGroupTreeRoot,
-                region: 'west',
-                width: 230,
+                region: 'east',
+                width: 260,
                 margins: '3 0 3 3',
                 cmargins: '3 3 3 3',
 
@@ -264,18 +223,74 @@
             });
 
             //定义机构树面板节点的点击事件
-            panel.on("click", function(node) {
-                Ext.Msg.show({
+            panel.on("click", function(node) 
+            {
+                Ext.Msg.show
+                ({
                     title: ' 提示',
                     msg: "你单击了:<br />" + node.id + "<br />" + node.text,
                     animEl: node.ui.textNode
                 });
             });
-
             return panel;
         }
     </script>
+    
+    <!--图表面板: BuildStatisticsManagementChartPanel-->
+    <script type="text/javascript">
+        function BuildStatisticsManagementChartPanel() 
+        {
+            var panel = new Ext.Panel
+            ({
+                id: 'StatisticsChart',
+                autoScroll: true,
+                animate: true,
+                enableDD: true,
+                containerScroll: true,
+                //applyTo: 'flashcontent',
+                region: 'center',
+                tbar: [
+                {
+                    xtype:'splitbutton',
+                    text: 'Menu Button',
+                    iconCls: 'add16',
+                    menu: [{text: 'Menu Button 1'}]
+                },'-',{
+                    xtype:'splitbutton',
+                    text: 'Cut',
+                    iconCls: 'add16',
+                    menu: [{text: 'Cut Menu Item'}]
+                },{
+                    text: 'Copy',
+                    iconCls: 'add16'
+                },{
+                    text: 'Paste',
+                    iconCls: 'add16',
+                    menu: [{text: 'Paste Menu Item'}]
+                },'-',{
+                    text: 'Format',
+                    iconCls: 'add16'
+                }],
+                html: '<div id="StatisticsChartBlock" />'
+            });
 
+            return panel;
+        }      
+                    
+        var store = new Ext.data.ArrayStore({
+            fields: ['month', 'hits'],
+            data: generateData()
+        });
+
+        function generateData() {
+            var data = [];
+            for (var i = 0; i < 6; ++i) {
+                data.push([Date.monthNames[i], (Math.floor(Math.random() * 11) + 1) * 100]);
+            }
+            return data;
+        }
+        
+    </script>
 
     <!------------------------------------>
     <!--       模块：IHMSModule         -->
@@ -289,8 +304,8 @@
             },
             getModules: function() {
                 return [
-                // 以下是模块的载入，在我们的权限中，模块即为资源
-                // 所以以下模块的实例需用Jsp根据当前用户的权限来载入相应的实例
+                    // 以下是模块的载入，在我们的权限中，模块即为资源
+                    // 所以以下模块的实例需用Jsp根据当前用户的权限来载入相应的实例
                     new IHMSModule.BusinessGrid(),
 					];
             },
@@ -308,7 +323,7 @@
                         text: IHMSData.UITxt.StartMenuLogoutTxt,
                         iconCls: 'logout',
                         scope: this
-}]
+                        }]
                     };
                 }
             });
@@ -343,28 +358,14 @@
                         plain: true,
                         layout: 'border', //将容器分为五个区域:east,south,west,north,center
 
-                        items: [//IHMSModule.CreateStatisticsManagementPanel()
-                                //,
-                                new Ext.TabPanel({
-                                        title: 'TabPanel',
-                                        region: 'center',
-                                        margins: '3 3 3 0',
-                                        activeTab: 0,
-                                        defaults: { autoScroll: true },
-                                        items:
-                                        [{
-                                            title: '统计图表',
-                                            html: ''
-                                        }, {
-                                            title: '统计数据',
-                                            html: ''
-                                        }]
-                                })
+                        items:
+                        [
+                            BuildCompanyGroupTreePanel(), BuildStatisticsManagementChartPanel()
                         ]
                     });
+                    GetCompanyWorkload();
                 }
                 win.show();
-                //companyTreePanel.expandAll();
             }
         });
     </script>
