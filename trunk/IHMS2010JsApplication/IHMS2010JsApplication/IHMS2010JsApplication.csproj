@@ -41,6 +41,14 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="lib\am\amcolumn_1.6.4.2\amcolumn\export.aspx.cs">
+      <DependentUpon>export.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\am\ampie_1.6.4.1\ampie\export.aspx.cs">
+      <DependentUpon>export.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1182,6 +1190,15 @@
     <Content Include="other\modules.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="lib\am\amcolumn_1.6.4.2\amcolumn\export.php" />
+    <None Include="lib\am\amcolumn_1.6.4.2\amcolumn\fonts\arial.fla" />
+    <None Include="lib\am\amcolumn_1.6.4.2\amcolumn\patterns\diagonal.fla" />
+    <None Include="lib\am\amcolumn_1.6.4.2\amcolumn\patterns\horizontal.fla" />
+    <None Include="lib\am\amcolumn_1.6.4.2\amcolumn\patterns\vertical.fla" />
+    <None Include="lib\am\ampie_1.6.4.1\ampie\export.php" />
+    <None Include="lib\am\ampie_1.6.4.1\ampie\patterns\diagonal.fla" />
+    <None Include="lib\am\ampie_1.6.4.1\ampie\patterns\horizontal.fla" />
+    <None Include="lib\am\ampie_1.6.4.1\ampie\patterns\vertical.fla" />
     <None Include="lib\extjs\resources\images\access\form\clear-trigger.psd" />
     <None Include="lib\extjs\resources\images\access\form\date-trigger.psd" />
     <None Include="lib\extjs\resources\images\access\form\search-trigger.psd" />
@@ -1213,8 +1230,99 @@
     <Content Include="javascripts\modules\images\DeviceManagement.1.png" />
     <Content Include="javascripts\modules\images\OperationManagement.1.png" />
     <Content Include="javascripts\modules\images\StatisticsManagement.1.png" />
+    <Content Include="javascripts\modules\images\StatisticsManagement.icon.png" />
     <Content Include="javascripts\modules\images\SystemManagement.1.png" />
     <Content Include="javascripts\modules\images\SystemManagement.2.png" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\amcolumn.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\amcolumn_data.txt" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\amcolumn_data.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\export.aspx" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\fonts\arial.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\fonts\garamond.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\fonts\tahoma.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\fonts\times new roman.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\patterns\diagonal.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\patterns\horizontal.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\patterns\vertical.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\plugins\value_indicator.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\amcolumn\swfobject.js" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\changelog.txt" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\3d_stacked_bar_chart\amcolumn_data.txt" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\3d_stacked_bar_chart\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\3d_stacked_bar_chart\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\3d_stacked_column_chart\amcolumn_data.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\3d_stacked_column_chart\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\3d_stacked_column_chart\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\auto_resizing_chart\amcolumn_data.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\auto_resizing_chart\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\auto_resizing_chart\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\chart_with_gradient_fills\amcolumn_data.txt" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\chart_with_gradient_fills\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\chart_with_gradient_fills\bg.jpg" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\chart_with_gradient_fills\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\column_and_line_chart_mix\amcolumn_data.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\column_and_line_chart_mix\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\column_and_line_chart_mix\bg.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\column_and_line_chart_mix\bomb.swf" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\column_and_line_chart_mix\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\floating_chart\amcolumn_data.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\floating_chart\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\floating_chart\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\histogram_chart\amcolumn_data.txt" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\histogram_chart\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\histogram_chart\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\javascript_control\amcolumn_data.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\javascript_control\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\javascript_control\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\multiple_charts_on_one_page\amcolumn_data1.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\multiple_charts_on_one_page\amcolumn_data2.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\multiple_charts_on_one_page\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\multiple_charts_on_one_page\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\patterns\amcolumn_data.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\patterns\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\patterns\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\value_indicator_plugin\amcolumn_data.txt" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\value_indicator_plugin\amcolumn_settings.xml" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\examples\value_indicator_plugin\index.html" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\licence.txt" />
+    <Content Include="lib\am\amcolumn_1.6.4.2\readme.txt" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie.html" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\ampie.swf" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\ampie_data.txt" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\ampie_data.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\ampie_settings.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\export.aspx" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\patterns\diagonal.swf" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\patterns\horizontal.swf" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\patterns\vertical.swf" />
+    <Content Include="lib\am\ampie_1.6.4.1\ampie\swfobject.js" />
+    <Content Include="lib\am\ampie_1.6.4.1\changelog.txt" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\auto_resizing_chart\ampie_data.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\auto_resizing_chart\ampie_settings.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\auto_resizing_chart\index.html" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\custom_background\ampie_data.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\custom_background\ampie_settings.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\custom_background\bg.swf" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\custom_background\index.html" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\data_and_settings_inisde_html\index.html" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\donut\ampie_data.txt" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\donut\ampie_settings.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\donut\index.html" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\javascript_control\ampie_data.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\javascript_control\ampie_settings.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\javascript_control\index.html" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\multiple_charts_on_one_page\ampie_data1.txt" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\multiple_charts_on_one_page\ampie_data2.txt" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\multiple_charts_on_one_page\ampie_settings1.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\multiple_charts_on_one_page\ampie_settings2.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\multiple_charts_on_one_page\index.html" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\patterns\ampie_data.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\patterns\ampie_settings.xml" />
+    <Content Include="lib\am\ampie_1.6.4.1\examples\patterns\index.html" />
+    <Content Include="lib\am\ampie_1.6.4.1\licence.txt" />
+    <Content Include="lib\am\ampie_1.6.4.1\readme.txt" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>

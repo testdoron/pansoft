@@ -32,7 +32,7 @@
 }
 
 .icon-BusinessGrid {
-    background-image:url( images/StatisticsManagement.1.png ) !important;
+    background-image:url( images/StatisticsManagement.icon.png ) !important;
 }
 
 #BusinessGrid-shortcut img {
@@ -61,6 +61,6 @@
 #SystemManagement-shortcut img {
     width:48px;
     height:48px;
-    background-image: url(images/SystemManagement.1.png);
+    background-image: url(images/SystemManagement.2.png);
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/SystemManagement.1.png', sizingMethod='scale');
 }
