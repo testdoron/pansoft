@@ -138,14 +138,17 @@
         }
     </script>
     
-    <!-- IHMSData.CompanyGroup -->
+    <!-- GetCompanyWorkload -->
     <script type="text/javascript">
+        //机构工作量
         function GetCompanyWorkload() 
         {
-            var so = new SWFObject("lib/am/amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
-            so.addVariable("path", "lib/am/amcolumn/");
-            so.addVariable("settings_file", encodeURIComponent("amcolumn_settings.xml"));
-            //so.addVariable("data_file", escape("data.aspx"));
+            var companyWorkload = "<chart><series><value xid='0'>北京路支行</value><value xid='1'>知春路支行</value><value xid='2'>亚运村支行</value><value xid='3'>北苑支行</value><value xid='4'>大钟寺支行</value><value xid='5'>北京路支行</value><value xid='6'>知春路支行</value><value xid='7'>亚运村支行</value><value xid='8'>北苑支行</value><value xid='9'>大钟寺支行</value><value xid='10'>北京路支行</value><value xid='11'>知春路支行</value><value xid='12'>亚运村支行</value><value xid='13'>北苑支行</value><value xid='14'>大钟寺支行</value></series><graphs><graph gid='0'><value xid='0'>1168</value><value xid='1'>780</value><value xid='2'>508</value><value xid='3'>1238</value><value xid='4'>866</value><value xid='5'>2123</value><value xid='6'>232</value><value xid='7'>789</value><value xid='8'>456</value><value xid='9'>568</value><value xid='10'>678</value><value xid='11'>987</value><value xid='12'>1234</value><value xid='13'>888</value><value xid='14'>1345</value></graph></graphs></chart>";
+
+            var so = new SWFObject("/lib/am/amcolumn/amcolumn.swf", "amcolumn", "100%", "100%", "10", "#FFFFFF");
+            so.addVariable("path", "/lib/am/amcolumn/");
+            so.addVariable("chart_settings", encodeURIComponent("<settings><redraw>1</redraw><background><alpha>100</alpha><border_alpha>20</border_alpha></background><grid><category><dashed>1</dashed></category><value><dashed>1</dashed></value></grid><axes><category><width>1</width><color>E7E7E7</color></category><value><width>1</width><color>E7E7E7</color></value></axes><values><value><min>0</min></value></values><depth>15</depth><column><width>85</width><balloon_text>{title}: {value} downloads</balloon_text><grow_time>3</grow_time></column><graphs><graph gid='0'><title>Stock</title><color>ADD981</color></graph><graph gid='1'><title>Column</title><color>7F8DA9</color></graph><graph gid='2'><title>Line</title><color>FEC514</color></graph></graphs><labels><label lid='0'><text><![CDATA[<b>Daily downloads</b>]]></text><y>18</y><text_color>000000</text_color><text_size>13</text_size><align>center</align></label></labels></settings>"));
+            so.addVariable("chart_data", encodeURIComponent(companyWorkload));
             so.addVariable("preloader_color", "#999999");
             so.write("StatisticsChartBlock");
         }
@@ -243,11 +246,11 @@
             var panel = new Ext.Panel
             ({
                 id: 'StatisticsChart',
-                autoScroll: true,
-                animate: true,
-                enableDD: true,
-                containerScroll: true,
-                //applyTo: 'flashcontent',
+//                autoScroll: true,
+//                animate: true,
+//                enableDD: true,
+//                containerScroll: true,
+//                applyTo: 'flashcontent',
                 region: 'center',
                 tbar: [
                 {
