@@ -1,52 +1,52 @@
-.icon-CustomManagement {
-    background-image:url( images/CustomManagement.png ) !important;
+.icon-CustomManagementPanel {
+    background-image:url( images/CustomManagement.1.icon.png ) !important;
 }
 
-#CustomManagement-shortcut img {
+#CustomManagementPanel-shortcut img {
     width:48px;
     height:48px;
     background-image: url(images/CustomManagement.1.png);
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/CustomManagement.1.png', sizingMethod='scale');
 }
 
-.icon-OperationManagement {
-    background-image:url( images/OperationManagement.1.png ) !important;
+.icon-OperationManagementPanel {
+    background-image:url( images/OperationManagement.1.icon.png ) !important;
 }
 
-#OperationManagement-shortcut img {
+#OperationManagementPanel-shortcut img {
     width:48px;
     height:48px;
     background-image: url(images/OperationManagement.1.png);
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/OperationManagement.1.png', sizingMethod='scale');
 }
 
-.icon-DeviceManagement {
-    background-image:url( images/DeviceManagement.1.png ) !important;
+.icon-DeviceManagementPanel {
+    background-image:url( images/DeviceManagement.1.icon.png ) !important;
 }
 
-#DeviceManagement-shortcut img {
+#DeviceManagementPanel-shortcut img {
     width:48px;
     height:48px;
     background-image: url(images/DeviceManagement.1.png);
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/DeviceManagement.1.png', sizingMethod='scale');
 }
 
-.icon-BusinessGrid {
-    background-image:url( images/StatisticsManagement.icon.png ) !important;
+.icon-StatisticsManagementPanel {
+    background-image:url( images/StatisticsManagement.1.icon.png ) !important;
 }
 
-#BusinessGrid-shortcut img {
+#StatisticsManagementPanel-shortcut img {
     width:48px;
     height:48px;
     background-image: url(images/StatisticsManagement.1.png);
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/StatisticsManagement.1.png', sizingMethod='scale');
 }
 
-.icon-BookingManagement {
-    background-image:url( images/BookingManagement.1.png ) !important;
+.icon-BookingManagementPanel {
+    background-image:url( images/BookingManagement.1.icon.png ) !important;
 }
 
-#BookingManagement-shortcut img {
+#BookingManagementPanel-shortcut img {
     width:48px;
     height:48px;
     background-image: url(images/BookingManagement.1.png);
@@ -54,15 +54,15 @@
 }
 
 
-.icon-SystemManagement {
-    background-image:url( images/SystemManagement.1.png ) !important;
+.icon-SystemManagementPanel {
+    background-image:url( images/SystemManagement.2.icon.png ) !important;
 }
 
-#SystemManagement-shortcut img {
+#SystemManagementPanel-shortcut img {
     width:48px;
     height:48px;
     background-image: url(images/SystemManagement.2.png);
-    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/SystemManagement.1.png', sizingMethod='scale');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/SystemManagement.2.png', sizingMethod='scale');
 }
 
 .StatisticsChartBlock
