@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="lib/extjs/pan/panihms.css" />
     <link rel="stylesheet" type="text/css" href="javascripts/modules/modules.css" />
 
-    <script type="text/javascript" src="lib/jQuery/jquery-1.4.1.min.js"></script>
-    <script type="text/javascript" src="lib/extjs/adapter/ext/ext-base.js"></script>
-    <script type="text/javascript" src="lib/extjs/ext-all.js"></script>
+    <script src="lib/jQuery/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="lib/extjs/adapter/ext/ext-base-debug.js" type="text/javascript"></script>
+    <script src="lib/extjs/ext-all-debug.js" type="text/javascript"></script>
     <script type="text/javascript" src="lib/am/amcolumn/swfobject.js"></script>
     <script type="text/javascript" src="lib/extjs/pan/panihms.js"></script>
 </head>
@@ -154,6 +154,7 @@
         }
     </script>
 
+
     <!------------------------------------>
     <!--   一些公用的组件 UICommon      -->
     <!------------------------------------>
@@ -246,11 +247,6 @@
             var panel = new Ext.Panel
             ({
                 id: 'StatisticsChart',
-//                autoScroll: true,
-//                animate: true,
-//                enableDD: true,
-//                containerScroll: true,
-//                applyTo: 'flashcontent',
                 region: 'center',
                 tbar: [
                 {

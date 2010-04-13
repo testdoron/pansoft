@@ -1265,7 +1265,6 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="lib\extjs\resources\images\vista\dd\" />
     <Folder Include="lib\extjs\resources\images\vista\tree\" />
   </ItemGroup>
