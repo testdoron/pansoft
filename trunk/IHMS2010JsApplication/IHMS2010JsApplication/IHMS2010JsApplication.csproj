@@ -1225,6 +1225,7 @@
     <None Include="lib\extjs\resources\resources.jsb" />
     <None Include="lib\jquery.jqplot.0.9.7\dist\examples\.htaccess" />
     <None Include="lib\jquery.jqplot.0.9.7\dist\plugins\jqplot.pointLabels.js.orig" />
+    <Content Include="#temp\Stylesheet1.css" />
     <Content Include="index.htm" />
     <Content Include="images\BookingManagement.1.icon.png" />
     <Content Include="images\BookingManagement.1.png" />

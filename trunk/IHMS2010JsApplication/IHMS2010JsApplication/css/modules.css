@@ -65,8 +65,7 @@
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/SystemManagement.2.png', sizingMethod='scale');
 }
 
-.StatisticsChartBlock
+.icon-StatisticsDataButton
 {
-	width: 100%;
-	height: 1024px;
+	background-image: url( ../lib/extjs/pan/shared/icons/fam/grid.png ) !important;
 }
