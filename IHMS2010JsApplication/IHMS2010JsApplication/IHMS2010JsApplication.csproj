@@ -52,8 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ihms2010.ico" />
-    <Content Include="other\index-demo.htm" />
+    <Content Include="#temp\index-demo.htm" />
     <Content Include="javascripts\common\companyGroupTree.js" />
     <Content Include="javascripts\data\dataDefine.js" />
     <Content Include="javascripts\modules\BusinessGrid\BusinessGrid.js" />
@@ -1187,7 +1186,7 @@
     <Content Include="lib\jQuery\jquery-1.4.1-vsdoc.js" />
     <Content Include="lib\jQuery\jquery-1.4.1.js" />
     <Content Include="lib\jQuery\jquery-1.4.1.min.js" />
-    <Content Include="other\modules.js" />
+    <Content Include="#temp\modules.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\am\amcolumn\export.php" />
@@ -1261,7 +1260,7 @@
     <Content Include="lib\am\ampie\patterns\horizontal.swf" />
     <Content Include="lib\am\ampie\patterns\vertical.swf" />
     <Content Include="lib\am\ampie\swfobject.js" />
-    <Content Include="other\chartData.xml" />
+    <Content Include="#temp\chartData.xml" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
