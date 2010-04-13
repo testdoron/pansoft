@@ -1184,9 +1184,9 @@
     <Content Include="lib\extjs\resources\images\yourtheme\window\left-right.png" />
     <Content Include="lib\extjs\resources\images\yourtheme\window\right-corners.png" />
     <Content Include="lib\extjs\resources\images\yourtheme\window\top-bottom.png" />
-    <Content Include="lib\jQuery\jquery-1.4.1-vsdoc.js" />
-    <Content Include="lib\jQuery\jquery-1.4.1.js" />
-    <Content Include="lib\jQuery\jquery-1.4.1.min.js" />
+    <Content Include="lib\jquery.v1.4.1\jquery-1.4.1-vsdoc.js" />
+    <Content Include="lib\jquery.v1.4.1\jquery-1.4.1.js" />
+    <Content Include="lib\jquery.v1.4.1\jquery-1.4.1.min.js" />
     <Content Include="#temp\modules.js" />
   </ItemGroup>
   <ItemGroup>
