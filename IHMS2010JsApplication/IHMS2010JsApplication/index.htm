@@ -7,213 +7,25 @@
     <title>IHMS2010</title>
     <link href="lib/extjs/resources/css/ext-all.css" rel="stylesheet" type="text/css" />
     <link href="lib/extjs/pan/panihms.css" rel="stylesheet" type="text/css" />
-    <link href="lib/jquery.jqplot.0.9.7/dist/jquery.jqplot.min.css" rel="stylesheet" type="text/css" />
     <link href="css/modules.css" rel="stylesheet" type="text/css" />
-    
-    <!--[if IE]><script language="javascript" type="text/javascript" src="lib/jquery.jqplot.0.9.7/dist/excanvas.min.js"></script><![endif]-->
+
     <script src="lib/jquery.v1.4.1/jquery-1.4.1.js" type="text/javascript"></script>
-    <script src="lib/jquery.jqplot.0.9.7/dist/jquery.jqplot.min.js" type="text/javascript"></script>
-    <script src="lib/jquery.jqplot.0.9.7/dist/plugins/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
-    <script src="lib/jquery.jqplot.0.9.7/dist/plugins/jqplot.barRenderer.min.js" type="text/javascript"></script>
+    <script src="lib/Highcharts-1.2.5/highcharts.js" type="text/javascript"></script>
+    <!--[if IE]>
+        <script src="lib/Highcharts-1.2.5/excanvas.compiled.js" type="text/javascript"></script>
+    <![endif]-->
     <script src="lib/extjs/adapter/ext/ext-base-debug.js" type="text/javascript"></script>
     <script src="lib/extjs/ext-all-debug.js" type="text/javascript"></script>
     <script src="lib/extjs/pan/panihms.js" type="text/javascript"></script>
-    <script src="lib/am/amcolumn/swfobject.js" type="text/javascript"></script>
+	<script src="lib/GeanJs/GeanJs.js" type=""></script>
+	<script src="lib/IHMSData.js" type=""></script>
 </head>
 
 <body>
-    <!------------------------------------>
-    <!--       数据定义：GeanJs         -->
-    <!------------------------------------>
-    <script type="text/javascript">
-        var GeanJs = {
-            version: '2.0.1',
-            email: 'nsimple.cn@gmail.com'
-        }
-    </script>
-
-    <!-- GeanJs.GetBrowserHeight, GeanJs.GetBrowserWidth -->
-    <script type="text/javascript">
-        //获得浏览器可视界面的高度
-        GeanJs.GetBrowserHeight = function() {
-            if ($.browser.msie) {
-                return document.compatMode == "CSS1Compat" ? document.documentElement.clientHeight : document.body.clientHeight;
-            }
-            else {
-                return self.innerHeight;
-            }
-        }
-
-        //获得浏览器可视界面的宽度
-        GeanJs.GetBrowserWidth = function() {
-            if ($.browser.msie) {
-                return document.compatMode == "CSS1Compat" ? document.documentElement.clientWidth : document.body.clientWidth;
-            }
-            else {
-                return self.innerWidth;
-            }
-        }
-    </script>
-
-    <!------------------------------------>
-    <!--       数据定义：IHMSData       -->
-    <!------------------------------------>
-    <script type="text/javascript">
-        var IHMSData = {
-            version: '2010.6.0',
-            email: 'lukan.pan@gmail.com'
-        }
-    </script>
-    
-    <!-- IHMSData.UITxt -->
-    <script type="text/javascript">
-        IHMSData.UITxt = {
-            "StartMenuWorkerTxt": "登录用户",
-            "StartMenuSettingTxt": "系统选项",
-            "StartMenuLogoutTxt": "退出系统",
-            "companyGroupTreeRoot": "组织机构",
-            "Modules": 
-            {
-                "CustomManagementPanel": { "Text": "客户管理" },
-                "OperationManagementPanel": { "Text": "业务管理" },
-                "DeviceManagementPanel": { "Text": "设备管理" },
-                "StatisticsManagementPanel": { "Text": "统计分析" },//StatisticsManagement
-                "BookingManagementPanel": { "Text": "预约管理" },
-                "SystemManagementPanel": { "Text": "系统管理" }
-            }
-        }
-    </script>
-    
-    <!-- IHMSData.ConfigJson -->
-    <script type="text/javascript">
-        IHMSData.ConfigJson = {
-            "SoftwareName": "力合智能大厅管理系统2010",
-            "SoftwareVersion": "Base1",
-            "WorkerName": "马英豪"
-        }
-    
-    </script>
-    
-    <!-- IHMSData.CompanyGroup -->
-    <script type="text/javascript">
-        IHMSData.CompanyGroup =
-        {
-            "id": "0000 - root - 0000",
-            "name": "平安银行北京分行",
-            "items": [
-                        { "id": "111", "name": "平安银行北京分行将台路分行" },
-                        { "id": "222", "name": "平安银行北京分行亚运村分行" },
-                        { "id": "333", "name": "平安银行北京分行平安大街分行" },
-                        { "id": "444", "name": "平安银行北京分行昌平分行",
-                            "items": 
-                            [
-                                { "id": "444 - 111", "name": "平安银行北京分行昌平南关大街分行" },
-                                { "id": "444 - 222", "name": "平安银行北京分行昌平西关大街分行" },
-                                { "id": "444 - 333", "name": "平安银行北京分行昌平北关大街分行" },
-                                { "id": "444 - 444", "name": "平安银行北京分行昌平东关大街分行" }
-                            ]
-                        },
-                        { "id": "555", "name": "平安银行北京分行顺义分行",
-                            "items": 
-                            [
-                                { "id": "555 - 111", "name": "平安银行北京分行顺义府前西街分行" },
-                                { "id": "555 - 222", "name": "平安银行北京分行顺义府前东街分行",
-                                    "items": 
-                                    [
-                                        { "id": "555 - 222 - 111", "name": "平安银行北京分行顺义东兴路分行" },
-                                        { "id": "555 - 222 - 222", "name": "平安银行北京分行顺义下关路分行" },
-                                        { "id": "555 - 222 - 333", "name": "平安银行北京分行顺义滨河南路分行" }
-                                    ]
-                                },
-                                { "id": "555 - 333", "name": "平安银行北京分行顺义五里仓分行" },
-                                { "id": "555 - 444", "name": "平安银行北京分行顺义西环路分行" }
-                            ]
-                        },
-                        { "id": "666", "name": "平安银行北京分行长安街分行" },
-                        { "id": "101010", "name": "平安银行北京分行西直门分行" },
-                        { "id": "111111", "name": "平安银行北京分行东直门分行" },
-                        { "id": "121212", "name": "平安银行北京分行崇文门分行" },
-                        { "id": "131313", "name": "平安银行北京分行鼓楼分行" },
-                        { "id": "141414", "name": "平安银行北京分行左安门分行",
-                            "items": 
-                            [
-                                { "id": "141414 - 111", "name": "平安银行北京分行左安门方庄分行" },
-                                { "id": "141414 - 222", "name": "平安银行北京分行左安门芳星园分行" }
-                            ]                     
-                        }
-                    ]
-        }
-    </script>
-    
-    <!-- GetCompanyWorkload -->
-    <script type="text/javascript">
-        //机构工作量
-        function GetCompanyWorkload() {
-            var chartGroupData = getData(chartGroupData);
-
-            $.jqplot('StatisticsChartBlock', [chartGroupData.Datas], 
-            {
-                legend: { show: true, location: 'ne', xoffset: 55 },
-                title: '机构业务量统计',
-                seriesDefaults: 
-                {
-                    renderer: $.jqplot.BarRenderer,
-                    rendererOptions: { barPadding: 8, barMargin: 20 }
-                },
-                series: 
-                [
-                    { label: 'Profits' },
-                    { label: 'Expenses' },
-                    { label: 'Sales' }
-                ],
-                axes: 
-                {
-                    xaxis: 
-                    {
-                        renderer: $.jqplot.CategoryAxisRenderer,
-                        ticks: chartGroupData.Groups
-                    },
-                    yaxis: { min: 0 }
-                }
-            });
-
-            function getData(chartGroupData) 
-            {
-                var chartGroup = new Array();
-                var chartData = new Array();
-                
-                loadGroup(chartGroup, IHMSData.CompanyGroup.items);
-
-                for (var i = 0; i < chartGroup.length; i++) {
-                    var x = Math.floor(Math.random() * 1000);
-                    chartData.push(x);
-                }
-
-                chartGroupData = { Groups: chartGroup, Datas: chartData };
-
-                return chartGroupData;
-            }
-
-            //机构树的读取函数(递归)
-            function loadGroup(chartGroup, array) {
-                for (var i = 0; i < array.length; i++) {
-                    chartGroup.push(array[i].name);
-                    if (!jQuery.isEmptyObject(array[i].items)) {
-                        if (array[i].items.length > 0) {
-                            loadGroup(chartGroup, array[i].items);
-                        }
-                    };
-                };
-            }//loadGroup
-
-        }
-    </script>
-
 
     <!------------------------------------>
     <!--   一些公用的组件 UICommon      -->
     <!------------------------------------>
-
     <script type="text/javascript">
         var UICommon = {
             version: '2010.6.0',
@@ -221,6 +33,185 @@
         }
     </script>
     
+	<!-- 业务量统计的Grid：GetStatisticsDataGrid()  -->
+	<script type="text/javascript">
+	    function GetStatisticsDataGrid() {
+		
+			// NOTE: This is an example showing simple state management. During development,
+			// it is generally best to disable state management as dynamically-generated ids
+			// can change across page loads, leading to unpredictable results.  The developer
+			// should ensure that stable state ids are set for stateful components in real apps.    
+			Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+
+			// sample static data for the store
+			var myData = [
+				['3m Co',71.72,0.02,0.03,'9/1 12:00am'],
+				['Alcoa Inc',29.01,0.42,1.47,'9/1 12:00am'],
+				['Altria Group Inc',83.81,0.28,0.34,'9/1 12:00am'],
+				['American Express Company',52.55,0.01,0.02,'9/1 12:00am'],
+				['American International Group, Inc.',64.13,0.31,0.49,'9/1 12:00am'],
+				['AT&T Inc.',31.61,-0.48,-1.54,'9/1 12:00am'],
+				['Boeing Co.',75.43,0.53,0.71,'9/1 12:00am'],
+				['Caterpillar Inc.',67.27,0.92,1.39,'9/1 12:00am'],
+				['Citigroup, Inc.',49.37,0.02,0.04,'9/1 12:00am'],
+				['E.I. du Pont de Nemours and Company',40.48,0.51,1.28,'9/1 12:00am'],
+				['Exxon Mobil Corp',68.1,-0.43,-0.64,'9/1 12:00am'],
+				['General Electric Company',34.14,-0.08,-0.23,'9/1 12:00am'],
+				['General Motors Corporation',30.27,1.09,3.74,'9/1 12:00am'],
+				['Hewlett-Packard Co.',36.53,-0.03,-0.08,'9/1 12:00am'],
+				['Honeywell Intl Inc',38.77,0.05,0.13,'9/1 12:00am'],
+				['Intel Corporation',19.88,0.31,1.58,'9/1 12:00am'],
+				['International Business Machines',81.41,0.44,0.54,'9/1 12:00am'],
+				['Johnson & Johnson',64.72,0.06,0.09,'9/1 12:00am'],
+				['JP Morgan & Chase & Co',45.73,0.07,0.15,'9/1 12:00am'],
+				['McDonald\'s Corporation',36.76,0.86,2.40,'9/1 12:00am'],
+				['Merck & Co., Inc.',40.96,0.41,1.01,'9/1 12:00am'],
+				['Microsoft Corporation',25.84,0.14,0.54,'9/1 12:00am'],
+				['Pfizer Inc',27.96,0.4,1.45,'9/1 12:00am'],
+				['The Coca-Cola Company',45.07,0.26,0.58,'9/1 12:00am'],
+				['The Home Depot, Inc.',34.64,0.35,1.02,'9/1 12:00am'],
+				['The Procter & Gamble Company',61.91,0.01,0.02,'9/1 12:00am'],
+				['United Technologies Corporation',63.26,0.55,0.88,'9/1 12:00am'],
+				['Verizon Communications',35.57,0.39,1.11,'9/1 12:00am'],            
+				['Wal-Mart Stores, Inc.',45.45,0.73,1.63,'9/1 12:00am']
+			];
+
+			/**
+			 * Custom function used for column renderer
+			 * @param {Object} val
+			 */
+			function change(val){
+				if(val > 0){
+					return '<span style="color:green;">' + val + '</span>';
+				}else if(val < 0){
+					return '<span style="color:red;">' + val + '</span>';
+				}
+				return val;
+			}
+
+			/**
+			 * Custom function used for column renderer
+			 * @param {Object} val
+			 */
+			function pctChange(val){
+				if(val > 0){
+					return '<span style="color:green;">' + val + '%</span>';
+				}else if(val < 0){
+					return '<span style="color:red;">' + val + '%</span>';
+				}
+				return val;
+			}
+
+			// create the data store
+			var store = new Ext.data.ArrayStore({
+				fields: [
+				   {name: 'company'},
+				   {name: 'price', type: 'float'},
+				   {name: 'change', type: 'float'},
+				   {name: 'pctChange', type: 'float'},
+				   {name: 'lastChange', type: 'date', dateFormat: 'n/j h:ia'}
+				]
+			});
+
+			// manually load local data
+			store.loadData(myData);
+
+			// create the Grid
+			var grid = new Ext.grid.GridPanel({
+				store: store,
+				columns: [
+					{id:'company',header: 'Company', width: 160, sortable: true, dataIndex: 'company'},
+					{header: 'Price', width: 75, sortable: true, renderer: 'usMoney', dataIndex: 'price'},
+					{header: 'Change', width: 75, sortable: true, renderer: change, dataIndex: 'change'},
+					{header: '% Change', width: 75, sortable: true, renderer: pctChange, dataIndex: 'pctChange'},
+					{header: 'Last Updated', width: 85, sortable: true, renderer: Ext.util.Format.dateRenderer('m/d/Y'), dataIndex: 'lastChange'}
+				],
+				margins: '2 2 2 2',  //为了不要与容器的边框重叠，设定2px的间距。
+				region: 'center',
+				border: false,
+				stripeRows: true,
+				autoExpandColumn: 'company',
+				//width: 600,
+				//title: 'Array Grid',
+				// config options for stateful behavior
+				stateful: true,
+				stateId: 'grid'        
+			});		
+			
+			// render the grid to the specified div in the page
+			// grid.render('StatisticsPanel');
+		}
+
+	</script>
+	
+    <!-- 业务量统计柱状图：GetCompanyWorkload() -->
+    <script type="text/javascript">
+        //机构业务量
+        function GetCompanyWorkload() {
+			var datas = getData();
+			new Highcharts.Chart({
+				chart: {
+					renderTo: 'StatisticsPanel',
+					defaultSeriesType: 'column'
+				},
+				title: { text: '机构业务量' },
+				subtitle: { text: '2010.03.10  -  2010.04.10' },
+				xAxis: {
+					categories: datas.Groups,
+					labels: { rotation: 30, align: 'left' } //控制坐标轴的标签的显示方式，标签旋转即可在这里
+				},
+				yAxis: {
+					min: 0,
+					offset: 0,//设置单位向左偏移一些，否则也会向右偏，遮在图表上
+					title: { text: '' }//{ text: '机构业务量' } //设置了标题后会导致Y轴显示的字体的显示严重靠右，遮在图表上
+				},
+				tooltip: {
+					formatter: function() { return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y +' 人'; }
+				},
+				plotOptions: {
+					column: {
+						pointPadding: 0.2,
+						borderWidth: 0
+					}
+				},
+			    series: [{
+					name: '机构业务量',
+					data: datas.Datas
+				}]
+			});
+
+            function getData() 
+            {
+                var chartGroup = new Array();
+                var chartData = new Array();
+                
+                loadGroup(chartGroup, IHMSData.CompanyGroup.items);
+
+                for (var i = 0; i < chartGroup.length; i++) { //一些临时显示的数据
+                    var x = Math.floor(Math.random() * 1500);
+                    chartData.push(x);
+                }
+
+                var chartGroupData = { Groups: chartGroup, Datas: chartData };
+
+                return chartGroupData;
+            }
+
+            //机构树的读取函数(递归)
+            function loadGroup(chartGroup, array)
+			{
+                for (var i = 0; i < array.length; i++) {
+                    chartGroup.push(array[i].alias);
+                    if (!jQuery.isEmptyObject(array[i].items)) {
+                        if (array[i].items.length > 0) {
+                            loadGroup(chartGroup, array[i].items);
+                        }
+                    };
+                };
+            }//loadGroup
+        }
+    </script>
+
     <!--机构树面板: BuildCompanyGroupTreePanel-->
     <script type="text/javascript">
 
@@ -276,8 +267,6 @@
                 enableDD: true,
                 containerScroll: true,
                 split: true,
-                //TODO: auto create by TreeLoader
-                //dataUrl: Java Action,
                 root: rootNode
             });
 
@@ -291,13 +280,14 @@
                     animEl: node.ui.textNode
                 });
             });
+
             return panel;
         }
     </script>
     
-    <!--图表面板: BuildStatisticsManagementChartPanel-->
+    <!--图表面板: BuildStatisticsManagementPanel-->
     <script type="text/javascript">
-        function BuildStatisticsManagementChartPanel() 
+        function BuildStatisticsManagementPanel() 
         {
             var panel = new Ext.Panel
             ({
@@ -305,57 +295,133 @@
                 region: 'center',
                 margins: '3 0 3 3',
                 cmargins: '3 3 3 3',
+				layout: 'fit',
                 tbar: [
-                {
-                    text: '统计数据',
-                    iconCls: 'icon-StatisticsDataButton'
-                }, '-', { 
-                    xtype: 'splitbutton',
-                    text: '数据统计图示',
-                    iconCls: 'icon-StatisticsManagementPanel',
-                    menu:
-                    [
-                        getStatisticsChartMenuItem("机构业务量统计"),
-                        getStatisticsChartMenuItem("时段业务量统计"),
-                        '-',
-                        getStatisticsChartMenuItem("办理人数统计"),
-                        getStatisticsChartMenuItem("等候时长统计"),
-                        getStatisticsChartMenuItem("办理时长统计"),
-                        '-',
-                        getStatisticsChartMenuItem("柜员考勤统计"),
-                        '-',
-                        getStatisticsChartMenuItem("取号机取号量"),
-                        getStatisticsChartMenuItem("取号类别统计")
-                    ]
-                },'-',{
-                    xtype:'splitbutton',
-                    text: 'Cut',
-                    iconCls: 'add16',
-                    menu: [{text: 'Cut Menu Item'}]
-                },{
-                    text: 'Copy',
-                    iconCls: 'add16'
-                },{
-                    text: 'Paste',
-                    iconCls: 'add16',
-                    menu: [{text: 'Paste Menu Item'}]
-                },'-',{
-                    text: 'Format',
-                    iconCls: 'add16'
-                }],
-                html: '<div id="StatisticsChartBlock" style="text-align:center;height:450px;width:650px; "></div>'
+					getStatisticsDataMenuItem("统计数据"), 
+					'-', 
+					{ 
+						text: '统计图示',
+						iconCls: 'icon-StatisticsDataButton',
+						menu:
+						[
+							getStatisticsChartMenuItem("机构业务量统计"),
+							getStatisticsChartMenuItem("时段业务量统计"),
+							'-',
+							getStatisticsChartMenuItem("办理人数统计"),
+							getStatisticsChartMenuItem("等候时长统计"),
+							getStatisticsChartMenuItem("办理时长统计"),
+							'-',
+							getStatisticsChartMenuItem("柜员考勤统计"),
+							'-',
+							getStatisticsChartMenuItem("取号机取号量"),
+							getStatisticsChartMenuItem("取号类别统计")
+						]
+					},
+					'-',
+					{
+						text: '统计时间',
+						iconCls: 'icon-StatisticsDataButton',
+						menu:
+						[
+							getStatisticsTimeMenuItem("近一天"),
+							getStatisticsTimeMenuItem("近一周"),
+							getStatisticsTimeMenuItem("近两周"),
+							getStatisticsTimeMenuItem("近一月"),
+							getStatisticsTimeMenuItem("近一季"),
+							getStatisticsTimeMenuItem("近一年"),
+							getStatisticsTimeMenuItem("指定时间")
+						]
+					},
+					{
+						text: '分类汇总',
+						iconCls: 'icon-StatisticsDataButton',
+						menu:
+						[
+							getStatisticsTimeGroupMenuItem("按天汇总"),
+							getStatisticsTimeGroupMenuItem("按周汇总"),
+							getStatisticsTimeGroupMenuItem("按月汇总"),
+							getStatisticsTimeGroupMenuItem("按年汇总")
+						]
+					},
+					{
+						text: 'Paste',
+						iconCls: 'add16',
+						menu: [{text: 'Paste Menu Item'}]
+					},
+					'-',
+					{
+						text: 'Format',
+						iconCls: 'add16'
+					}
+				],
+                html: '<div id="StatisticsPanel" style="width: 100%; height: 100%"></div>'
             });
+			
+			//窗体打开时，默认显示数据表格
+			//GetStatisticsDataGrid();
             return panel;
         }
+		
+		//统计数据菜单项
+		function getStatisticsDataMenuItem(menuStr) {
+            var menuitem = new Ext.menu.Item({
+                text: menuStr,
+                iconCls: 'icon-StatisticsDataButton'//menuStr + "-icon"
+            })
+			
+			//定义菜单项的点击事件
+            menuitem.on("click", function(item) {
+                GetStatisticsDataGrid();
+            });
+			
+            return menuitem;
+        }
 
+		//统计数据图表主菜单
         function getStatisticsChartMenuItem(menuStr) {
             var menuitem = new Ext.menu.Item({
                 text: menuStr,
                 iconCls: 'icon-StatisticsManagementPanel'//menuStr + "-icon"
             })
+			
+			//定义菜单项的点击事件
+            menuitem.on("click", function(item) {
+                GetCompanyWorkload();
+            });
+			
             return menuitem;
         }
-        
+
+		//统计时间段单选项
+		function getStatisticsTimeMenuItem(menuStr) {
+            var menuitem = new Ext.menu.Item({
+                text: menuStr,
+                iconCls: 'icon-StatisticsManagementPanel'//menuStr + "-icon"
+            })
+			
+			//定义菜单项的点击事件
+            menuitem.on("click", function(item) {
+                GetCompanyWorkload();
+            });
+			
+            return menuitem;
+        }
+
+		//统计分组单选项
+		function getStatisticsTimeGroupMenuItem(menuStr) {
+            var menuitem = new Ext.menu.Item({
+                text: menuStr,
+                iconCls: 'icon-StatisticsManagementPanel'//menuStr + "-icon"
+            })
+			
+			//定义菜单项的点击事件
+            menuitem.on("click", function(item) {
+                GetCompanyWorkload();
+            });
+			
+            return menuitem;
+        }
+
     </script>
 
     <!------------------------------------>
@@ -435,7 +501,9 @@
                 }
                 win.show();
             }
-        });    </script>
+        
+		});    
+	</script>
 
     <!--模块：OperationManagementPanel(业务管理)-->
     <script type="text/javascript">
@@ -528,6 +596,7 @@
             createWindow: function() {
                 var desktop = this.app.getDesktop();
                 var win = desktop.getWindow('StatisticsManagementPanel');
+				var treepanel = BuildCompanyGroupTreePanel();
                 if (!win) {
                     win = desktop.createWindow({
                         id: 'StatisticsManagementPanel',
@@ -541,14 +610,12 @@
                         constrainHeader: true,
                         plain: true,
                         layout: 'border', //将容器分为五个区域:east,south,west,north,center
-
                         items:
                         [
-                            BuildCompanyGroupTreePanel(), BuildStatisticsManagementChartPanel()
+                            treepanel, BuildStatisticsManagementPanel()
                         ]
                     });
-                    // 载入机构工作量
-                    GetCompanyWorkload();
+					treepanel.expandAll();//.getRootNode().expandAll();
                 }
                 win.show();
             }

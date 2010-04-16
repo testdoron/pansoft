@@ -1272,6 +1272,12 @@
     <Content Include="lib\am\ampie\patterns\vertical.swf" />
     <Content Include="lib\am\ampie\swfobject.js" />
     <Content Include="#temp\chartData.xml" />
+    <Content Include="lib\Highcharts-1.2.5\excanvas.compiled.js" />
+    <Content Include="lib\Highcharts-1.2.5\highcharts.js" />
+    <Content Include="lib\Highcharts-1.2.5\highcharts.src.js" />
+    <Content Include="lib\Highcharts-1.2.5\highslide-full.min.js" />
+    <Content Include="lib\Highcharts-1.2.5\highslide.config.js" />
+    <Content Include="lib\Highcharts-1.2.5\highslide.css" />
     <Content Include="lib\jquery.jqplot.0.9.7\dist\changes.txt" />
     <Content Include="lib\jquery.jqplot.0.9.7\dist\copyright.txt" />
     <Content Include="lib\jquery.jqplot.0.9.7\dist\examples\arctest.html" />
