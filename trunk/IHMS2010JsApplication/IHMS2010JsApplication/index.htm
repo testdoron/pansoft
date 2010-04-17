@@ -120,26 +120,26 @@
 			var grid = new Ext.grid.GridPanel({
 				store: store,
 				columns: [
+					new Ext.grid.RowNumberer(),
 					{id:'company',header: 'Company', width: 160, sortable: true, dataIndex: 'company'},
 					{header: 'Price', width: 75, sortable: true, renderer: 'usMoney', dataIndex: 'price'},
 					{header: 'Change', width: 75, sortable: true, renderer: change, dataIndex: 'change'},
 					{header: '% Change', width: 75, sortable: true, renderer: pctChange, dataIndex: 'pctChange'},
 					{header: 'Last Updated', width: 85, sortable: true, renderer: Ext.util.Format.dateRenderer('m/d/Y'), dataIndex: 'lastChange'}
 				],
-				margins: '2 2 2 2',  //为了不要与容器的边框重叠，设定2px的间距。
 				region: 'center',
 				border: false,
-				stripeRows: true,
-				autoExpandColumn: 'company',
-				//width: 600,
-				//title: 'Array Grid',
+				width: Ext.get("StatisticsPanel").getWidth(),
+				height: Ext.get("StatisticsPanel").getHeight(), 
+				title: IHMSData.CompanyGroup.name,
 				// config options for stateful behavior
 				stateful: true,
 				stateId: 'grid'        
 			});		
 			
 			// render the grid to the specified div in the page
-			// grid.render('StatisticsPanel');
+			$("#StatisticsPanel").empty();
+			grid.render('StatisticsPanel');
 		}
 
 	</script>

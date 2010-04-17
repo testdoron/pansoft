@@ -1,3 +1,8 @@
+.StatisticsPanel {
+	width: 100%;
+	height: 100%; 
+}
+
 .icon-CustomManagementPanel {
     background-image:url( ../images/CustomManagement.1.icon.png ) !important;
 }
