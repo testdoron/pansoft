@@ -1,4 +1,4 @@
-<!------------------------------------>
+ï»¿<!------------------------------------>
 <!--       			GeanJs         	-->
 <!------------------------------------>
 var GeanJs = {
@@ -7,7 +7,7 @@ var GeanJs = {
 }
 
 
-/* »ñµÃä¯ÀÀÆ÷¿ÉÊÓ½çÃæµÄ¸ß¶È */
+/* è·å¾—æµè§ˆå™¨å¯è§†ç•Œé¢çš„é«˜åº¦ */
 GeanJs.GetBrowserHeight = function() {
 	if ($.browser.msie) {
 		return document.compatMode == "CSS1Compat" ? document.documentElement.clientHeight : document.body.clientHeight;
@@ -17,7 +17,7 @@ GeanJs.GetBrowserHeight = function() {
 	}
 }
 
-/* »ñµÃä¯ÀÀÆ÷¿ÉÊÓ½çÃæµÄ¿í¶È */
+/* è·å¾—æµè§ˆå™¨å¯è§†ç•Œé¢çš„å®½åº¦ */
 GeanJs.GetBrowserWidth = function() {
 	if ($.browser.msie) {
 		return document.compatMode == "CSS1Compat" ? document.documentElement.clientWidth : document.body.clientWidth;
