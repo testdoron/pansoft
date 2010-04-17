@@ -1,4 +1,4 @@
-<!------------------------------------>
+﻿<!------------------------------------>
 <!--       数据定义：IHMSData       -->
 <!------------------------------------>
 var IHMSData = {
@@ -28,8 +28,7 @@ IHMSData.ConfigJson = {
 	"WorkerName": "马英豪"
 }
 
-IHMSData.CompanyGroup =
-{
+IHMSData.CompanyGroup = {
 	"id": "0000 - root - 0000",
 	"name": "平安银行北京分行",
 	"items": 
@@ -75,4 +74,8 @@ IHMSData.CompanyGroup =
 			]                     
 		}
 	]
+}
+
+IHMSData.StatisticsUIData = {
+	
 }
