@@ -42,7 +42,7 @@ IHMSData.Enums = {
 		"TimeType": {
 			"Default": "时间段类型",
 			"Content" : [
-				{ "Id": "000001TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近一天" },
+				{ "Id": "000001TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "当天" },
 				{ "Id": "000002TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近一周" },
 				{ "Id": "000003TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近两周" },
 				{ "Id": "000004TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近一月" },
@@ -64,8 +64,9 @@ IHMSData.Enums = {
 			]
 		},
 		"OperationType": {
-			"Default": "业务类型",
+			"Default": "全部业务",
 			"Content" : [
+				{ "Id": "FDRXXKGY-0000-CVER-QVFD-WE84XFDGWE" , "Text": "全部业务" },
 				{ "Id": "FDRXXKGY-0001-CVER-QVFD-WE84XFDGWE" , "Text": "个人存取款" },
 				{ "Id": "FDRXXKGY-0002-CVER-QVFD-WE84XFDGWE" , "Text": "个人缴费" },
 				{ "Id": "FDRXXKGY-0003-CVER-QVFD-WE84XFDGWE" , "Text": "贷款业务" },
@@ -80,40 +81,14 @@ IHMSData.Enums = {
 	}
 }
 
-IHMSData.StatisticsState= {
-	"GroupId": "555",
-	"Grid": true,
-	"ChartType": "000001CT-ERTQ-HJGR-FSEG-POIUYTREWQ",
-	"TimeType": "000001TT-GJHJ-TYJU-FSEG-POIUYTREWQ",
-	"TimeGroupType": "000001TG-HJDS-KRXC-FSEG-POIUYTREWQ",
-	"OperationType": "FDRXXKGY-0001-CVER-QVFD-WE84XFDGWE"
+IHMSData.StatisticsState = {
+	"GroupId": 			"0000 - root - 0000",
+	"ChartType": 		"000001CT-ERTQ-HJGR-FSEG-POIUYTREWQ",
+	"TimeType": 		"000001TT-GJHJ-TYJU-FSEG-POIUYTREWQ",
+	"TimeGroupType": 	"000001TG-HJDS-KRXC-FSEG-POIUYTREWQ",
+	"OperationType": 	"FDRXXKGY-0000-CVER-QVFD-WE84XFDGWE",
+	"Grid": true //为真是表示在“统计分析”面板正在显示的是数据Grid，否则可能在显示Chart
 }
-
-IHMSData.StaticsticsData = [
-        ['000001FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000002FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000003FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000004FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000005FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000006FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000007FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000008FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000009FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000010FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000011FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000012FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000013FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000014FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000015FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000016FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000017FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000018FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000019FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000020FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000021FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000022FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ],
-        ['000023FF-8B86-D011-B42D-00C04FC964' , '平安世界银行北京支行' , 82348 , 7347 , 8347 , 2234 ]
-    ];
 
 /*
 //IHMSData.StaticsticsData = { 

@@ -146,7 +146,7 @@ function BuildStatisticsManagementPanel() {
 	/* 业务量统计的Grid：GetStatisticsDataGrid()  */
 	function GetStatisticsDataGrid(item) 
 	{
-
+		IHMSData.StatisticsState.Grid = true;
 		Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
 		//Ext.getCmp('StatisticsChartType').setText(item.text);
 
@@ -232,7 +232,10 @@ function BuildStatisticsManagementPanel() {
 	/* 业务量统计柱状图：GetCompanyWorkloadChart */
 	function GetCompanyWorkloadChart(chartType, parentMenuId) 
 	{
+		IHMSData.StatisticsState.Grid = false;
+		setStatisticsState(chartType, parentMenuId);//将当前的统计状态保存
 		Ext.getCmp(parentMenuId).setText(chartType.Text);
+		
 		var datas = getData();
 		new Highcharts.Chart({
 			chart: {
@@ -266,6 +269,23 @@ function BuildStatisticsManagementPanel() {
 			}]
 		});
 		
+		//将当前的统计状态保存
+		function setStatisticsState(chartType, parentMenuId)
+		{
+			if (parentMenuId == "StatisticsChartType") {
+				IHMSData.StatisticsState.ChartType = chartType.Id;
+			} 
+			else if (parentMenuId == "StatisticsOperationType") {
+				IHMSData.StatisticsState.OperationType = chartType.Id;
+			} 
+			else if (parentMenuId == "StatisticsTimeType") {
+				IHMSData.StatisticsState.TimeType = chartType.Id;
+			} 
+			else if (parentMenuId == "StatisticsByGroupType") {
+				IHMSData.StatisticsState.TimeGroupType = chartType.Id;
+			}
+		}
+			
 		//图表的具体描述，主要为详细说明当前的选择类型
 		function getChartDescription()
 		{
@@ -311,7 +331,7 @@ function BuildStatisticsManagementPanel() {
 			return label;
 		}
 
-		//获得图中的数据
+		//获得所需数据
 		function getData() 
 		{
 			var chartGroup = new Array();
@@ -348,7 +368,7 @@ function BuildStatisticsManagementPanel() {
 	{
 		Ext.MessageBox.show({
 		   title:'导出当前的数据到Excel?',
-		   msg: '将要导出当前的数据到Excel，可能数据量较大，需要数秒或稍长的时间。 <br />当前统计数据的类型是：<br />业务类型：<br />时间段类型：<br />统计类型是：<br /><br />是否导出当前的数据到Excel?',
+		   msg: "将要导出当前的数据到Excel，可能数据量较大，需要数秒或稍长的时间。 " + getStateString() + "<br /><br />是否导出当前的数据到Excel?",
 		   buttons: Ext.MessageBox.OKCANCEL,
 		   animEl: 'exportStatisticsExcel',
 		   icon: Ext.MessageBox.QUESTION
@@ -360,7 +380,7 @@ function BuildStatisticsManagementPanel() {
 	{
 		Ext.MessageBox.show({
 		   title:'打印当前的数据?',
-		   msg: '将要打印当前的数据，可能数据量较大，需要数秒或稍长的时间。 <br />当前统计数据的类型是：<br />业务类型：<br />时间段类型：<br />统计类型是：<br /><br />是否打印当前的数据?',
+		   msg: "将要打印当前的数据，可能数据量较大，需要数秒或稍长的时间。 " + getStateString() + "<br /><br />是否打印当前的数据?",
 		   buttons: Ext.MessageBox.OKCANCEL,
 		   animEl: 'printStatistics',
 		   icon: Ext.MessageBox.QUESTION
@@ -372,14 +392,57 @@ function BuildStatisticsManagementPanel() {
 	{
 		Ext.MessageBox.show({
 		   title:'刷新当前的数据?',
-		   msg: '将要刷新当前的数据，可能数据量较大，需要数秒或稍长的时间。 <br />当前统计数据的类型是：<br />业务类型：<br />时间段类型：<br />统计类型是：<br /><br />是否刷新当前的数据?',
+		   msg: "将要刷新当前的数据，可能数据量较大，需要数秒或稍长的时间。 " + getStateString() + "<br /><br />是否刷新当前的数据?",
 		   buttons: Ext.MessageBox.OKCANCEL,
 		   animEl: 'refreshStatisticsData',
 		   icon: Ext.MessageBox.QUESTION
 	   });
 	}
 
+	//获取当前统计状态的连接字符串
+	function getStateString()
+	{
+		var stateStr = "<br />";
+		stateStr += "业务类型：";
+		var arr = IHMSData.Enums.Statistics.OperationType.Content;
+		for (i = 0; i < arr.length; i++) {
+			//alert(IHMSData.StatisticsState.OperationType +"<br />"+arr[i].Id);
+			if (IHMSData.StatisticsState.OperationType == arr[i].Id) {
+				stateStr += arr[i].Text;
+				break;
+			}
+		}
 
+		stateStr += "<br />";
+		stateStr += "时间段类型：";
+		arr = IHMSData.Enums.Statistics.TimeType.Content;
+		for (i = 0; i < arr.length; i++) {
+			if (IHMSData.StatisticsState.TimeType == arr[i].Id) {
+				stateStr += arr[i].Text;
+				break;
+			}
+		}
+
+		stateStr += "<br />";
+		stateStr += "统计类型：";
+		arr = IHMSData.Enums.Statistics.TimeGroupType.Content;
+		for (i = 0; i < arr.length; i++) {
+			if (IHMSData.StatisticsState.TimeGroupType == arr[i].Id) {
+				stateStr += arr[i].Text;
+				break;
+			}
+		}
+		//alert(stateStr);
+		return stateStr;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 
