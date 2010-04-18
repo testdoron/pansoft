@@ -178,7 +178,7 @@ function BuildStatisticsManagementPanel() {
 			 ]
 		 });
 
-		store.loadData(IHMSData.StaticsticsData);
+		store.loadData(getMyData());
 
 		var grid = new Ext.grid.GridPanel({
 			store: store,
@@ -201,16 +201,20 @@ function BuildStatisticsManagementPanel() {
 			stateId: 'grid',
 			bbar: [
 					'共计 ' + IHMSData.StaticsticsData.length + ' 机构', '-' ,
-					'总取票量： ' + GetAmount(2), '-' ,
-					'总交易量： ' + GetAmount(3), '-' ,
-					'总有效评价量： ' + GetAmount(4), '-' ,
-					'总弃票量： ' + GetAmount(5), '-'
+					'总取票量： ' + getAmount(2), '-' ,
+					'总交易量： ' + getAmount(3), '-' ,
+					'总有效评价量： ' + getAmount(4), '-' ,
+					'总弃票量： ' + getAmount(5), '-'
 				]
-
 		});			
 		
+		function getMyData()
+		{
+			return IHMSData.StaticsticsData;
+		}
+		
 		/*根据数据数组(IHMSData.StaticsticsData)计算单字段的合计值*/
-		function GetAmount(num) {
+		function getAmount(num) {
 			var amount = 0;
 			$.each( IHMSData.StaticsticsData, function(i, n){
 				amount += n[num];
@@ -236,13 +240,14 @@ function BuildStatisticsManagementPanel() {
 		setStatisticsState(chartType, parentMenuId);//将当前的统计状态保存
 		Ext.getCmp(parentMenuId).setText(chartType.Text);
 		
-		var datas = getData();
+		var datas = getMyData();
+		
 		new Highcharts.Chart({
 			chart: {
 				renderTo: 'StatisticsPanel',
 				defaultSeriesType: 'column'
 			},
-			title: { text: chartType.Text },
+			title: { text: getTitle() },
 			subtitle: { text: getChartDescription() },
 			xAxis: {
 				categories: datas.Groups,
@@ -269,6 +274,17 @@ function BuildStatisticsManagementPanel() {
 			}]
 		});
 		
+		//获取柱状图的标题
+		function getTitle()
+		{
+			var arr = IHMSData.Enums.Statistics.ChartType.Content;
+			for (i = 0; i < arr.length; i++) {
+				if (IHMSData.StatisticsState.ChartType == arr[i].Id) {
+					return arr[i].Text;
+				}
+			}
+		}
+		
 		//将当前的统计状态保存
 		function setStatisticsState(chartType, parentMenuId)
 		{
@@ -289,7 +305,7 @@ function BuildStatisticsManagementPanel() {
 		//图表的具体描述，主要为详细说明当前的选择类型
 		function getChartDescription()
 		{
-			
+			return getStateString(" <b>|</b> ");
 		}
 		
 		//当项目不太多时，在柱状图的柱子显示数量
@@ -332,17 +348,17 @@ function BuildStatisticsManagementPanel() {
 		}
 
 		//获得所需数据
-		function getData() 
+		function getMyData() 
 		{
 			var chartGroup = new Array();
 			var chartData = new Array();
 			
-			loadGroup(chartGroup, IHMSData.CompanyGroup.items);
+			loadGroup(chartGroup, chartData, IHMSData.CompanyGroup.items);
 
-			for (var i = 0; i < chartGroup.length; i++) { //一些临时显示的数据
-				var x = Math.floor(Math.random() * 1500);
-				chartData.push(x);
-			}
+			// for (var i = 0; i < chartGroup.length; i++) { //一些临时显示的数据
+				// var x = Math.floor(Math.random() * 1500);
+				// chartData.push(x);
+			// }
 
 			var chartGroupData = { Groups: chartGroup, Datas: chartData };
 
@@ -350,17 +366,23 @@ function BuildStatisticsManagementPanel() {
 		}
 
 		//机构树的读取函数(递归)
-		function loadGroup(chartGroup, array)
+		function loadGroup(chartGroup, chartData, array)
 		{
 			for (var i = 0; i < array.length; i++) {
 				chartGroup.push(array[i].alias);
+				chartData.push(subGetNumber(array[i]));
 				if (!jQuery.isEmptyObject(array[i].items)) {
 					if (array[i].items.length > 0) {
-						loadGroup(chartGroup, array[i].items);
+						loadGroup(chartGroup, chartData, array[i].items);
 					}
 				};
 			};
 		}//loadGroup
+		
+		function subGetNumber(item)
+		{
+			return item.data.d;
+		}
 	}
 	
 	//导出当前的数据到Excel
@@ -368,7 +390,7 @@ function BuildStatisticsManagementPanel() {
 	{
 		Ext.MessageBox.show({
 		   title:'导出当前的数据到Excel?',
-		   msg: "将要导出当前的数据到Excel，可能数据量较大，需要数秒或稍长的时间。 " + getStateString() + "<br /><br />是否导出当前的数据到Excel?",
+		   msg: "将要导出当前的数据到Excel，可能数据量较大，需要数秒或稍长的时间。<br />" + getStateString("<br />") + "<br /><br />是否导出当前的数据到Excel?",
 		   buttons: Ext.MessageBox.OKCANCEL,
 		   animEl: 'exportStatisticsExcel',
 		   icon: Ext.MessageBox.QUESTION
@@ -380,7 +402,7 @@ function BuildStatisticsManagementPanel() {
 	{
 		Ext.MessageBox.show({
 		   title:'打印当前的数据?',
-		   msg: "将要打印当前的数据，可能数据量较大，需要数秒或稍长的时间。 " + getStateString() + "<br /><br />是否打印当前的数据?",
+		   msg: "将要打印当前的数据，可能数据量较大，需要数秒或稍长的时间。<br />" + getStateString("<br />") + "<br /><br />是否打印当前的数据?",
 		   buttons: Ext.MessageBox.OKCANCEL,
 		   animEl: 'printStatistics',
 		   icon: Ext.MessageBox.QUESTION
@@ -392,7 +414,7 @@ function BuildStatisticsManagementPanel() {
 	{
 		Ext.MessageBox.show({
 		   title:'刷新当前的数据?',
-		   msg: "将要刷新当前的数据，可能数据量较大，需要数秒或稍长的时间。 " + getStateString() + "<br /><br />是否刷新当前的数据?",
+		   msg: "将要刷新当前的数据，可能数据量较大，需要数秒或稍长的时间。<br />" + getStateString("<br />") + "<br /><br />是否刷新当前的数据?",
 		   buttons: Ext.MessageBox.OKCANCEL,
 		   animEl: 'refreshStatisticsData',
 		   icon: Ext.MessageBox.QUESTION
@@ -400,10 +422,9 @@ function BuildStatisticsManagementPanel() {
 	}
 
 	//获取当前统计状态的连接字符串
-	function getStateString()
+	function getStateString(joinChar)
 	{
-		var stateStr = "<br />";
-		stateStr += "业务类型：";
+		var stateStr = "业务类型：";
 		var arr = IHMSData.Enums.Statistics.OperationType.Content;
 		for (i = 0; i < arr.length; i++) {
 			//alert(IHMSData.StatisticsState.OperationType +"<br />"+arr[i].Id);
@@ -413,7 +434,7 @@ function BuildStatisticsManagementPanel() {
 			}
 		}
 
-		stateStr += "<br />";
+		stateStr += joinChar;
 		stateStr += "时间段类型：";
 		arr = IHMSData.Enums.Statistics.TimeType.Content;
 		for (i = 0; i < arr.length; i++) {
@@ -423,7 +444,7 @@ function BuildStatisticsManagementPanel() {
 			}
 		}
 
-		stateStr += "<br />";
+		stateStr += joinChar;
 		stateStr += "统计类型：";
 		arr = IHMSData.Enums.Statistics.TimeGroupType.Content;
 		for (i = 0; i < arr.length; i++) {
