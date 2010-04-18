@@ -33,6 +33,16 @@
             version: '2010.6.0',
             email: 'lukan.pan@gmail.com'
         }
+		var __isDebug = true;
+		__log = function(str) {
+			if (__isDebug) {
+				try {
+					Ext.log(str);
+				} catch (e) {
+					Ext.log(e);
+				}
+			}
+		}; 
     </script>
 
 

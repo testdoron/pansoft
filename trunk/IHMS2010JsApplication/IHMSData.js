@@ -28,6 +28,27 @@ IHMSData.ConfigJson = {
 	"WorkerName": "马英豪"
 }
 
+IHMSData.StatisticsUIData = {
+	ChartType: '',
+	TimeType: '',
+	TimeGroupType: ''
+}
+
+IHMSData.StaticsticsData = { 
+	"allData" : [
+		[ { "companyId" : "000001FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000002FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000003FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000004FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000005FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000006FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000007FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000008FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000009FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ],
+		[ { "companyId" : "000010FF-8B86-D011-B42D-00C04FC964" }, { "companyName" : "北京银行总部" }, { "companyOpreationAmout" : 1233 }, { "companyOpreationValidAmout" : 123123 }, { "companyOpreationValidEvaluatingAmout" : 12312 }, { "companyOpreationInvalidAmout" : 234234 } ]
+	]
+}
+
 IHMSData.CompanyGroup = {
 	"id": "0000 - root - 0000",
 	"name": "平安银行北京分行",
@@ -72,10 +93,60 @@ IHMSData.CompanyGroup = {
 				{ "id": "141414 - 111", "name": "平安银行北京分行左安门方庄分行", "alias": "左安门方庄" },
 				{ "id": "141414 - 222", "name": "平安银行北京分行左安门芳星园分行", "alias": "左安门芳星园" }
 			]                     
-		}
+		},
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" },
+		{ "id": "101010", "name": "平安银行北京分行西直门分行", "alias": "西直门" },
+		{ "id": "111111", "name": "平安银行北京分行东直门分行", "alias": "东直门" },
+		{ "id": "121212", "name": "平安银行北京分行崇文门分行", "alias": "崇文门" },
+		{ "id": "131313", "name": "平安银行北京分行鼓楼分行", "alias": "鼓楼" }
 	]
 }
 
-IHMSData.StatisticsUIData = {
-	
-}
+
+
+
+
+
+
+
