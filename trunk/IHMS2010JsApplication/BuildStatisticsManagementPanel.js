@@ -23,8 +23,8 @@ IHMSModule.StatisticsManagementPanel = Ext.extend(Ext.app.Module, {
 			win = desktop.createWindow({
 				id: 'StatisticsManagementPanel',
 				title: IHMSData.UITxt.Modules.StatisticsManagementPanel.Text,
-				width: GeanJs.GetBrowserWidth() * 0.8,
-				height: GeanJs.GetBrowserHeight() * 0.85,
+				width: GeanJs.GetBrowserWidth() * 0.9,
+				height: GeanJs.GetBrowserHeight() * 0.9,
 				iconCls: 'icon-StatisticsManagementPanel',
 				shim: false,
 				animCollapse: false,
@@ -59,69 +59,57 @@ function BuildStatisticsManagementPanel() {
 		cmargins: '3 3 3 3',
 		layout: 'fit',
 		tbar: [
-			GetStatisticsDataMenuItem("统计数据"), 
+			{ //统计数据表
+				text: '统计数据表',
+				iconCls: 'icon-StatisticsDataButton',
+				onClick: GetStatisticsDataGrid
+			},
 			'-', 
-			{ 
-				text: '统计图表',
+			{ //统计图表
+				text: IHMSData.Enums.Statistics.ChartType.Default,
 				id: 'StatisticsChartType',
 				iconCls: 'icon-StatisticsDataButton',
-				menu:
-				[
-					GetStatisticsChartTypeMenuItem("机构业务量统计"),
-					GetStatisticsChartTypeMenuItem("时段业务量统计"),
-					'-',
-					GetStatisticsChartTypeMenuItem("办理人数统计"),
-					GetStatisticsChartTypeMenuItem("等候时长统计"),
-					GetStatisticsChartTypeMenuItem("办理时长统计"),
-					'-',
-					GetStatisticsChartTypeMenuItem("柜员考勤统计"),
-					'-',
-					GetStatisticsChartTypeMenuItem("取号机取号量"),
-					GetStatisticsChartTypeMenuItem("取号类别统计")
-				]
+				menu: GetMenuItemArray(IHMSData.Enums.Statistics.ChartType.Content, 'StatisticsChartType')			
 			},
 			'-',
-			{
-				text: '统计时间',
+			{ //业务类型
+				text: IHMSData.Enums.Statistics.OperationType.Default,
+				id: 'StatisticsOperationType',
+				iconCls: 'icon-StatisticsDataButton',
+				menu: GetMenuItemArray(IHMSData.Enums.Statistics.OperationType.Content, 'StatisticsOperationType')
+			},
+			{ //时间段类型
+				text: IHMSData.Enums.Statistics.TimeType.Default,
 				id: 'StatisticsTimeType',
 				iconCls: 'icon-StatisticsDataButton',
-				menu:
-				[
-					GetStatisticsTimeTypeMenuItem("近一天"),
-					GetStatisticsTimeTypeMenuItem("近一周"),
-					GetStatisticsTimeTypeMenuItem("近两周"),
-					GetStatisticsTimeTypeMenuItem("近一月"),
-					GetStatisticsTimeTypeMenuItem("近一季"),
-					GetStatisticsTimeTypeMenuItem("近一年"),
-					GetStatisticsTimeTypeMenuItem("指定时间")
-				]
+				menu: GetMenuItemArray(IHMSData.Enums.Statistics.TimeType.Content, 'StatisticsTimeType')
 			},
-			{
-				text: '分类汇总模式',
+			{ //汇总类型
+				text: IHMSData.Enums.Statistics.TimeGroupType.Default,
 				id: 'StatisticsByGroupType',
 				iconCls: 'icon-StatisticsDataButton',
-				menu:
-				[
-					GetStatisticsTimeGroupTypeMenuItem("按天汇总"),
-					GetStatisticsTimeGroupTypeMenuItem("按周汇总"),
-					GetStatisticsTimeGroupTypeMenuItem("按月汇总"),
-					GetStatisticsTimeGroupTypeMenuItem("按年汇总")
-				]
+				menu: GetMenuItemArray(IHMSData.Enums.Statistics.TimeGroupType.Content, 'StatisticsByGroupType')
 			},
 			'-',
-			{
+			{ //导出
 				text: '导出Excel',
-				iconCls: 'icon-StatisticsDataButton'
+				id: 'exportStatisticsExcel',
+				iconCls: 'icon-StatisticsDataButton',
+				onClick: exportStatisticsExcel
 			},
 			'-',
-			{
+			{ //打印
 				text: '打印',
-				iconCls: 'icon-StatisticsDataButton'
+				id: 'printStatistics',
+				iconCls: 'icon-StatisticsDataButton',
+				onClick: printStatistics
 			},
 			'-',
-			{
+			{ //刷新
 				text: '刷新',
-				iconCls: 'icon-StatisticsDataButton'
+				id: 'refreshStatisticsData',
+				iconCls: 'icon-StatisticsDataButton',
+				onClick: refreshStatisticsData
 			},
 		],
 		html: '<div id="StatisticsPanel" style="width: 100%; height: 100%"></div>'
@@ -131,139 +119,66 @@ function BuildStatisticsManagementPanel() {
 	//GetStatisticsDataGrid();
 	return panel;
 	
-	/*统计数据菜单项*/
-	function GetStatisticsDataMenuItem(menuStr) {
-		var menuitem = new Ext.menu.Item({
-			text: menuStr,
-			iconCls: 'icon-StatisticsDataButton'//menuStr + "-icon"
-		})
-		
-		//定义菜单项的点击事件
-		menuitem.on("click", function(item) {
-			GetStatisticsDataGrid();
+	/*生成统计类型的菜单子项集合*/
+	function GetMenuItemArray(typeArray, parentMenuId) 
+	{
+		var menuitems = new Array();
+		$.each(typeArray, function(i, n) {
+			menuitems.push(getItem(n));
 		});
-		
-		return menuitem;
-	}
 
-	/*统计数据图表类型主菜单*/
-	function GetStatisticsChartTypeMenuItem(menuStr) {
-		var menuitem = new Ext.menu.Item({
-			text: menuStr,
-			iconCls: 'icon-StatisticsManagementPanel'//menuStr + "-icon"
-		})
-		
-		//定义菜单项的点击事件
-		menuitem.on("click", function(item) {
-			Ext.getCmp('StatisticsChartType').setText(menuitem.text);
-			GetCompanyWorkloadChart();
-		});
-		
-		return menuitem;
-	}
-
-	/*统计时间段类型单选项*/
-	function GetStatisticsTimeTypeMenuItem(menuStr) {
-		var menuitem = new Ext.menu.Item({
-			text: menuStr,
-			iconCls: 'icon-StatisticsManagementPanel'//menuStr + "-icon"
-		})
-		
-		//定义菜单项的点击事件
-		menuitem.on("click", function(item) {
-			Ext.getCmp('StatisticsTimeType').setText(menuitem.text);
-			GetCompanyWorkloadChart();
-		});
-		
-		return menuitem;
-	}
-
-	/*统计分类汇总模式选项菜单*/
-	function GetStatisticsTimeGroupTypeMenuItem(menuStr) {
-		var menuitem = new Ext.menu.Item({
-			text: menuStr,
-			iconCls: 'icon-StatisticsManagementPanel'//menuStr + "-icon"
-		})
-		
-		// 定义菜单项的点击事件
-		menuitem.on("click", function(item) {
-			Ext.getCmp('StatisticsByGroupType').setText(menuitem.text);
-			GetCompanyWorkloadChart();
-		});
-		
-		return menuitem;
-	}
-
+		function getItem(n) {
+			var menuitem = new Ext.menu.Item({
+				id: n.Id,
+				text: n.Text,
+				iconCls: 'icon-StatisticsDataButton'// 'menu' + n.Text + "-icon"
+			})
+			menuitem.on("click", //定义菜单项的点击事件
+				function() { 
+					GetCompanyWorkloadChart(n, parentMenuId);
+				}
+			);
+			return menuitem;
+		}
+		return menuitems;
+	}	
 	
 	/* 业务量统计的Grid：GetStatisticsDataGrid()  */
-	function GetStatisticsDataGrid() {
+	function GetStatisticsDataGrid(item) 
+	{
 
 		Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+		//Ext.getCmp('StatisticsChartType').setText(item.text);
 
-		/**
-		 * Custom function used for column renderer
-		 * @param {Object} val
-		 */
-		function change(val){
-			if(val > 0){
-				return '<span style="color:green;">' + val + '</span>';
-			}else if(val < 0){
-				return '<span style="color:red;">' + val + '</span>';
-			}
-			return val;
-		}
-
-		/**
-		 * Custom function used for column renderer
-		 * @param {Object} val
-		 */
-		function pctChange(val){
-			if(val > 0){
-				return '<span style="color:green;">' + val + '%</span>';
-			}else if(val < 0){
-				return '<span style="color:red;">' + val + '%</span>';
-			}
-			return val;
-		}
-	
-		var store = new Ext.data.Store({
-			proxy: new Ext.data.MemoryProxy(IHMSData.StaticsticsData.allData), 
-			reader:  new Ext.data.JsonReader({
-					fields: [
-						{ name: 'companyId', mapping: 'companyId', type: 'string' }, 
-						{ name: 'companyName', mapping: 'companyName', type: 'string' }, 
-						{ name: 'companyOpreationAmout', mapping: 'companyOpreationAmout', type: 'int' }, 
-						{ name: 'companyOpreationValidAmout', mapping: 'companyOpreationValidAmout', type: 'int' }, 
-						{ name: 'companyOpreationValidEvaluatingAmout', mapping: 'companyOpreationValidEvaluatingAmout', type: 'int' }, 
-						{ name: 'companyOpreationInvalidAmout', mapping: 'companyOpreationInvalidAmout', type: 'int' }
-					],
-					remoteSort: true
-				}
-			)//,
-			//fields: ['companyId', 'companyName', 'companyOpreationAmout', 'companyOpreationValidAmout', 'companyOpreationValidEvaluatingAmout', 'companyOpreationInvalidAmout',]
-		});
-
-		
-		store.load();
-
-		
-		// var store = new Ext.data.ArrayStore({
-			// fields: [
-			   // {name: 'companyId'},
-			   // {name: 'companyName', type: 'char'},
-			   // {name: 'companyOpreationAmout', type: 'int'},
-			   // {name: 'companyOpreationValidAmout', type: 'int'},
-			   // {name: 'companyOpreationValidEvaluatingAmout', type: 'int'},
-			   // {name: 'companyOpreationInvalidAmout', type: 'int'}
-			// ]
-		// });
-
-		// var store = new Ext.data.JsonStore({
-			// data: IHMSData.StaticsticsData,
-			// root: 'data',
+		/* var store = new Ext.data.Store({
+			// proxy: new Ext.data.MemoryProxy(IHMSData.StaticsticsData.allData), 
+			// reader:  new Ext.data.JsonReader({
+					// fields: [
+						// { name: 'companyId', mapping: 'companyId', type: 'string' }, 
+						// { name: 'companyName', mapping: 'companyName', type: 'string' }, 
+						// { name: 'companyOpreationAmout', mapping: 'companyOpreationAmout', type: 'int' }, 
+						// { name: 'companyOpreationValidAmout', mapping: 'companyOpreationValidAmout', type: 'int' }, 
+						// { name: 'companyOpreationValidEvaluatingAmout', mapping: 'companyOpreationValidEvaluatingAmout', type: 'int' }, 
+						// { name: 'companyOpreationInvalidAmout', mapping: 'companyOpreationInvalidAmout', type: 'int' }
+					// ],
+					// remoteSort: true
+				// }
+			// ),
 			// fields: ['companyId', 'companyName', 'companyOpreationAmout', 'companyOpreationValidAmout', 'companyOpreationValidEvaluatingAmout', 'companyOpreationInvalidAmout',]
-		// });
+		// });*/
+		
+		var store = new Ext.data.ArrayStore({
+			 fields: [
+			    {name: 'companyId', type: 'string'},
+			    {name: 'companyName', type: 'string'},
+			    {name: 'companyOpreationAmout', type: 'int'},
+			    {name: 'companyOpreationValidAmout', type: 'int'},
+			    {name: 'companyOpreationValidEvaluatingAmout', type: 'int'},
+			    {name: 'companyOpreationInvalidAmout', type: 'int'}
+			 ]
+		 });
 
+		store.loadData(IHMSData.StaticsticsData);
 
 		var grid = new Ext.grid.GridPanel({
 			store: store,
@@ -283,8 +198,25 @@ function BuildStatisticsManagementPanel() {
 			height: Ext.fly("StatisticsPanel").getHeight(), 
 			title: IHMSData.CompanyGroup.name,
 			stateful: true,
-			stateId: 'grid'        
+			stateId: 'grid',
+			bbar: [
+					'共计 ' + IHMSData.StaticsticsData.length + ' 机构', '-' ,
+					'总取票量： ' + GetAmount(2), '-' ,
+					'总交易量： ' + GetAmount(3), '-' ,
+					'总有效评价量： ' + GetAmount(4), '-' ,
+					'总弃票量： ' + GetAmount(5), '-'
+				]
+
 		});			
+		
+		/*根据数据数组(IHMSData.StaticsticsData)计算单字段的合计值*/
+		function GetAmount(num) {
+			var amount = 0;
+			$.each( IHMSData.StaticsticsData, function(i, n){
+				amount += n[num];
+			});
+			return amount;
+		}
 		
 		//监视Panel的大小变化，以让Grid也发生变化。
 		//2010-04-18 0:55:18 未实现效果
@@ -298,26 +230,28 @@ function BuildStatisticsManagementPanel() {
 	}
 
 	/* 业务量统计柱状图：GetCompanyWorkloadChart */
-	function GetCompanyWorkloadChart() {
+	function GetCompanyWorkloadChart(chartType, parentMenuId) 
+	{
+		Ext.getCmp(parentMenuId).setText(chartType.Text);
 		var datas = getData();
 		new Highcharts.Chart({
 			chart: {
 				renderTo: 'StatisticsPanel',
 				defaultSeriesType: 'column'
 			},
-			title: { text: '机构业务量' },
-			subtitle: { text: '2010.03.10  -  2010.04.10' },
+			title: { text: chartType.Text },
+			subtitle: { text: getChartDescription() },
 			xAxis: {
 				categories: datas.Groups,
-				labels: { rotation: 30, align: 'left' } //控制坐标轴的标签的显示方式，标签旋转即可在这里
+				labels: getXAxisLabels()
 			},
 			yAxis: {
 				min: 0,
-				offset: 0,//设置单位向左偏移一些，否则也会向右偏，遮在图表上
-				title: { text: '' }//{ text: '机构业务量' } //设置了标题后会导致Y轴显示的字体的显示严重靠右，遮在图表上
+				offset: 0,
+				title: { enabled: false } 
 			},
 			tooltip: {
-				formatter: function() { return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y +' 人'; }
+				formatter: function() { return chartType.Text +'<br/><b>'+ this.x +':</b> '+ this.y +' 人'; }
 			},
 			plotOptions: {
 				column: {
@@ -326,11 +260,58 @@ function BuildStatisticsManagementPanel() {
 				}
 			},
 			series: [{
-				name: '机构业务量',
-				data: datas.Datas
+				name: chartType.Text,
+				data: datas.Datas,
+				dataLabels: getSeriesDataLabels(this.y)			
 			}]
 		});
+		
+		//图表的具体描述，主要为详细说明当前的选择类型
+		function getChartDescription()
+		{
+			
+		}
+		
+		//当项目不太多时，在柱状图的柱子显示数量
+		function getSeriesDataLabels(yValue)
+		{
+			var label = new Object();
+			if (datas.Groups.length > 18) {
+				label.enabled = false;
+			}
+			else {
+				label.enabled = true;
+				label.rotation = -90;
+				label.color = '#FFFFFF';
+				label.align = 'right';
+				label.x = -3;
+				label.y = 10;
+				label.formatter = yValue;
+				label.style = {
+					font: 'normal 10px Verdana, sans-serif'
+				};
+			}
+			return label;
+		}
+		
+		//控制X轴的项目名称显示，当项目较多时将斜向显示，太多时不显示
+		function getXAxisLabels() 
+		{
+			var label = new Object();
+			if (datas.Groups.length > 25) {
+				label.enabled = false;
+			}
+			if (datas.Groups.length >= 15 && datas.Groups.length <= 25) {
+				label.rotation = 30;
+				label.align = 'left';
+			}
+			if (datas.Groups.length > 0 && datas.Groups.length < 15) {
+				label.enabled = true;
+			}
+			return label;
+		}
 
+		//获得图中的数据
 		function getData() 
 		{
 			var chartGroup = new Array();
@@ -362,6 +343,42 @@ function BuildStatisticsManagementPanel() {
 		}//loadGroup
 	}
 	
+	//导出当前的数据到Excel
+	function exportStatisticsExcel()
+	{
+		Ext.MessageBox.show({
+		   title:'导出当前的数据到Excel?',
+		   msg: '将要导出当前的数据到Excel，可能数据量较大，需要数秒或稍长的时间。 <br />当前统计数据的类型是：<br />业务类型：<br />时间段类型：<br />统计类型是：<br /><br />是否导出当前的数据到Excel?',
+		   buttons: Ext.MessageBox.OKCANCEL,
+		   animEl: 'exportStatisticsExcel',
+		   icon: Ext.MessageBox.QUESTION
+	   });
+	}
+	
+	//打印当前的数据
+	function printStatistics()
+	{
+		Ext.MessageBox.show({
+		   title:'打印当前的数据?',
+		   msg: '将要打印当前的数据，可能数据量较大，需要数秒或稍长的时间。 <br />当前统计数据的类型是：<br />业务类型：<br />时间段类型：<br />统计类型是：<br /><br />是否打印当前的数据?',
+		   buttons: Ext.MessageBox.OKCANCEL,
+		   animEl: 'printStatistics',
+		   icon: Ext.MessageBox.QUESTION
+	   });
+	}
+	
+	//刷新当前的数据
+	function refreshStatisticsData()
+	{
+		Ext.MessageBox.show({
+		   title:'刷新当前的数据?',
+		   msg: '将要刷新当前的数据，可能数据量较大，需要数秒或稍长的时间。 <br />当前统计数据的类型是：<br />业务类型：<br />时间段类型：<br />统计类型是：<br /><br />是否刷新当前的数据?',
+		   buttons: Ext.MessageBox.OKCANCEL,
+		   animEl: 'refreshStatisticsData',
+		   icon: Ext.MessageBox.QUESTION
+	   });
+	}
+
 
 }
 
