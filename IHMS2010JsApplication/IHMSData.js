@@ -43,12 +43,12 @@ IHMSData.Enums = {
 			"Default": "时间段类型",
 			"Content" : [
 				{ "Id": "000001TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "当天" },
-				{ "Id": "000002TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近一周" },
+				{ "Id": "000002TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "本周" },
 				{ "Id": "000003TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近两周" },
-				{ "Id": "000004TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近一月" },
-				{ "Id": "000005TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近一季" },
+				{ "Id": "000004TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "本月" },
+				{ "Id": "000005TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "本季度" },
 				{ "Id": "000006TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近半年" },
-				{ "Id": "000007TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近一年" },
+				{ "Id": "000007TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "本年度" },
 				{ "Id": "000008TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "指定时间" }
 			]
 		},
@@ -60,7 +60,8 @@ IHMSData.Enums = {
 				{ "Id": "000003TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按季汇总" },
 				{ "Id": "000004TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按半年汇总" },
 				{ "Id": "000005TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按年汇总" },
-				{ "Id": "000006TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按指定时间汇总" }
+				{ "Id": "000006TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按小时汇总" },
+				{ "Id": "000007TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按指定时间汇总" }
 			]
 		},
 		"OperationType": {
@@ -97,7 +98,12 @@ IHMSData.CompanyGroup = {
 	[
 		{ "id": "111", "name": "平安银行北京分行将台路分行" , "alias": "将台路",
 			"data":	{  "oId":"", "d": 123, "w": 1230, "tw": 2460, "m": 4920, "q":14760, "2q":29520, "y":59040	}
-		},
+		}
+	]
+}	
+
+/*		
+		,
 		// { "id": "222", "name": "平安银行北京分行亚运村分行" , "alias": "亚运村"  },
 		{ "id": "333", "name": "平安银行北京分行平安大街分行" , "alias": "平安大街",
 			"data":	{  "oId":"", "d": 123, "w": 1230, "tw": 2460, "m": 4920, "q":14760, "2q":29520, "y":59040	}
@@ -227,7 +233,7 @@ IHMSData.CompanyGroup = {
 	]
 }
 
-
+*/
 
 /*
 //IHMSData.StaticsticsData = { 

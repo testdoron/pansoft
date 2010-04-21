@@ -93,23 +93,23 @@ function BuildStatisticsManagementPanel() {
 			'-',
 			{ //导出
 				text: '导出Excel',
-				id: 'exportStatisticsExcel',
+				id: 'ExportStatisticsExcel',
 				iconCls: 'icon-StatisticsDataButton',
-				onClick: exportStatisticsExcel
+				onClick: ExportStatisticsExcel
 			},
 			'-',
 			{ //打印
 				text: '打印',
-				id: 'printStatistics',
+				id: 'PrintStatistics',
 				iconCls: 'icon-StatisticsDataButton',
-				onClick: printStatistics
+				onClick: PrintStatistics
 			},
 			'-',
 			{ //刷新
 				text: '刷新',
-				id: 'refreshStatisticsData',
+				id: 'RefreshStatisticsData',
 				iconCls: 'icon-StatisticsDataButton',
-				onClick: refreshStatisticsData
+				onClick: RefreshStatisticsData
 			},
 		],
 		html: '<div id="StatisticsPanel" style="width: 100%; height: 100%"></div>'
@@ -178,7 +178,7 @@ function BuildStatisticsManagementPanel() {
 			 ]
 		 });
 
-		store.loadData(getMyData());
+		store.loadData(GetMyData());
 
 		var grid = new Ext.grid.GridPanel({
 			store: store,
@@ -208,7 +208,7 @@ function BuildStatisticsManagementPanel() {
 				]
 		});			
 		
-		function getMyData()
+		function GetMyData()
 		{
 			return IHMSData.StaticsticsData;
 		}
@@ -237,10 +237,10 @@ function BuildStatisticsManagementPanel() {
 	function GetCompanyWorkloadChart(chartType, parentMenuId) 
 	{
 		IHMSData.StatisticsState.Grid = false;
-		setStatisticsState(chartType, parentMenuId);//将当前的统计状态保存
+		SetStatisticsState(chartType, parentMenuId);//将当前的统计状态保存
 		Ext.getCmp(parentMenuId).setText(chartType.Text);
 		
-		var datas = getMyData();
+		var datas = GetMyData();
 		
 		new Highcharts.Chart({
 			chart: {
@@ -248,10 +248,10 @@ function BuildStatisticsManagementPanel() {
 				defaultSeriesType: 'column'
 			},
 			title: { text: getTitle() },
-			subtitle: { text: getChartDescription() },
+			subtitle: { text: GetChartDescription() },
 			xAxis: {
 				categories: datas.Groups,
-				labels: getXAxisLabels()
+				labels: GetXAxisLabels()
 			},
 			yAxis: {
 				min: 0,
@@ -270,7 +270,7 @@ function BuildStatisticsManagementPanel() {
 			series: [{
 				name: chartType.Text,
 				data: datas.Datas,
-				dataLabels: getSeriesDataLabels(this.y)			
+				dataLabels: GetSeriesDataLabels(this.y)			
 			}]
 		});
 		
@@ -286,7 +286,7 @@ function BuildStatisticsManagementPanel() {
 		}
 		
 		//将当前的统计状态保存
-		function setStatisticsState(chartType, parentMenuId)
+		function SetStatisticsState(chartType, parentMenuId)
 		{
 			if (parentMenuId == "StatisticsChartType") {
 				IHMSData.StatisticsState.ChartType = chartType.Id;
@@ -303,13 +303,13 @@ function BuildStatisticsManagementPanel() {
 		}
 			
 		//图表的具体描述，主要为详细说明当前的选择类型
-		function getChartDescription()
+		function GetChartDescription()
 		{
-			return getStateString(" <b>|</b> ");
+			return GetStateString(" <b>|</b> ");
 		}
 		
 		//当项目不太多时，在柱状图的柱子显示数量
-		function getSeriesDataLabels(yValue)
+		function GetSeriesDataLabels(yValue)
 		{
 			var label = new Object();
 			if (datas.Groups.length > 18) {
@@ -331,7 +331,7 @@ function BuildStatisticsManagementPanel() {
 		}
 		
 		//控制X轴的项目名称显示，当项目较多时将斜向显示，太多时不显示
-		function getXAxisLabels() 
+		function GetXAxisLabels() 
 		{
 			var label = new Object();
 			if (datas.Groups.length > 25) {
@@ -348,12 +348,12 @@ function BuildStatisticsManagementPanel() {
 		}
 
 		//获得所需数据
-		function getMyData() 
+		function GetMyData() 
 		{
 			var chartGroup = new Array();
 			var chartData = new Array();
 			
-			loadGroup(chartGroup, chartData, IHMSData.CompanyGroup.items);
+			LoadGroup(chartGroup, chartData, IHMSData.CompanyGroup.items);
 
 			// for (var i = 0; i < chartGroup.length; i++) { //一些临时显示的数据
 				// var x = Math.floor(Math.random() * 1500);
@@ -366,63 +366,63 @@ function BuildStatisticsManagementPanel() {
 		}
 
 		//机构树的读取函数(递归)
-		function loadGroup(chartGroup, chartData, array)
+		function LoadGroup(chartGroup, chartData, array)
 		{
 			for (var i = 0; i < array.length; i++) {
 				chartGroup.push(array[i].alias);
-				chartData.push(subGetNumber(array[i]));
+				chartData.push(SubGetNumber(array[i]));
 				if (!jQuery.isEmptyObject(array[i].items)) {
 					if (array[i].items.length > 0) {
-						loadGroup(chartGroup, chartData, array[i].items);
+						LoadGroup(chartGroup, chartData, array[i].items);
 					}
 				};
 			};
-		}//loadGroup
+		}//LoadGroup
 		
-		function subGetNumber(item)
+		function SubGetNumber(item)
 		{
 			return item.data.d;
 		}
 	}
 	
 	//导出当前的数据到Excel
-	function exportStatisticsExcel()
+	function ExportStatisticsExcel()
 	{
 		Ext.MessageBox.show({
 		   title:'导出当前的数据到Excel?',
-		   msg: "将要导出当前的数据到Excel，可能数据量较大，需要数秒或稍长的时间。<br />" + getStateString("<br />") + "<br /><br />是否导出当前的数据到Excel?",
+		   msg: "将要导出当前的数据到Excel，可能数据量较大，需要数秒或稍长的时间。<br />" + GetStateString("<br />") + "<br /><br />是否导出当前的数据到Excel?",
 		   buttons: Ext.MessageBox.OKCANCEL,
-		   animEl: 'exportStatisticsExcel',
+		   animEl: 'ExportStatisticsExcel',
 		   icon: Ext.MessageBox.QUESTION
 	   });
 	}
 	
 	//打印当前的数据
-	function printStatistics()
+	function PrintStatistics()
 	{
 		Ext.MessageBox.show({
 		   title:'打印当前的数据?',
-		   msg: "将要打印当前的数据，可能数据量较大，需要数秒或稍长的时间。<br />" + getStateString("<br />") + "<br /><br />是否打印当前的数据?",
+		   msg: "将要打印当前的数据，可能数据量较大，需要数秒或稍长的时间。<br />" + GetStateString("<br />") + "<br /><br />是否打印当前的数据?",
 		   buttons: Ext.MessageBox.OKCANCEL,
-		   animEl: 'printStatistics',
+		   animEl: 'PrintStatistics',
 		   icon: Ext.MessageBox.QUESTION
 	   });
 	}
 	
 	//刷新当前的数据
-	function refreshStatisticsData()
+	function RefreshStatisticsData()
 	{
 		Ext.MessageBox.show({
 		   title:'刷新当前的数据?',
-		   msg: "将要刷新当前的数据，可能数据量较大，需要数秒或稍长的时间。<br />" + getStateString("<br />") + "<br /><br />是否刷新当前的数据?",
+		   msg: "将要刷新当前的数据，可能数据量较大，需要数秒或稍长的时间。<br />" + GetStateString("<br />") + "<br /><br />是否刷新当前的数据?",
 		   buttons: Ext.MessageBox.OKCANCEL,
-		   animEl: 'refreshStatisticsData',
+		   animEl: 'RefreshStatisticsData',
 		   icon: Ext.MessageBox.QUESTION
 	   });
 	}
 
 	//获取当前统计状态的连接字符串
-	function getStateString(joinChar)
+	function GetStateString(joinChar)
 	{
 		var stateStr = "业务类型：";
 		var arr = IHMSData.Enums.Statistics.OperationType.Content;
