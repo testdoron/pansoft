@@ -33,35 +33,37 @@ IHMSData.Enums = {
 		"ChartType": {
 			"Default": "统计图表",
 			"Content" : [
-				{ "Id": "000001CT-ERTQ-HJGR-FSEG-POIUYTREWQ" , "Text": "机构业务量统计" },
-				{ "Id": "000002CT-ERTQ-HJGR-FSEG-POIUYTREWQ" , "Text": "客户办理时长统计" },
-				{ "Id": "000003CT-ERTQ-HJGR-FSEG-POIUYTREWQ" , "Text": "业务类型统计" },
-				{ "Id": "000004CT-ERTQ-HJGR-FSEG-POIUYTREWQ" , "Text": "客户满意度统计" }
+				{ "Id": "CT01" , "Text": "按机构交易量统计" },
+				{ "Id": "CT02" , "Text": "按业务类型交易量统计" },
+				{ "Id": "CT03" , "Text": "按柜员交易量统计" },
+				{ "Id": "CT04" , "Text": "客户办理时长统计" },
+				{ "Id": "CT05" , "Text": "客户满意度统计" }
 			]
 		},
 		"TimeType": {
 			"Default": "时间段类型",
 			"Content" : [
-				{ "Id": "000001TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "当天" },
-				{ "Id": "000002TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "本周" },
-				{ "Id": "000003TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近两周" },
-				{ "Id": "000004TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "本月" },
-				{ "Id": "000005TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "本季度" },
-				{ "Id": "000006TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "近半年" },
-				{ "Id": "000007TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "本年度" },
-				{ "Id": "000008TT-GJHJ-TYJU-FSEG-POIUYTREWQ" , "Text": "指定时间" }
+				{ "Id": "TE01" , "Text": "当天" },
+				{ "Id": "TE02" , "Text": "本周" },
+				{ "Id": "TE03" , "Text": "近两周" },
+				{ "Id": "TE04" , "Text": "本月" },
+				{ "Id": "TE05" , "Text": "本季度" },
+				{ "Id": "TE06" , "Text": "近半年" },
+				{ "Id": "TE07" , "Text": "本年度" },
+				{ "Id": "TE08" , "Text": "上年度" },
+				{ "Id": "TE09" , "Text": "指定时间" }
 			]
 		},
 		"TimeGroupType": {
 			"Default": "汇总类型",
 			"Content" : [
-				{ "Id": "000001TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按天汇总" },
-				{ "Id": "000002TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按周汇总" },
-				{ "Id": "000003TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按季汇总" },
-				{ "Id": "000004TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按半年汇总" },
-				{ "Id": "000005TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按年汇总" },
-				{ "Id": "000006TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按小时汇总" },
-				{ "Id": "000007TG-HJDS-KRXC-FSEG-POIUYTREWQ" , "Text": "按指定时间汇总" }
+				{ "Id": "HZ01" , "Text": "按天汇总" },
+				{ "Id": "HZ02" , "Text": "按周汇总" },
+				{ "Id": "HZ03" , "Text": "按季汇总" },
+				{ "Id": "HZ04" , "Text": "按半年汇总" },
+				{ "Id": "HZ05" , "Text": "按年汇总" },
+				{ "Id": "HZ06" , "Text": "按小时汇总" },
+				{ "Id": "HZ07" , "Text": "按指定时间汇总" }
 			]
 		},
 		"OperationType": {
@@ -83,24 +85,85 @@ IHMSData.Enums = {
 }
 
 IHMSData.StatisticsState = {
-	"GroupId": 			"0000 - root - 0000",
-	"ChartType": 		"000001CT-ERTQ-HJGR-FSEG-POIUYTREWQ",
-	"TimeType": 		"000001TT-GJHJ-TYJU-FSEG-POIUYTREWQ",
-	"TimeGroupType": 	"000001TG-HJDS-KRXC-FSEG-POIUYTREWQ",
+	"GroupId": 			"85772b60-e6f8-4393-b673-5588f30de20a",
 	"OperationType": 	"FDRXXKGY-0000-CVER-QVFD-WE84XFDGWE",
+	"ChartType": 		"CT01",
+	"TimeType": 		"TE01",
+	"TimeGroupType": 	"HZ01",
 	"Grid": true //为真是表示在“统计分析”面板正在显示的是数据Grid，否则可能在显示Chart
 }
 
-IHMSData.CompanyGroup = {
-	"id": "0000 - root - 0000",
-	"name": "平安银行北京分行",
+function GetOperationTypeById(id)
+{
+	for (var i = 0; i < IHMSData.Enums.Statistics.OperationType.Content.length; i++) {
+		if (id == IHMSData.Enums.Statistics.OperationType.Content[i].Id) {
+			return IHMSData.Enums.Statistics.OperationType.Content[i].Text;
+		}
+	}
+}
+
+function GetChartTypeById(id)
+{
+	for (var i = 0; i < IHMSData.Enums.Statistics.ChartType.Content.length; i++) {
+		if (id == IHMSData.Enums.Statistics.ChartType.Content[i].Id) {
+			return IHMSData.Enums.Statistics.ChartType.Content[i].Text;
+		}
+	}
+}
+
+function GetTimeTypeById(id)
+{
+	for (var i = 0; i < IHMSData.Enums.Statistics.TimeType.Content.length; i++) {
+		if (id == IHMSData.Enums.Statistics.TimeType.Content[i].Id) {
+			return IHMSData.Enums.Statistics.TimeType.Content[i].Text;
+		}
+	}
+}
+
+function GetTimeGroupTypeById(id)
+{
+	for (var i = 0; i < IHMSData.Enums.Statistics.TimeGroupType.Content.length; i++) {
+		if (id == IHMSData.Enums.Statistics.TimeGroupType.Content[i].Id) {
+			return IHMSData.Enums.Statistics.TimeGroupType.Content[i].Text;
+		}
+	}
+}
+
+IHMSData.CompanyGroup = 
+{
+	"id": "55cd5904-567d-452b-9b75-ab8474759c83", "name": "世界银行北京市平安路分行", "alias": "平安路",
 	"items": 
 	[
-		{ "id": "111", "name": "平安银行北京分行将台路分行" , "alias": "将台路",
-			"data":	{  "oId":"", "d": 123, "w": 1230, "tw": 2460, "m": 4920, "q":14760, "2q":29520, "y":59040	}
-		}
+		{ "id": "bcf717eb-f6b2-42db-ba05-75c03690a77c", "name": "平安银行北京分行将台路分行", "alias": "将台路" },
+		{ "id": "3fa4e175-2432-4127-adbc-5326b596cd9c", "name": "平安银行北京分行亚运村分行", "alias": "亚运村" },
+		{ "id": "37ef141d-e0cd-40d1-8985-8c7000b47dff", "name": "平安银行北京分行昌平分行", "alias": "昌平" },
+		{ "id": "64a72221-0469-4c49-bffe-68fb6d2999ff", "name": "平安银行北京分行顺义五里仓分行", "alias": "顺义五里仓" }
 	]
 }	
+
+//根据ID和指定的Key信息获得Group的一些信息
+function GetCompanyInfo(id, attribute) 
+{
+	if (IHMSData.CompanyGroup.id == id) {
+		return IHMSData.CompanyGroup[attribute];
+	}
+	else {
+		return eachGroup(IHMSData.CompanyGroup.items);
+	}
+	
+	function eachGroup(items) {
+		for (var i = 0; i < items.length; i++) {
+			if (items[i].id == id) {
+				return items[i][attribute];
+			}
+			if (!jQuery.isEmptyObject(items[i].items)) {
+				if (items[i].items.length > 0) {
+					eachGroup(items[i].items);
+				}
+			}
+		}
+	}
+}
 
 /*		
 		,

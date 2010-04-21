@@ -18,7 +18,15 @@ IHMSModule.StatisticsManagementPanel = Ext.extend(Ext.app.Module, {
 	createWindow: function() {
 		var desktop = this.app.getDesktop();
 		var win = desktop.getWindow('StatisticsManagementPanel');
-		var treepanel = BuildCompanyGroupTreePanel();
+		var treepanel;
+		var treeItems;
+		if (!jQuery.isEmptyObject(IHMSData.CompanyGroup.items)) {
+			treepanel = BuildCompanyGroupTreePanel();
+			treeItems = [treepanel, BuildStatisticsManagementPanel()]
+		}
+		else {
+			treeItems = [BuildStatisticsManagementPanel()];
+		}
 		if (!win) {
 			win = desktop.createWindow({
 				id: 'StatisticsManagementPanel',
@@ -32,17 +40,18 @@ IHMSModule.StatisticsManagementPanel = Ext.extend(Ext.app.Module, {
 				constrainHeader: true,
 				plain: true,
 				layout: 'border', //将容器分为五个区域:east,south,west,north,center
-				items:
-				[
-					treepanel, BuildStatisticsManagementPanel()
-				]
+				items: treeItems
+				// [
+					// treepanel, BuildStatisticsManagementPanel()
+				// ]
 			});
-			treepanel.expandAll();//.getRootNode().expandAll();
+		if (!jQuery.isEmptyObject(IHMSData.CompanyGroup.items)) {
+				treepanel.expandAll();//.getRootNode().expandAll();
+			}
 		}
 		win.show();
 	}
 });
-
 /** 创建统计分析图表面板
  功能：创建统计分析图表面板
  名称：BuildStatisticsManagementPanel()
@@ -50,7 +59,6 @@ IHMSModule.StatisticsManagementPanel = Ext.extend(Ext.app.Module, {
  返回：new Ext.Panel
  */
 function BuildStatisticsManagementPanel() {
-
 	var panel = new Ext.Panel
 	({
 		id: 'StatisticsChart',
@@ -126,7 +134,6 @@ function BuildStatisticsManagementPanel() {
 		$.each(typeArray, function(i, n) {
 			menuitems.push(getItem(n));
 		});
-
 		function getItem(n) {
 			var menuitem = new Ext.menu.Item({
 				id: n.Id,
@@ -149,7 +156,6 @@ function BuildStatisticsManagementPanel() {
 		IHMSData.StatisticsState.Grid = true;
 		Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
 		//Ext.getCmp('StatisticsChartType').setText(item.text);
-
 		/* var store = new Ext.data.Store({
 			// proxy: new Ext.data.MemoryProxy(IHMSData.StaticsticsData.allData), 
 			// reader:  new Ext.data.JsonReader({
@@ -177,9 +183,7 @@ function BuildStatisticsManagementPanel() {
 			    {name: 'companyOpreationInvalidAmout', type: 'int'}
 			 ]
 		 });
-
 		store.loadData(GetMyData());
-
 		var grid = new Ext.grid.GridPanel({
 			store: store,
 			columns: [
@@ -232,7 +236,6 @@ function BuildStatisticsManagementPanel() {
 		$("#StatisticsPanel").empty();
 		grid.render('StatisticsPanel');
 	}
-
 	/* 业务量统计柱状图：GetCompanyWorkloadChart */
 	function GetCompanyWorkloadChart(chartType, parentMenuId) 
 	{
@@ -301,7 +304,7 @@ function BuildStatisticsManagementPanel() {
 				IHMSData.StatisticsState.TimeGroupType = chartType.Id;
 			}
 		}
-			
+
 		//图表的具体描述，主要为详细说明当前的选择类型
 		function GetChartDescription()
 		{
@@ -346,42 +349,60 @@ function BuildStatisticsManagementPanel() {
 			}
 			return label;
 		}
-
+		
 		//获得所需数据
 		function GetMyData() 
 		{
-			var chartGroup = new Array();
+			var chartGroup = GetXByCompany();
 			var chartData = new Array();
 			
-			LoadGroup(chartGroup, chartData, IHMSData.CompanyGroup.items);
-
-			// for (var i = 0; i < chartGroup.length; i++) { //一些临时显示的数据
-				// var x = Math.floor(Math.random() * 1500);
-				// chartData.push(x);
-			// }
-
+			for (var i = 0; i < IHMSData.Json.Staticstics.length; i++) { 
+				var x = Math.floor(Math.random() * 1500);
+				chartData.push(x);
+			}
+			
 			var chartGroupData = { Groups: chartGroup, Datas: chartData };
-
 			return chartGroupData;
 		}
-
-		//机构树的读取函数(递归)
-		function LoadGroup(chartGroup, chartData, array)
-		{
-			for (var i = 0; i < array.length; i++) {
-				chartGroup.push(array[i].alias);
-				chartData.push(SubGetNumber(array[i]));
-				if (!jQuery.isEmptyObject(array[i].items)) {
-					if (array[i].items.length > 0) {
-						LoadGroup(chartGroup, chartData, array[i].items);
-					}
-				};
-			};
-		}//LoadGroup
 		
-		function SubGetNumber(item)
+		//据统计Json中的Company的ID得到所有对应的机构别名
+		function GetXByCompany()
 		{
-			return item.data.d;
+			var companys = new Array();
+			for (var i = 0; i < IHMSData.Json.Staticstics.length; i++) {
+				companys.push(GetCompanyInfo(IHMSData.Json.Staticstics[i].Id, "alias"));
+			}
+			return companys;
+		}
+		
+		function GetY()
+		{
+			var amoutData = new Array();
+			if (IHMSData.StatisticsState.TimeType == "TE01") {
+			
+			}
+			else if (IHMSData.StatisticsState.TimeType == "TE02") {
+			
+			}
+			else if (IHMSData.StatisticsState.TimeType == "TE03") {
+			
+			}
+			else if (IHMSData.StatisticsState.TimeType == "TE04") {
+			
+			}
+			else if (IHMSData.StatisticsState.TimeType == "TE05") {
+			
+			}
+			else if (IHMSData.StatisticsState.TimeType == "TE06") {
+			
+			}
+			else if (IHMSData.StatisticsState.TimeType == "TE07") {
+			
+			}
+			else if (IHMSData.StatisticsState.TimeType == "TE08") {
+			
+			}
+
 		}
 	}
 	
@@ -420,7 +441,6 @@ function BuildStatisticsManagementPanel() {
 		   icon: Ext.MessageBox.QUESTION
 	   });
 	}
-
 	//获取当前统计状态的连接字符串
 	function GetStateString(joinChar)
 	{
@@ -433,7 +453,6 @@ function BuildStatisticsManagementPanel() {
 				break;
 			}
 		}
-
 		stateStr += joinChar;
 		stateStr += "时间段类型：";
 		arr = IHMSData.Enums.Statistics.TimeType.Content;
@@ -443,7 +462,6 @@ function BuildStatisticsManagementPanel() {
 				break;
 			}
 		}
-
 		stateStr += joinChar;
 		stateStr += "统计类型：";
 		arr = IHMSData.Enums.Statistics.TimeGroupType.Content;
@@ -458,26 +476,4 @@ function BuildStatisticsManagementPanel() {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
