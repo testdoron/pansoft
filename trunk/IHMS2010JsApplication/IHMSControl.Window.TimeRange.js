@@ -66,7 +66,9 @@ function BuildTimeRangeWindow()
 				{
 					text:'确定',
 					handler: function(){ 
-						alert(Ext.getCmp(startdt).value);
+						IHMSData.StatisticsState.StartDateTime = Ext.getCmp("startdt").value;
+						IHMSData.StatisticsState.EndDateTime = Ext.getCmp("enddt").value;
+						win.close();
 					}
 				},
 				{

@@ -31,8 +31,8 @@ IHMSModule.StatisticsManagementPanel = Ext.extend(Ext.app.Module, {
 			win = desktop.createWindow({
 				id: 'StatisticsManagementPanel',
 				title: IHMSData.UITxt.Modules.StatisticsManagementPanel.Text,
-				width: GeanJs.GetBrowserWidth() * 0.9,
-				height: GeanJs.GetBrowserHeight() * 0.9,
+				width: GeanJs.GetBrowserWidth() * 0.85,
+				height: GeanJs.GetBrowserHeight() * 0.85,
 				iconCls: 'icon-StatisticsManagementPanel',
 				shim: false,
 				animCollapse: false,
@@ -67,10 +67,11 @@ function BuildStatisticsManagementPanel() {
 		cmargins: '3 3 3 3',
 		layout: 'fit',
 		tbar: [
-			{ //统计数据表
-				text: '统计数据表',
+			{ //统计图表
+				text: IHMSData.Enums.Statistics.AmoutGrid.Default,
+				id: 'StatisticsAmoutGrid',
 				iconCls: 'icon-StatisticsDataButton',
-				onClick: GetStatisticsDataGrid
+				menu: GetMenuItemArray(IHMSData.Enums.Statistics.AmoutGrid.Content, 'StatisticsAmoutGrid')			
 			},
 			'-', 
 			{ //统计图表
@@ -92,12 +93,12 @@ function BuildStatisticsManagementPanel() {
 				iconCls: 'icon-StatisticsDataButton',
 				menu: GetMenuItemArray(IHMSData.Enums.Statistics.TimeType.Content, 'StatisticsTimeType')
 			},
-			{ //汇总类型
-				text: IHMSData.Enums.Statistics.TimeGroupType.Default,
-				id: 'StatisticsByGroupType',
-				iconCls: 'icon-StatisticsDataButton',
-				menu: GetMenuItemArray(IHMSData.Enums.Statistics.TimeGroupType.Content, 'StatisticsByGroupType')
-			},
+			// { //汇总类型
+				// text: IHMSData.Enums.Statistics.TimeGroupType.Default,
+				// id: 'StatisticsByGroupType',
+				// iconCls: 'icon-StatisticsDataButton',
+				// menu: GetMenuItemArray(IHMSData.Enums.Statistics.TimeGroupType.Content, 'StatisticsByGroupType')
+			// },
 			'-',
 			{ //导出
 				text: '导出Excel',
@@ -142,7 +143,18 @@ function BuildStatisticsManagementPanel() {
 			})
 			menuitem.on("click", //定义菜单项的点击事件
 				function() { 
-					GetCompanyWorkloadChart(n, parentMenuId);
+					if (n.Id == "TE09") {
+						var win = BuildTimeRangeWindow();
+						win.show(this);
+						win.on("close", function() {
+							GetCompanyWorkloadChart(n, parentMenuId);
+						});
+					}
+					else if (n.Id.substring(0,2) == "RP") {
+						GetStatisticsDataGrid(n);
+					} else	{
+						GetCompanyWorkloadChart(n, parentMenuId);
+					}
 				}
 			);
 			return menuitem;
@@ -155,68 +167,151 @@ function BuildStatisticsManagementPanel() {
 	{
 		IHMSData.StatisticsState.Grid = true;
 		Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
-		//Ext.getCmp('StatisticsChartType').setText(item.text);
-		/* var store = new Ext.data.Store({
-			// proxy: new Ext.data.MemoryProxy(IHMSData.StaticsticsData.allData), 
-			// reader:  new Ext.data.JsonReader({
-					// fields: [
-						// { name: 'companyId', mapping: 'companyId', type: 'string' }, 
-						// { name: 'companyName', mapping: 'companyName', type: 'string' }, 
-						// { name: 'companyOpreationAmout', mapping: 'companyOpreationAmout', type: 'int' }, 
-						// { name: 'companyOpreationValidAmout', mapping: 'companyOpreationValidAmout', type: 'int' }, 
-						// { name: 'companyOpreationValidEvaluatingAmout', mapping: 'companyOpreationValidEvaluatingAmout', type: 'int' }, 
-						// { name: 'companyOpreationInvalidAmout', mapping: 'companyOpreationInvalidAmout', type: 'int' }
-					// ],
-					// remoteSort: true
-				// }
-			// ),
-			// fields: ['companyId', 'companyName', 'companyOpreationAmout', 'companyOpreationValidAmout', 'companyOpreationValidEvaluatingAmout', 'companyOpreationInvalidAmout',]
-		// });*/
 		
-		var store = new Ext.data.ArrayStore({
-			 fields: [
-			    {name: 'companyId', type: 'string'},
-			    {name: 'companyName', type: 'string'},
-			    {name: 'companyOpreationAmout', type: 'int'},
-			    {name: 'companyOpreationValidAmout', type: 'int'},
-			    {name: 'companyOpreationValidEvaluatingAmout', type: 'int'},
-			    {name: 'companyOpreationInvalidAmout', type: 'int'}
-			 ]
-		 });
-		store.loadData(GetMyData());
-		var grid = new Ext.grid.GridPanel({
-			store: store,
-			columns: [
+		var arrayStone = new Object();	//表格中的数据集合
+		var colModel = new Object();	//Grid的列模型（ColumnModel）的默认实现。该类由列配置组成的数组初始化。
+
+		if (item.Id == "RP01") {  		//满意度报表
+			arrayStone = new Ext.data.ArrayStore({
+				fields: [
+					{name: 'companyId', type: 'string'},
+					{name: 'companyName', type: 'string'},
+					{name: 'companyWaiterAmout', type: 'int'}, 		//正在等待人数
+					{name: 'companyWokingAmout', type: 'int'}, 		//正在办理人数
+					{name: 'companyGetTicketAmout', type: 'int'}, 	//取票总量
+					{name: 'companyInvalidAmout', type: 'int'}, 	//弃票人数
+					{name: 'companyValidAmout', type: 'int'}, 		//有效服务人数
+					{name: 'companyAvgAmout', type: 'int'}  		//平均人/天
+				 ]
+			});
+			colModel = [
 				new Ext.grid.RowNumberer(),
 				{id: 'companyId', hidden:'true' },
 				{id: 'companyName', header: '机构名称', sortable: true, dataIndex: 'companyName'},
-				{id: 'companyOpreationAmout', header: '取票量', width: 85, sortable: true, dataIndex: 'companyOpreationAmout'},
-				{id: 'companyOpreationValidAmout', header: '交易量', width: 85, sortable: true, dataIndex: 'companyOpreationValidAmout'},
-				{id: 'companyOpreationValidEvaluatingAmout', header: '有效评价量', width: 85, sortable: true, dataIndex: 'companyOpreationValidEvaluatingAmout'},
-				{id: 'companyOpreationInvalidAmout', header: '弃票量', width: 85, sortable: true, dataIndex: 'companyOpreationInvalidAmout'}
-			],
+				{id: 'companyWaiterAmout', header: '正在等待人数', width: 80, sortable: true, dataIndex: 'companyWaiterAmout'},
+				{id: 'companyWokingAmout', header: '正在办理人数', width: 80, sortable: true, dataIndex: 'companyWokingAmout'},
+				{id: 'companyGetTicketAmout', header: '取票总量', width: 80, sortable: true, dataIndex: 'companyGetTicketAmout'},
+				{id: 'companyInvalidAmout', header: '弃票人数', width: 80, sortable: true, dataIndex: 'companyInvalidAmout'},
+				{id: 'companyValidAmout', header: '有效服务人数', width: 80, sortable: true, dataIndex: 'companyValidAmout'},
+				{id: 'companyAvgAmout', header: '平均人/天', width: 80, sortable: true, dataIndex: 'companyAvgAmout'}
+			];
+		} else if (item.Id == "RP02") { //服务人数报表
+			arrayStone = new Ext.data.ArrayStore({
+				fields: [
+					{name: 'companyId', type: 'string'},
+					{name: 'companyName', type: 'string'},
+					{name: 'companyWaiterAmout', type: 'int'}, 		//正在等待人数
+					{name: 'companyWokingAmout', type: 'int'}, 		//正在办理人数
+					{name: 'companyGetTicketAmout', type: 'int'}, 	//取票总量
+					{name: 'companyInvalidAmout', type: 'int'}, 	//弃票人数
+					{name: 'companyValidAmout', type: 'int'}, 		//有效服务人数
+					{name: 'companyAvgAmout', type: 'int'}  		//平均人/天
+				 ]
+			});
+			colModel = [
+				new Ext.grid.RowNumberer(),
+				{id: 'companyId', hidden:'true' },
+				{id: 'companyName', header: '机构名称', sortable: true, dataIndex: 'companyName'},
+				{id: 'companyWaiterAmout', header: '正在等待人数', width: 80, sortable: true, dataIndex: 'companyWaiterAmout'},
+				{id: 'companyWokingAmout', header: '正在办理人数', width: 80, sortable: true, dataIndex: 'companyWokingAmout'},
+				{id: 'companyGetTicketAmout', header: '取票总量', width: 80, sortable: true, dataIndex: 'companyGetTicketAmout'},
+				{id: 'companyInvalidAmout', header: '弃票人数', width: 80, sortable: true, dataIndex: 'companyInvalidAmout'},
+				{id: 'companyValidAmout', header: '有效服务人数', width: 80, sortable: true, dataIndex: 'companyValidAmout'},
+				{id: 'companyAvgAmout', header: '平均人/天', width: 80, sortable: true, dataIndex: 'companyAvgAmout'}
+			];
+
+		} else if (item.Id == "RP03") { //分类业务交易量报表
+			arrayStone = new Ext.data.ArrayStore({
+				fields: [
+					{name: 'companyId', type: 'string'},
+					{name: 'companyName', type: 'string'},
+					{name: 'companyOpreationAmout', type: 'int'},
+					{name: 'companyOpreationValidAmout', type: 'int'},
+					{name: 'companyOpreationValidEvaluatingAmout', type: 'int'},
+					{name: 'companyOpreationInvalidAmout', type: 'int'}
+				 ]
+			});
+		} else if (item.Id == "RP04") {  //客户办理时长统计
+			arrayStone = new Ext.data.ArrayStore({
+				fields: [
+					{name: 'companyId', type: 'string'},
+					{name: 'companyName', type: 'string'},
+					{name: 'companyOpreationAmout', type: 'int'},
+					{name: 'companyOpreationValidAmout', type: 'int'},
+					{name: 'companyOpreationValidEvaluatingAmout', type: 'int'},
+					{name: 'companyOpreationInvalidAmout', type: 'int'}
+				 ]
+			});
+		} else if (item.Id == "RP05") {  //时段客户流量报表
+			arrayStone = new Ext.data.ArrayStore({
+				fields: [
+					{name: 'companyId', type: 'string'},
+					{name: 'companyName', type: 'string'},
+					{name: 'companyOpreationAmout', type: 'int'},
+					{name: 'companyOpreationValidAmout', type: 'int'},
+					{name: 'companyOpreationValidEvaluatingAmout', type: 'int'},
+					{name: 'companyOpreationInvalidAmout', type: 'int'}
+				 ]
+			});
+		}
+		 
+		function GetMyData()
+		{
+			IHMSData.Staticstics = new Array();
+			
+			$.each(IHMSData.Json.Staticstics, function(i, bankArray) {
+				
+				var bank = new Array();
+				bank.push(bankArray.Id);		//从JSON数据里获取Bank的ID
+				bank.push(GetCompanyInfo(bankArray.Id, "name"));		//从JSON数据里获取Bank的名字
+				
+				var a = 0;
+				var b = 0;
+				var c = 0;
+				var d = 0;
+				var e = 0;
+				$.each(bankArray.Os, function(j , operation) {	//从业务数据里循环计算“所有业务”的合计
+					//alert(a + " | " + operation.Amount.D.T[0]);
+					a += operation.Amount.D.T[0];
+					b += operation.Amount.D.T[1];
+					c += operation.Amount.D.T[2];
+					d += operation.Amount.D.T[3];
+					e += operation.Amount.D.T[4];
+					f = e;
+				});
+				bank.push(a);
+				bank.push(b);
+				bank.push(c);
+				bank.push(d);
+				bank.push(e);
+				bank.push(f);
+				IHMSData.Staticstics.push(bank);
+			});
+			return IHMSData.Staticstics;
+		}
+		
+		arrayStone.loadData(GetMyData());
+		
+		var grid = new Ext.grid.GridPanel({
+			store: arrayStone,
 			autoExpandColumn:"companyName",
 			region: 'center',
 			border: false,
 			width: Ext.fly("StatisticsPanel").getWidth(),
 			height: Ext.fly("StatisticsPanel").getHeight(), 
-			title: IHMSData.CompanyGroup.name,
+			title: IHMSData.CompanyGroup.name + ' - ' + item.Text,
 			stateful: true,
 			stateId: 'grid',
-			bbar: [
-					'共计 ' + IHMSData.StaticsticsData.length + ' 机构', '-' ,
-					'总取票量： ' + getAmount(2), '-' ,
-					'总交易量： ' + getAmount(3), '-' ,
-					'总有效评价量： ' + getAmount(4), '-' ,
-					'总弃票量： ' + getAmount(5), '-'
-				]
+			// bbar: [
+					// '共计 ' + IHMSData.StaticsticsData.length + ' 机构', '-' ,
+					// '总取票量： ' + getAmount(2), '-' ,
+					// '总交易量： ' + getAmount(3), '-' ,
+					// '总有效评价量： ' + getAmount(4), '-' ,
+					// '总弃票量： ' + getAmount(5), '-'
+				// ],
+			columns: colModel
 		});			
-		
-		function GetMyData()
-		{
-			return IHMSData.StaticsticsData;
-		}
-		
+
 		/*根据数据数组(IHMSData.StaticsticsData)计算单字段的合计值*/
 		function getAmount(num) {
 			var amount = 0;
@@ -236,6 +331,7 @@ function BuildStatisticsManagementPanel() {
 		$("#StatisticsPanel").empty();
 		grid.render('StatisticsPanel');
 	}
+	
 	/* 业务量统计柱状图：GetCompanyWorkloadChart */
 	function GetCompanyWorkloadChart(chartType, parentMenuId) 
 	{
@@ -441,6 +537,7 @@ function BuildStatisticsManagementPanel() {
 		   icon: Ext.MessageBox.QUESTION
 	   });
 	}
+	
 	//获取当前统计状态的连接字符串
 	function GetStateString(joinChar)
 	{
