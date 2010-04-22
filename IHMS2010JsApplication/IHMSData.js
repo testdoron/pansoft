@@ -30,6 +30,16 @@ IHMSData.UITxt = {
 
 IHMSData.Enums = {
 	"Statistics": {
+		"AmoutGrid": {
+			"Default": "数据报表",
+			"Content" : [
+				{ "Id": "RP01" , "Text": "满意度报表" },
+				{ "Id": "RP02" , "Text": "服务数据统计表" },
+				{ "Id": "RP03" , "Text": "分类业务交易量报表" },
+				{ "Id": "RP04" , "Text": "客户办理时长统计" },
+				{ "Id": "RP05" , "Text": "时段客户流量报表" }
+			]
+		},
 		"ChartType": {
 			"Default": "统计图表",
 			"Content" : [
@@ -62,8 +72,7 @@ IHMSData.Enums = {
 				{ "Id": "HZ03" , "Text": "按季汇总" },
 				{ "Id": "HZ04" , "Text": "按半年汇总" },
 				{ "Id": "HZ05" , "Text": "按年汇总" },
-				{ "Id": "HZ06" , "Text": "按小时汇总" },
-				{ "Id": "HZ07" , "Text": "按指定时间汇总" }
+				{ "Id": "HZ06" , "Text": "按小时汇总" }
 			]
 		},
 		"OperationType": {
@@ -133,13 +142,14 @@ function GetTimeGroupTypeById(id)
 
 IHMSData.CompanyGroup = 
 {
-	"id": "55cd5904-567d-452b-9b75-ab8474759c83", "name": "世界银行北京市平安路分行", "alias": "平安路",
+	"id": "3343ce75-e687-43fd-bf2e-d2071e928882", "name": "世界银行北京市平安路分行", "alias": "平安路",
 	"items": 
 	[
-		{ "id": "bcf717eb-f6b2-42db-ba05-75c03690a77c", "name": "平安银行北京分行将台路分行", "alias": "将台路" },
-		{ "id": "3fa4e175-2432-4127-adbc-5326b596cd9c", "name": "平安银行北京分行亚运村分行", "alias": "亚运村" },
-		{ "id": "37ef141d-e0cd-40d1-8985-8c7000b47dff", "name": "平安银行北京分行昌平分行", "alias": "昌平" },
-		{ "id": "64a72221-0469-4c49-bffe-68fb6d2999ff", "name": "平安银行北京分行顺义五里仓分行", "alias": "顺义五里仓" }
+		{ "id": "0895d046-4c5c-45f9-9311-dfede168277b", "name": "平安银行北京分行将台路分行", "alias": "将台路" },
+		{ "id": "932b6ecb-046e-43fb-922f-b70e747ee852", "name": "平安银行北京分行亚运村分行", "alias": "亚运村" },
+		{ "id": "42d6734b-9225-4bac-a8a9-03d903a992f9", "name": "平安银行北京分行昌平分行", "alias": "昌平" },
+		{ "id": "8333fe69-00d2-4063-aa1f-fb2483f3fe25", "name": "平安银行北京分行顺义分行", "alias": "顺义" },
+		{ "id": "e797178f-0d8d-4cad-808d-faaed6d6581c", "name": "平安银行北京分行门头沟分行", "alias": "门头沟" }
 	]
 }	
 
