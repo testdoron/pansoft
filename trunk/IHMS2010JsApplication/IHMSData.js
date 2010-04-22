@@ -90,6 +90,8 @@ IHMSData.StatisticsState = {
 	"ChartType": 		"CT01",
 	"TimeType": 		"TE01",
 	"TimeGroupType": 	"HZ01",
+	"StartDateTime": 	"",
+	"EndDateTime": 		"",
 	"Grid": true //为真是表示在“统计分析”面板正在显示的是数据Grid，否则可能在显示Chart
 }
 
