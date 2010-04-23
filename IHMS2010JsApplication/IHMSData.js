@@ -79,8 +79,8 @@ IHMSData.Enums = {
 }
 
 IHMSData.StatisticsState = {
-	"GroupId": 			"85772b60-e6f8-4393-b673-5588f30de20a",
-	"OperationType": 	"FDRXXKGY-0000-CVER-QVFD-WE84XFDGWE",
+	"GroupId": 			"",
+	"OperationType": 	"",
 	"ChartType": 		"CT01",
 	"TimeType": 		"TE01",
 	"TimeGroupType": 	"HZ01",
