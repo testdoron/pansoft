@@ -353,7 +353,7 @@ function BuildStatisticsManagementPanel() {
 		{
 			var arr = IHMSData.Enums.Statistics.ChartType.Content;
 			for (i = 0; i < arr.length; i++) {
-				if (IHMSData.StatisticsState.ChartType == arr[i].Id) {
+				if (IHMSData.StatisticsState.ChartType == arr[i].id) {
 					return arr[i].name;
 				}
 			}
@@ -363,16 +363,16 @@ function BuildStatisticsManagementPanel() {
 		function SetStatisticsState(chartType, parentMenuId)
 		{
 			if (parentMenuId == "StatisticsChartType") {
-				IHMSData.StatisticsState.ChartType = chartType.Id;
+				IHMSData.StatisticsState.ChartType = chartType.id;
 			} 
 			else if (parentMenuId == "StatisticsOperationType") {
-				IHMSData.StatisticsState.OperationType = chartType.Id;
+				IHMSData.StatisticsState.OperationType = chartType.id;
 			} 
 			else if (parentMenuId == "StatisticsTimeType") {
-				IHMSData.StatisticsState.TimeType = chartType.Id;
+				IHMSData.StatisticsState.TimeType = chartType.id;
 			} 
 			else if (parentMenuId == "StatisticsByGroupType") {
-				IHMSData.StatisticsState.TimeGroupType = chartType.Id;
+				IHMSData.StatisticsState.TimeGroupType = chartType.id;
 			}
 		}
 
@@ -441,7 +441,7 @@ function BuildStatisticsManagementPanel() {
 		{
 			var companys = new Array();
 			for (var i = 0; i < IHMSData.Json.Staticstics.length; i++) {
-				companys.push(GetCompanyInfo(IHMSData.Json.Staticstics[i].Id, "alias"));
+				companys.push(GetCompanyInfo(IHMSData.Json.Staticstics[i].id, "alias"));
 			}
 			return companys;
 		}
@@ -516,34 +516,33 @@ function BuildStatisticsManagementPanel() {
 	//获取当前统计状态的连接字符串
 	function GetStateString(joinChar)
 	{
-		var stateStr = "业务类型：";
+		var stateStr = "";
 		var arr = IHMSData.Operation.Types;
-		for (i = 0; i < arr.length; i++) {
-			//alert(IHMSData.StatisticsState.OperationType +"<br />"+arr[i].Id);
-			if (IHMSData.StatisticsState.OperationType == arr[i].Id) {
-				stateStr += arr[i].name;
-				break;
+
+		stateStr = "业务类型：";
+		if (IHMSData.StatisticsState.OperationType.length > 0) {
+			for (i = 0; i < arr.length; i++) {
+				if (IHMSData.StatisticsState.OperationType == arr[i].id) {
+					stateStr += arr[i].name;
+					isFirst = true;
+					break;
+				}
 			}
 		}
-		stateStr += joinChar;
-		stateStr += "时间段类型：";
-		arr = IHMSData.Enums.Statistics.TimeType.Content;
-		for (i = 0; i < arr.length; i++) {
-			if (IHMSData.StatisticsState.TimeType == arr[i].Id) {
-				stateStr += arr[i].name;
-				break;
+		else {
+			stateStr += "所有业务类型"
+		}
+		if (IHMSData.StatisticsState.TimeType.length > 0) {
+			stateStr += joinChar;
+			stateStr += "时间段类型：";
+			arr = IHMSData.Enums.Statistics.TimeType.Content;
+			for (i = 0; i < arr.length; i++) {
+				if (IHMSData.StatisticsState.TimeType == arr[i].id) {
+					stateStr += arr[i].name;
+					break;
+				}
 			}
 		}
-		// stateStr += joinChar;
-		// stateStr += "统计类型：";
-		// arr = IHMSData.Enums.Statistics.TimeGroupType.Content;
-		// for (i = 0; i < arr.length; i++) {
-			// if (IHMSData.StatisticsState.TimeGroupType == arr[i].Id) {
-				// stateStr += arr[i].name;
-				// break;
-			// }
-		// }
-		//alert(stateStr);
 		return stateStr;
 	}
 	
