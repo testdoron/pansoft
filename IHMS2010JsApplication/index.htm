@@ -20,6 +20,7 @@
 	<script src="GeanJs.js" type="text/javascript"></script>
 	<script src="IHMSData.js" type="text/javascript"></script>
 	<script src="IHMSData.StaticsticsData.js" type="text/javascript"></script>
+	<script src="IHMSData.GetGridData.js" type="text/javascript"></script>
 	<script src="IHMSModule.js" type="text/javascript"></script>
 	<script src="IHMSControl.Window.TimeRange.js" type="text/javascript"></script>
 	<script src="BuildCompanyGroupTreePanel.js" type="text/javascript"></script>
@@ -289,7 +290,7 @@
         $("title").empty();
         //对TITLE节点进行操作，打印用户单位名称及软件与软件版本号
         $("title").append(
-            IHMSData.CompanyGroup.name.concat(" - ").
+            IHMSData.Group.Branches.name.concat(" - ").
             concat(IHMSData.ConfigJson.SoftwareName).
             concat(" ").
             concat(IHMSData.ConfigJson.SoftwareVersion));
