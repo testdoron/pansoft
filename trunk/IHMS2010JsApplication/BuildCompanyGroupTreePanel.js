@@ -5,12 +5,12 @@ function BuildCompanyGroupTreePanel()
 	//机构树的根节点
 	var rootNode = new Ext.tree.TreeNode
 	({
-		id: IHMSData.CompanyGroup.id,
-		text: IHMSData.CompanyGroup.name
+		id: IHMSData.Group.Branches.id,
+		text: IHMSData.Group.Branches.name
 	});
 
 	//递归读取机构树
-	loadGroup(rootNode, IHMSData.CompanyGroup.items);
+	loadGroup(rootNode, IHMSData.Group.Branches.items);
 
 	var node;
 	//机构树的读取函数(递归)

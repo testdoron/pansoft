@@ -20,7 +20,7 @@ IHMSModule.StatisticsManagementPanel = Ext.extend(Ext.app.Module, {
 		var win = desktop.getWindow('StatisticsManagementPanel');
 		var treepanel;
 		var treeItems;
-		if (!jQuery.isEmptyObject(IHMSData.CompanyGroup.items)) {
+		if (!jQuery.isEmptyObject(IHMSData.Group.Branches.items)) {
 			treepanel = BuildCompanyGroupTreePanel();
 			treeItems = [treepanel, BuildStatisticsManagementPanel()]
 		}
@@ -41,17 +41,15 @@ IHMSModule.StatisticsManagementPanel = Ext.extend(Ext.app.Module, {
 				plain: true,
 				layout: 'border', //将容器分为五个区域:east,south,west,north,center
 				items: treeItems
-				// [
-					// treepanel, BuildStatisticsManagementPanel()
-				// ]
 			});
-		if (!jQuery.isEmptyObject(IHMSData.CompanyGroup.items)) {
-				treepanel.expandAll();//.getRootNode().expandAll();
+		if (!jQuery.isEmptyObject(IHMSData.Group.Branches.items)) {
+				treepanel.expandAll();
 			}
 		}
 		win.show();
 	}
 });
+
 /** 创建统计分析图表面板
  功能：创建统计分析图表面板
  名称：BuildStatisticsManagementPanel()
@@ -82,23 +80,25 @@ function BuildStatisticsManagementPanel() {
 			},
 			'-',
 			{ //业务类型
-				text: IHMSData.Enums.Statistics.OperationType.Default,
+				text: "全部业务",
 				id: 'StatisticsOperationType',
 				iconCls: 'icon-StatisticsDataButton',
-				menu: GetMenuItemArray(IHMSData.Enums.Statistics.OperationType.Content, 'StatisticsOperationType')
-			},
+				menu: GetMenuItemArray(IHMSData.Operation.Types, 'StatisticsOperationType')
+			}
+			,
 			{ //时间段类型
 				text: IHMSData.Enums.Statistics.TimeType.Default,
 				id: 'StatisticsTimeType',
 				iconCls: 'icon-StatisticsDataButton',
 				menu: GetMenuItemArray(IHMSData.Enums.Statistics.TimeType.Content, 'StatisticsTimeType')
-			},
-			// { //汇总类型
+			}
+			,
+			/* { //汇总类型
 				// text: IHMSData.Enums.Statistics.TimeGroupType.Default,
 				// id: 'StatisticsByGroupType',
 				// iconCls: 'icon-StatisticsDataButton',
 				// menu: GetMenuItemArray(IHMSData.Enums.Statistics.TimeGroupType.Content, 'StatisticsByGroupType')
-			// },
+			}, */
 			'-',
 			{ //导出
 				text: '导出Excel',
@@ -136,21 +136,31 @@ function BuildStatisticsManagementPanel() {
 			menuitems.push(getItem(n));
 		});
 		function getItem(n) {
-			var menuitem = new Ext.menu.Item({
-				id: n.Id,
-				text: n.Text,
-				iconCls: 'icon-StatisticsDataButton'// 'menu' + n.Text + "-icon"
-			})
+			var menuitem = null;
+			if (!jQuery.isEmptyObject(n.name)) {
+				menuitem = new Ext.menu.Item({
+					id: n.id,
+					text: n.name,
+					iconCls: 'icon-StatisticsDataButton'// 'menu' + n.id + "-icon"
+				})
+			}
+			else {
+				menuitem = new Ext.menu.Item({
+					id: n.id,
+					text: n.name,
+					iconCls: 'icon-StatisticsDataButton'// 'menu' + n.id + "-icon"
+				})
+			}
 			menuitem.on("click", //定义菜单项的点击事件
 				function() { 
-					if (n.Id == "TE09") {
+					if (n.id == "TE09") {
 						var win = BuildTimeRangeWindow();
 						win.show(this);
 						win.on("close", function() {
 							GetCompanyWorkloadChart(n, parentMenuId);
 						});
 					}
-					else if (n.Id.substring(0,2) == "RP") {
+					else if (n.id.substring(0,2) == "RP") {
 						GetStatisticsDataGrid(n);
 					} else	{
 						GetCompanyWorkloadChart(n, parentMenuId);
@@ -171,7 +181,7 @@ function BuildStatisticsManagementPanel() {
 		var arrayStone = new Object();	//表格中的数据集合
 		var colModel = new Object();	//Grid的列模型（ColumnModel）的默认实现。该类由列配置组成的数组初始化。
 
-		if (item.Id == "RP01") {  		//满意度报表
+		if (item.id == "RP01") {  		//满意度报表
 			arrayStone = new Ext.data.ArrayStore({
 				fields: [
 					{name: 'companyId', type: 'string'},
@@ -195,7 +205,7 @@ function BuildStatisticsManagementPanel() {
 				{id: 'companyValidAmout', header: '有效服务人数', width: 80, sortable: true, dataIndex: 'companyValidAmout'},
 				{id: 'companyAvgAmout', header: '平均人/天', width: 80, sortable: true, dataIndex: 'companyAvgAmout'}
 			];
-		} else if (item.Id == "RP02") { //服务人数报表
+		} else if (item.id == "RP02") { //服务人数报表
 			arrayStone = new Ext.data.ArrayStore({
 				fields: [
 					{name: 'companyId', type: 'string'},
@@ -220,7 +230,7 @@ function BuildStatisticsManagementPanel() {
 				{id: 'companyAvgAmout', header: '平均人/天', width: 80, sortable: true, dataIndex: 'companyAvgAmout'}
 			];
 
-		} else if (item.Id == "RP03") { //分类业务交易量报表
+		} else if (item.id == "RP03") { //分类业务交易量报表
 			arrayStone = new Ext.data.ArrayStore({
 				fields: [
 					{name: 'companyId', type: 'string'},
@@ -231,7 +241,7 @@ function BuildStatisticsManagementPanel() {
 					{name: 'companyOpreationInvalidAmout', type: 'int'}
 				 ]
 			});
-		} else if (item.Id == "RP04") {  //客户办理时长统计
+		} else if (item.id == "RP04") {  //客户办理时长统计
 			arrayStone = new Ext.data.ArrayStore({
 				fields: [
 					{name: 'companyId', type: 'string'},
@@ -242,7 +252,7 @@ function BuildStatisticsManagementPanel() {
 					{name: 'companyOpreationInvalidAmout', type: 'int'}
 				 ]
 			});
-		} else if (item.Id == "RP05") {  //时段客户流量报表
+		} else if (item.id == "RP05") {  //时段客户流量报表
 			arrayStone = new Ext.data.ArrayStore({
 				fields: [
 					{name: 'companyId', type: 'string'},
@@ -253,44 +263,9 @@ function BuildStatisticsManagementPanel() {
 					{name: 'companyOpreationInvalidAmout', type: 'int'}
 				 ]
 			});
-		}
-		 
-		function GetMyData()
-		{
-			IHMSData.Staticstics = new Array();
-			
-			$.each(IHMSData.Json.Staticstics, function(i, bankArray) {
-				
-				var bank = new Array();
-				bank.push(bankArray.Id);		//从JSON数据里获取Bank的ID
-				bank.push(GetCompanyInfo(bankArray.Id, "name"));		//从JSON数据里获取Bank的名字
-				
-				var a = 0;
-				var b = 0;
-				var c = 0;
-				var d = 0;
-				var e = 0;
-				$.each(bankArray.Os, function(j , operation) {	//从业务数据里循环计算“所有业务”的合计
-					//alert(a + " | " + operation.Amount.D.T[0]);
-					a += operation.Amount.D.T[0];
-					b += operation.Amount.D.T[1];
-					c += operation.Amount.D.T[2];
-					d += operation.Amount.D.T[3];
-					e += operation.Amount.D.T[4];
-					f = e;
-				});
-				bank.push(a);
-				bank.push(b);
-				bank.push(c);
-				bank.push(d);
-				bank.push(e);
-				bank.push(f);
-				IHMSData.Staticstics.push(bank);
-			});
-			return IHMSData.Staticstics;
 		}
 		
-		arrayStone.loadData(GetMyData());
+		arrayStone.loadData(GetGridData());
 		
 		var grid = new Ext.grid.GridPanel({
 			store: arrayStone,
@@ -299,7 +274,7 @@ function BuildStatisticsManagementPanel() {
 			border: false,
 			width: Ext.fly("StatisticsPanel").getWidth(),
 			height: Ext.fly("StatisticsPanel").getHeight(), 
-			title: IHMSData.CompanyGroup.name + ' - ' + item.Text,
+			title: IHMSData.Group.Branches.name + ' - ' + item.name,
 			stateful: true,
 			stateId: 'grid',
 			// bbar: [
@@ -337,7 +312,7 @@ function BuildStatisticsManagementPanel() {
 	{
 		IHMSData.StatisticsState.Grid = false;
 		SetStatisticsState(chartType, parentMenuId);//将当前的统计状态保存
-		Ext.getCmp(parentMenuId).setText(chartType.Text);
+		Ext.getCmp(parentMenuId).setText(chartType.name);
 		
 		var datas = GetMyData();
 		
@@ -367,7 +342,7 @@ function BuildStatisticsManagementPanel() {
 				}
 			},
 			series: [{
-				name: chartType.Text,
+				name: chartType.name,
 				data: datas.Datas,
 				dataLabels: GetSeriesDataLabels(this.y)			
 			}]
@@ -379,7 +354,7 @@ function BuildStatisticsManagementPanel() {
 			var arr = IHMSData.Enums.Statistics.ChartType.Content;
 			for (i = 0; i < arr.length; i++) {
 				if (IHMSData.StatisticsState.ChartType == arr[i].Id) {
-					return arr[i].Text;
+					return arr[i].name;
 				}
 			}
 		}
@@ -542,11 +517,11 @@ function BuildStatisticsManagementPanel() {
 	function GetStateString(joinChar)
 	{
 		var stateStr = "业务类型：";
-		var arr = IHMSData.Enums.Statistics.OperationType.Content;
+		var arr = IHMSData.Operation.Types;
 		for (i = 0; i < arr.length; i++) {
 			//alert(IHMSData.StatisticsState.OperationType +"<br />"+arr[i].Id);
 			if (IHMSData.StatisticsState.OperationType == arr[i].Id) {
-				stateStr += arr[i].Text;
+				stateStr += arr[i].name;
 				break;
 			}
 		}
@@ -555,19 +530,19 @@ function BuildStatisticsManagementPanel() {
 		arr = IHMSData.Enums.Statistics.TimeType.Content;
 		for (i = 0; i < arr.length; i++) {
 			if (IHMSData.StatisticsState.TimeType == arr[i].Id) {
-				stateStr += arr[i].Text;
+				stateStr += arr[i].name;
 				break;
 			}
 		}
-		stateStr += joinChar;
-		stateStr += "统计类型：";
-		arr = IHMSData.Enums.Statistics.TimeGroupType.Content;
-		for (i = 0; i < arr.length; i++) {
-			if (IHMSData.StatisticsState.TimeGroupType == arr[i].Id) {
-				stateStr += arr[i].Text;
-				break;
-			}
-		}
+		// stateStr += joinChar;
+		// stateStr += "统计类型：";
+		// arr = IHMSData.Enums.Statistics.TimeGroupType.Content;
+		// for (i = 0; i < arr.length; i++) {
+			// if (IHMSData.StatisticsState.TimeGroupType == arr[i].Id) {
+				// stateStr += arr[i].name;
+				// break;
+			// }
+		// }
 		//alert(stateStr);
 		return stateStr;
 	}
