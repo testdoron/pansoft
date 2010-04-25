@@ -264,7 +264,6 @@ function BuildStatisticsManagementPanel() {
 				 ]
 			});
 		}
-		
 		arrayStone.loadData(GetGridData());
 		
 		var grid = new Ext.grid.GridPanel({

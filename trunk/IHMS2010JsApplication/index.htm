@@ -21,6 +21,7 @@
 	<script src="IHMSData.js" type="text/javascript"></script>
 	<script src="IHMSData.StaticsticsData.js" type="text/javascript"></script>
 	<script src="IHMSData.GetGridData.js" type="text/javascript"></script>
+	<script src="IHMSData.GetDeviceData.js" type="text/javascript"></script>
 	<script src="IHMSModule.js" type="text/javascript"></script>
 	<script src="IHMSControl.Window.TimeRange.js" type="text/javascript"></script>
 	<script src="IHMSControl.Tree.CompanyGroup.js" type="text/javascript"></script>
@@ -78,6 +79,7 @@
     
     <!--页面载入后的一些操作-->
     <script type="text/javascript">
+	$("body").append("<h1>" + "data" + "</h1>");
         $("title").empty();
         //对TITLE节点进行操作，打印用户单位名称及软件与软件版本号
         $("title").append(

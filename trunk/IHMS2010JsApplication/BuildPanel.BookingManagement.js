@@ -17,13 +17,13 @@
 			win = desktop.createWindow({
 				id: 'BookingManagementPanel',
 				title: "预约管理",
-				width: 640,
-				height: 480,
-				html: '<p>预约管理...</p>',
-				iconCls: 'icon-BookingManagementPanel',
+				width: GeanJs.GetBrowserWidth() * 0.50,
+				height: GeanJs.GetBrowserHeight() * 0.60,
+				iconCls: 'icon-SystemManagementPanel',
 				shim: false,
 				animCollapse: false,
 				constrainHeader: true
+				//items: [ BuildSystemManagementPanel() ]
 			});
 		}
 		win.show();
