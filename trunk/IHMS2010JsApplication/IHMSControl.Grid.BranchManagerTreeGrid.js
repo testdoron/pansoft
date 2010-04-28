@@ -50,7 +50,6 @@ function BuildBranchManagerTreeGrid() {
 	
 	function getMenuItem() {
 		var myMenu = new Ext.menu.Item({
-			id: 'systemManagementAddCompany',
 			text: '新增机构',
 			iconCls: 'icon-StatisticsDataButton'// 'menu' + n.id + "-icon"
 		});
