@@ -77,9 +77,9 @@ function BuildDeviceView() {
 	var devicePanel = new Ext.Panel({
 		id: 'DevicePanel',
 		region: 'center',
+		layout: 'fit',
 		margins: '3 0 3 3',
 		cmargins: '3 3 3 3',
-		layout: 'fit',
 		tbar: [
 			{text: 'ReadyState'}
 		],
