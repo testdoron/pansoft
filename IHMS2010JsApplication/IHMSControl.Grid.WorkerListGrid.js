@@ -6,11 +6,13 @@ function BuildWorkerListGrid () {
 	var gridPanel = new Ext.grid.GridPanel({
 	
         store: stone,
-		height: 450,
+		height: 448,
+		border: false,
 		viewConfig: {
             forceFit:true
         },
 		columns: [
+			new Ext.grid.RowNumberer(),
 			{id:'workerid', hidden: true},
 			{header: "登录名", width: 100, sortable: true, dataIndex: 'workerName'},
 			{header: "员工编号", width: 80, sortable: true, dataIndex: 'workerNo'},
@@ -24,14 +26,59 @@ function BuildWorkerListGrid () {
 			{header: "最后登录", width: 60, sortable: true, dataIndex: 'workerLastLogin'},
 			{header: "登录次数", width: 60, sortable: true, dataIndex: 'workerLoginCount'}
 		],
-		tbar: [
-			{text: '新建员工'}
+		tbar: 
+		[
+			' ',
+			'-', 
+			'机构:',
+			getComboBoxTree(),
+			' ',
+			'-',
+			getMenuItem(),
+			'-', 
+			'员工搜索:', 
+			new Ext.app.SearchField({ width:180, store: this.store, paramName: 'q' }),
+			' ',
+			' '
 		],
-		bbar: [
-			{text: '王小石'}
-		]
+		bbar: ['共 788 员工', ' ', ' ']
 
 	});
+	
+	function getMenuItem() {
+		var myMenu = new Ext.menu.Item({
+			text: '新增员工',
+			iconCls: 'icon-StatisticsDataButton'// 'menu' + n.id + "-icon"
+		});
+		
+		myMenu.on("click", //定义菜单项的点击事件
+			function() { 
+				var win = BuildCompanyInfoWindow('新建');
+				win.show();
+			}
+		);
+		return myMenu;
+	}
+	
+	function getComboBoxTree() {
+		var comboBoxTree;
+		comboBoxTree = new Ext.ux.ComboBoxTree({
+			//renderTo : 'comboBoxTree',
+			width : 200,
+			tree : {
+				xtype:'treepanel'//,
+				// loader: new Ext.tree.TreeLoader({dataUrl:'getNodes.jsp'}),
+				// root : new Ext.tree.AsyncTreeNode({id:'0',text:'根结点'})
+			},
+			
+			//all:所有结点都可选中
+			//exceptRoot：除根结点，其它结点都可选(默认)
+			//folder:只有目录（非叶子和非根结点）可选
+			//leaf：只有叶子结点可选
+			selectNodeModel:'exceptRoot'
+		});
+		return comboBoxTree;
+	}
 
 	return gridPanel;
 }
@@ -69,3 +116,55 @@ function GetGridDsssata()
 	arrayStone.loadData(getDData());
 	return arrayStone;
 }
+
+Ext.app.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
+    initComponent : function(){
+        // if(!this.store.baseParams){
+			// this.store.baseParams = {};
+		// }
+		Ext.app.SearchField.superclass.initComponent.call(this);
+		this.on('specialkey', function(f, e){
+            if(e.getKey() == e.ENTER){
+                this.onTrigger2Click();
+            }
+        }, this);
+    },
+
+    validationEvent:false,
+    validateOnBlur:false,
+    trigger1Class:'x-form-clear-trigger',
+    trigger2Class:'x-form-search-trigger',
+    hideTrigger1:true,
+    width:180,
+    hasSearch : false,
+    paramName : 'query',
+
+    onTrigger1Click : function(){
+        if(this.hasSearch){
+            this.store.baseParams[this.paramName] = '';
+			this.store.removeAll();
+			this.el.dom.value = '';
+            this.triggers[0].hide();
+            this.hasSearch = false;
+			this.focus();
+        }
+    },
+
+    onTrigger2Click : function(){
+        var v = this.getRawValue();
+        if(v.length < 1){
+            this.onTrigger1Click();
+            return;
+        }
+		if(v.length < 2){
+			Ext.Msg.alert('Invalid Search', 'You must enter a minimum of 2 characters to search the API');
+			return;
+		}
+		this.store.baseParams[this.paramName] = v;
+        var o = {start: 0};
+        this.store.reload({params:o});
+        this.hasSearch = true;
+        this.triggers[0].show();
+		this.focus();
+    }
+});
