@@ -42,7 +42,7 @@ function BuildCompanyGroupTreePanel()
 		width: 260,
 		margins: '3 0 3 3',
 		cmargins: '3 3 3 3',
-
+		//border: false,
 		collapsible: true,
 		useArrows: true,
 		autoScroll: true,
