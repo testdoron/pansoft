@@ -66,7 +66,7 @@ function BuildDeviceView() {
 	var deviceView = new Ext.DataView({
 		store: store,
 		tpl: tpl,
-		autoHeight:true,
+		autoHeight: true,
 		multiSelect: true,
 		style:'overflow:auto',
 		//overClass:'x-view-over',

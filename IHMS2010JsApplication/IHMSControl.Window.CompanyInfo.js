@@ -4,7 +4,6 @@ function BuildCompanyInfoWindow ( flag ) {
 
     var form = new Ext.form.FormPanel({
         baseCls: 'x-plain',
-		//labelAlign: 'right',
         labelWidth: 90,
         //url:'save-form.php',
         defaultType: 'textfield',
@@ -56,7 +55,7 @@ function BuildCompanyInfoWindow ( flag ) {
 			layout: 'fit',
 			plain:true,
 			bodyStyle:'padding:5px;',
-			//buttonAlign:'center',
+			closable: false,
 			items: form,
 
 			buttons: [{
