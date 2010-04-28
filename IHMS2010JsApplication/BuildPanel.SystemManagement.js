@@ -136,13 +136,18 @@ function BuildSystemManagementPanel_BranchManagerTreeGrid() {
 
 function BuildSystemManagementPanel_WorkerManagerGrid() {
 	
+	var treepanelByWorker = BuildCompanyGroupTreePanel();
 	var gridPanel = new Ext.Panel({
 		iconCls: 'icon-SystemManagementPanel',
 		title: '用户管理',
-		layout: 'fit',
-		html: '维护一个所有柜员的Grid，可以增删改查'
+		layout: 'fit', 
+		items: [ treepanelByWorker, BuildWorkerListGrid()]
 	});
 	
+	// if (!jQuery.isEmptyObject(IHMSData.Group.Branches.items)) {
+		// treepanelByWorker.expandAll();
+	// }
+
 	return gridPanel;
 	
 }
