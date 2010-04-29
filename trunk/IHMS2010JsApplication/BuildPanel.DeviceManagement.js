@@ -24,7 +24,7 @@ IHMSModule.DeviceManagementPanel = Ext.extend(Ext.app.Module,
 			win = desktop.createWindow({
 				id: 'DeviceManagementPanel',
 				title: "设备管理",
-				width: GeanJs.GetBrowserWidth() * 0.90,
+				width: GeanJs.GetBrowserWidth() * 0.80,
 				height: GeanJs.GetBrowserHeight() * 0.87,
 				layout: 'border', 
 				iconCls: 'icon-DeviceManagementPanel',
@@ -41,8 +41,6 @@ IHMSModule.DeviceManagementPanel = Ext.extend(Ext.app.Module,
 	}
 });
 
-//BuildDeviceView();
-
 function BuildDeviceView() {
 	var store = new Ext.data.ArrayStore({
 		fields: [
@@ -54,42 +52,68 @@ function BuildDeviceView() {
 	});
 	var d = GetDeviceData();
 	store.loadData(d);
-	
-	var tpl = new Ext.XTemplate(
+
+    var tpl = new Ext.XTemplate(
 		'<tpl for=".">',
-			'<div id="{name}" class="thumb-wrap">',
-			'<div class="thumb"><img src="{url}" title="{name}" class="thumb-img"></div>',
-		'</tpl>',
-		'<div class="x-clear"></div>'
+            '<div class="thumb-wrap" id="{name}">',
+		    '<div class="thumb"><img src="{url}" title="{name}"></div>',
+		    '<span class="x-editable">{shortName}</span></div>',
+        '</tpl>',
+        '<div class="x-clear"></div>'
 	);
 
-	var deviceView = new Ext.DataView({
-		store: store,
-		tpl: tpl,
-		autoHeight: true,
-		multiSelect: true,
-		style:'overflow:auto',
-		//overClass:'x-view-over',
-		itemSelector:'div.thumb-wrap',
-		emptyText: 'No images to display'
-	});
-	
-	var devicePanel = new Ext.Panel({
-		id: 'DevicePanel',
-		region: 'center',
-		layout: 'fit',
-		margins: '3 0 3 3',
+	var panel = new Ext.Panel({
+		id:'images-view',
+		margins: '3 3 3 0',
 		cmargins: '3 3 3 3',
-		tbar: [
-			{text: 'ReadyState'}
+		//border: false,
+		//autoHeight: true,
+		layout: 'border',
+		region: 'center',
+		
+		tbar: 
+		[
+			'设备运行状态',
 		],
-		items: [deviceView]
+		bbar:
+		[
+			'正常',
+		],
 
+		items: new Ext.DataView({
+			store: store,
+			tpl: tpl,
+			region: 'center',
+			autoScroll: true, 
+			multiSelect: true,
+			overClass:'x-view-over',
+			itemSelector:'div.thumb-wrap',
+			emptyText: 'No images to display',
+
+			plugins: [
+				new Ext.DataView.DragSelector()
+				//new Ext.DataView.LabelEditor({dataIndex: 'name'})
+			],
+
+			prepareData: function(data){
+				data.shortName = Ext.util.Format.ellipsis(data.name, 15);
+				data.sizeString = Ext.util.Format.fileSize(data.size);
+				data.dateString = data.lastmod.format("m/d/Y g:i a");
+				return data;
+			},
+			
+			listeners: {
+				selectionchange: {
+					fn: function(dv,nodes){
+						var l = nodes.length;
+						var s = l != 1 ? 's' : '';
+						//panel.setTitle('Simple DataView ('+l+' item'+s+' selected)');
+					}
+				}
+			}
+		})
 	});
-
-	//panel.renderTo("deviceImgView");
-	
-	return devicePanel;
+	return panel;
 }
 
 
