@@ -28,33 +28,32 @@ function BuildWorkerListGrid () {
 		],
 		tbar: 
 		[
-			' ',
 			'-', 
 			'机构:',
 			getComboBoxTree(),
-			' ',
 			'-',
-			getMenuItem(),
+			getMenuItem("新增员工"),
+			'-',
+			getMenuItem("修改员工"),
+			'-',
+			getMenuItem("删除员工"),
 			'-', 
 			'员工搜索:', 
-			new Ext.app.SearchField({ width:180, store: this.store, paramName: 'q' }),
-			' ',
-			' '
+			new Ext.app.SearchField({ width:120, store: this.store, paramName: 'q' })
 		],
 		bbar: ['共 788 员工', ' ', ' ']
 
 	});
 	
-	function getMenuItem() {
+	function getMenuItem(str) {
 		var myMenu = new Ext.menu.Item({
-			text: '新增员工',
-			iconCls: 'icon-StatisticsDataButton'// 'menu' + n.id + "-icon"
+			iconCls: 'icon-StatisticsDataButton',// 'menu' + n.id + "-icon"
+			text: str
 		});
 		
 		myMenu.on("click", //定义菜单项的点击事件
 			function() { 
-				var win = BuildCompanyInfoWindow('新建');
-				win.show();
+				Ext.MessageBox.confirm(str,str);
 			}
 		);
 		return myMenu;
@@ -64,7 +63,7 @@ function BuildWorkerListGrid () {
 		var comboBoxTree;
 		comboBoxTree = new Ext.ux.ComboBoxTree({
 			//renderTo : 'comboBoxTree',
-			width : 200,
+			width : 180,
 			tree : {
 				xtype:'treepanel'//,
 				// loader: new Ext.tree.TreeLoader({dataUrl:'getNodes.jsp'}),

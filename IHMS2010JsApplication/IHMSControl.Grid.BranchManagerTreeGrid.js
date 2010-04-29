@@ -5,7 +5,7 @@ function BuildBranchManagerTreeGrid() {
 	var topMenuItem = getMenuItem();
     var treegrid = new Ext.ux.tree.TreeGrid({
 		border: false,
-		height: 450,
+		height: 448,
         //enableDD: true,
 
         columns:[

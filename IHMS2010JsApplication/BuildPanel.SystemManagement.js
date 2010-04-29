@@ -43,7 +43,8 @@ function BuildSystemManagementPanel() {
 		iconCls: 'icon-SystemManagementPanel',
 		border: false,
 		activeTab: 0,
-		frame:true,
+		frame: true,
+		autoHeight: true,
 		defaults:{autoHeight: true},
 		items:[
 			BuildSystemManagementPanel_BranchManagerTreeGrid(),
@@ -56,7 +57,7 @@ function BuildSystemManagementPanel() {
 	return tabs;
 }
 
-
+//机构管理
 function BuildSystemManagementPanel_BranchManagerTreeGrid() {
 
 	var branchManagerTreeGrid = BuildBranchManagerTreeGrid();
@@ -71,6 +72,7 @@ function BuildSystemManagementPanel_BranchManagerTreeGrid() {
 	return gridPanel;
 }
 
+//用户管理
 function BuildSystemManagementPanel_WorkerManagerGrid() {
 	
 	var gridPanel = new Ext.Panel({
@@ -84,6 +86,7 @@ function BuildSystemManagementPanel_WorkerManagerGrid() {
 	return gridPanel;
 }
 
+//用户组/角色/权限管理
 function BuildSystemManagementPanel_GroupAndRoleManagePanel() {
 	
 	var gridPanel = new Ext.Panel({
@@ -91,13 +94,14 @@ function BuildSystemManagementPanel_GroupAndRoleManagePanel() {
 		layout: 'fit',
 		border: false,
 		iconCls: 'icon-SystemManagementPanel',
-		html: '维护用户组/角色/权限管理的面板，可以增删改查'
+		items: BuildGroupRoleResourceManagerPanel()
 	});
 	
 	return gridPanel;
 	
 }
 
+//管理员维护
 function BuildSystemManagementPanel_AdministratorPanel() {
 	
 	var gridPanel = new Ext.Panel({
