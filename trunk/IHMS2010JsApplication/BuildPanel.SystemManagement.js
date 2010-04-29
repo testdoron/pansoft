@@ -109,7 +109,7 @@ function BuildSystemManagementPanel_AdministratorPanel() {
 		layout: 'fit',
 		border: false,
 		iconCls: 'icon-SystemManagementPanel',
-		html: '包括参数维护，日志维护，备份等功能'
+		items: BuildAdminPanel()
 	});
 	
 	return gridPanel;
