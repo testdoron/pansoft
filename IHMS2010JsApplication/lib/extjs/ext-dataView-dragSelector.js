@@ -1,4 +1,5 @@
-﻿Ext.DataView.DragSelector = function(cfg){
+﻿
+Ext.DataView.DragSelector = function(cfg){
     cfg = cfg || {};
     var view, proxy, tracker;
     var rs, bodyRegion, dragRegion = new Ext.lib.Region(0,0,0,0);
