@@ -1,4 +1,5 @@
 
+
 Ext.ux.ComboBoxTree = function(){
 	this.treeId = Ext.id()+'-tree';
 	this.maxHeight = arguments[0].maxHeight || arguments[0].height || this.maxHeight;
