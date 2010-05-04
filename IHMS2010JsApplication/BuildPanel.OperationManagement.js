@@ -49,10 +49,10 @@ function BuildOperationManagementPanel() {
 			frame:true,
 			defaults:{autoHeight: true},
 			items:[
-				BuildCustomManagementTabPanel_OperationTypeGrid(),
-				BuildCustomManagementTabPanel_BusinessProcessSetting(),
-				BuildCustomManagementTabPanel_TecketPrintingSetting(),
-				BuildCustomManagementTabPanel_GetTecketUISetting()
+				BuildCustomManagementTabPanel_OperationListGrid()//,
+				//BuildCustomManagementTabPanel_BusinessProcessSetting(), //业务流程设计较为复杂，主要面向一票到底的客户使用
+				//BuildCustomManagementTabPanel_TecketPrintingSetting(), //号票设计较为复杂，暂不做
+				//BuildCustomManagementTabPanel_GetTecketUISetting() //取票界面设更为复杂
 			]
 		});
 

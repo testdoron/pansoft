@@ -10,14 +10,22 @@ function BuildCompanyInfoWindow ( flag ) {
 
         items: [
 		{
+			xtype: 'compositefield',
             fieldLabel: '机构ID',
-			readOnly: true,
-			//style: 'background-color: gray',
-            name: 'to',
-			disable: false,
-			value: jQuery.Guid.New(),
-            anchor:'100%'  // anchor width by percentage
-        },{
+			items:
+			[{
+				xtype: 'textfield',
+				readOnly: true,
+				disable: false,
+				style: 'font-size: 12px',
+				width: 280,
+				value: jQuery.Guid.New()//,
+				//anchor:'80%'  // anchor width by percentage
+			},{
+				xtype: 'displayfield',
+				value: '只读字段'
+			}]
+		},{
             fieldLabel: '上级机构',
 			xtype: 'combo',
             name: 'subject',
