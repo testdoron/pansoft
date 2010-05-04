@@ -3,6 +3,7 @@ function BuildCustomManagementTabPanel_VipCustomerManage() {
 
 	var stone = GetGridDsssata();
 	var gridPanel = new Ext.grid.GridPanel({
+		iconCls: 'icon-CustomManagementPanel',
 		title: 'VIP客户管理',
 		store: stone,
 		border: false,
@@ -12,26 +13,25 @@ function BuildCustomManagementTabPanel_VipCustomerManage() {
 		columns: [
 			new Ext.grid.RowNumberer(),
 			{id:'workerid', hidden: true},
-			{header: "编号", width: 120, sortable: true, dataIndex: 'workerName'},
-			{header: "等级", width: 100, sortable: true, dataIndex: 'workerNo'},
-			{header: "时间", width: 120, sortable: true, dataIndex: 'workerRealName'},
-			{header: "描述", width: 400, sortable: true, dataIndex: 'workerSex'}
+			{header: "客户号", width: 120, sortable: true, dataIndex: 'workerName'},
+			{header: "客户姓名", width: 100, sortable: true, dataIndex: 'workerNo'},
+			{header: "VIP级别", width: 120, sortable: true, dataIndex: 'workerRealName'},
+			{header: "所属机构", width: 200, sortable: true, dataIndex: 'workerSex'},
+			{header: "描述", width: 400, sortable: true, dataIndex: 'workerSex'},
+			{header: "维护人", width: 100, sortable: true, dataIndex: 'workerSex'},
+			{header: "更新日期", width: 100, sortable: true, dataIndex: 'workerSex'}
 		],
 		tbar: 
 		[
 			' ',
-			getMenuItem("所有日志"),
+			'搜索VIP客户:', 
+			new Ext.app.SearchField({ width:120, store: this.store, paramName: 'q' }),
 			'-',
-			getMenuItem("错误日志"),
+			getMenuItem("增加VIP客户"),
 			'-',
-			getMenuItem("警告日志"),
-			'-',
-			getMenuItem("日志清理"),
-			'-', 
-			'搜索:', 
-			new Ext.app.SearchField({ width:120, store: this.store, paramName: 'q' })
+			getMenuItem("导入VIP客户")
 		],
-		bbar: ['共 7347582 日志', ' ', ' ']
+		bbar: ['共 734 客户', ' ', ' ']
 
 	});
 	
