@@ -46,14 +46,15 @@ function BuildCustomManagementTabPanel() {
 	var tabs = new Ext.TabPanel({
 			iconCls: 'icon-CustomManagementPanel',
 			border: false,
-			autoHeight: true,
+			height: 428,
+			//autoHeight: true,
 			activeTab: 0,
 			frame:true,
 			defaults:{autoHeight: true},
 			items:[
-				BuildCustomManagementTabPanel_CRMGrid(),
-				BuildCustomManagementTabPanel_VipManage(),
-				BuildCustomManagementTabPanel_VipValidateRuleManage()
+				BuildCustomManagementTabPanel_VipCustomerManage(),
+				BuildCustomManagementTabPanel_VipValidateRuleManage(),
+				BuildCustomManagementTabPanel_CRMGrid()
 			]
 		});
 
@@ -71,18 +72,6 @@ function BuildCustomManagementTabPanel_CRMGrid() {
 	
 	return gridPanel;
 	
-}
-
-function BuildCustomManagementTabPanel_VipManage() {
-
-	var gridPanel = new Ext.Panel({
-		iconCls: 'icon-CustomManagementPanel',
-		title: 'VIP客户管理',
-		html: '1.VIP类型管理，2.VIP用户CRUD，导入'
-	});
-	
-	return gridPanel;
-
 }
 
 function BuildCustomManagementTabPanel_VipValidateRuleManage() {
