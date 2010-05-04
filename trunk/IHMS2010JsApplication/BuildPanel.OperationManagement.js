@@ -51,8 +51,8 @@ function BuildOperationManagementPanel() {
 			items:[
 				BuildCustomManagementTabPanel_OperationTypeGrid(),
 				BuildCustomManagementTabPanel_BusinessProcessSetting(),
-				BuildCustomManagementTabPanel_GetTecketUISetting(),
-				BuildCustomManagementTabPanel_TecketPrintingSetting()
+				BuildCustomManagementTabPanel_TecketPrintingSetting(),
+				BuildCustomManagementTabPanel_GetTecketUISetting()
 			]
 		});
 
