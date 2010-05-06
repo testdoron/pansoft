@@ -11,7 +11,7 @@ IHMSModule = new Ext.app.App({
 			new IHMSModule.OperationManagementPanel(),
 			new IHMSModule.DeviceManagementPanel(),
 			new IHMSModule.StatisticsManagementPanel(),
-			new IHMSModule.BookingManagementPanel(),
+			//new IHMSModule.BookingManagementPanel(),
 			new IHMSModule.SystemManagementPanel()
 			];
 	},
