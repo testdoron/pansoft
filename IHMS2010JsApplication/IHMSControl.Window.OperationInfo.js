@@ -18,6 +18,7 @@ function BuildOperationInfoWindow ( flag ) {
 				readOnly: true,
 				disable: false,
 				width: 280,
+				style: 'font-size: 10px;',
 				value: jQuery.Guid.New()//,
 			},{
 				xtype: 'displayfield',
@@ -40,7 +41,10 @@ function BuildOperationInfoWindow ( flag ) {
             fieldLabel: '号票分段前缀',
 			xtype: 'combo',
             name: 'subject',
-            anchor: '35%'  // anchor width by percentage
+            anchor: '35%',
+			forceSelection: true,
+			editable: false,
+			store: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9']
         },{
    			xtype: 'compositefield',
 			fieldLabel: '号段数字范围',
