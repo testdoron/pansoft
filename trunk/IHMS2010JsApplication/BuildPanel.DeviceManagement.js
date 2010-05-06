@@ -24,7 +24,7 @@ IHMSModule.DeviceManagementPanel = Ext.extend(Ext.app.Module,
 			win = desktop.createWindow({
 				id: 'DeviceManagementPanel',
 				title: "设备管理",
-				width: GeanJs.GetBrowserWidth() * 0.80,
+				width: GeanJs.GetBrowserWidth() * 0.81,
 				height: GeanJs.GetBrowserHeight() * 0.87,
 				layout: 'border', 
 				iconCls: 'icon-DeviceManagementPanel',
