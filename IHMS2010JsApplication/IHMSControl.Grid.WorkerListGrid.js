@@ -53,7 +53,12 @@ function BuildWorkerListGrid () {
 		
 		myMenu.on("click", //定义菜单项的点击事件
 			function() { 
-				Ext.MessageBox.confirm(str,str);
+				if (str == '新增员工') {
+					var win = BuildWorkerInfoWindow(str);
+					win.show();
+				} else {
+					Ext.MessageBox.confirm(str,str);
+				}
 			}
 		);
 		return myMenu;
