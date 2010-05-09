@@ -250,6 +250,7 @@ Ext.Desktop = function(app){
     };
 
     this.contextMenu = new Ext.menu.Menu({
+		id: 'allContextMenu',
         items: [{
             text: 'Tile',
             handler: this.tile,

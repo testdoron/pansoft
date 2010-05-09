@@ -194,7 +194,38 @@ function GetCompanyInfo(id, attribute)
 	}
 }
 
-
+var allCompany;
+function GetAllCompany()
+{
+	if (allCompany != null) {
+		return allCompany;
+	}
+	allCompany = new Array();
+	var company = new Array();
+	company[0] = IHMSData.Group.Branches.id;
+	company[1] = IHMSData.Group.Branches.alias;
+	allCompany.push(company);
+	if (!jQuery.isEmptyObject(IHMSData.Group.Branches.items)) {
+		if (IHMSData.Group.Branches.items.length > 0) {
+			eachGroup(IHMSData.Group.Branches.items);
+		}
+	}
+		
+	function eachGroup(items) {
+		for (var i = 0; i < items.length; i++) {
+			company = new Array();
+			company[0] = items[i].id;
+			company[1] = items[i].alias;
+			allCompany.push(company);
+			if (!jQuery.isEmptyObject(items[i].items)) {
+				if (items[i].items.length > 0) {
+					eachGroup(items[i].items);
+				}
+			}
+		}
+	}
+	return allCompany;
+}
 
 
 
