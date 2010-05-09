@@ -3,6 +3,7 @@
 function BuildWorkerListGrid () {
 
 	var stone = GetGridDsssata();
+	var brachTree = getComboBoxTree();
 	var gridPanel = new Ext.grid.GridPanel({
 	
         store: stone,
@@ -30,14 +31,14 @@ function BuildWorkerListGrid () {
 		[
 			'-', 
 			'机构:',
-			getComboBoxTree(),
+			brachTree,
 			'-',
 			getMenuItem("新增员工"),
 			'-',
-			getMenuItem("修改员工"),
-			'-',
-			getMenuItem("删除员工"),
-			'-', 
+			// getMenuItem("修改员工"),
+			// '-',
+			// getMenuItem("删除员工"),
+			// '-', 
 			'员工搜索:', 
 			new Ext.app.SearchField({ width:120, store: this.store, paramName: 'q' })
 		],
@@ -54,7 +55,7 @@ function BuildWorkerListGrid () {
 		myMenu.on("click", //定义菜单项的点击事件
 			function() { 
 				if (str == '新增员工') {
-					var win = BuildWorkerInfoWindow(str);
+					var win = BuildWorkerInfoWindow(str, brachTree.getValue());
 					win.show();
 				} else {
 					Ext.MessageBox.confirm(str,str);
@@ -64,23 +65,50 @@ function BuildWorkerListGrid () {
 		return myMenu;
 	}
 	
+	var delfileform = new Ext.BasicForm(Ext.get("delfileform"), {});//用于删除文件的form
+
+	gridPanel.addListener('rowcontextmenu', rightClickFn);//右键菜单代码关键部分
+
+	// var rightClick = new Ext.menu.Menu({//定义右键菜单
+	Ext.Desktop.contextMenu = new Ext.menu.Menu({
+		id:'allContextMenu',  //在HTML文件中必须有个rightClickCont的DIV元素
+		items: [
+			{//此大括号内是右键的第一个菜单项
+				//id: 'rMenu1',
+				handler: function(){},//点击后触发的事件,删除当前的资源文件菜单调用的函数
+				text: '删除该文件'
+			}
+		]
+	});
+
+	function rightClickFn(grid,rowindex,e){//点击右键时执行的函数
+		alert(e);
+		grid.getSelectionModel().selectRow(rowindex);//此行代码是为了右键单击时同时选择grid的当前行
+		e.preventDefault();
+		rightClick.showAt(e.getXY());
+	}
+	
 	function getComboBoxTree() {
-		var comboBoxTree;
-		comboBoxTree = new Ext.ux.ComboBoxTree({
-			//renderTo : 'comboBoxTree',
-			width : 180,
-			tree : {
-				xtype:'treepanel'//,
-				// loader: new Ext.tree.TreeLoader({dataUrl:'getNodes.jsp'}),
-				// root : new Ext.tree.AsyncTreeNode({id:'0',text:'根结点'})
-			},
-			
-			//all:所有结点都可选中
-			//exceptRoot：除根结点，其它结点都可选(默认)
-			//folder:只有目录（非叶子和非根结点）可选
-			//leaf：只有叶子结点可选
-			selectNodeModel:'exceptRoot'
+	
+		var companys = GetAllCompany();
+		var store = new Ext.data.ArrayStore({
+			fields: ['id', 'alias'],
+			data : companys
 		});
+		var comboBoxTree;
+		comboBoxTree = new Ext.form.ComboBox({
+			id: 'companyComboBox',
+			store: store,
+			valueField: 'id',
+			displayField: 'alias',
+			typeAhead: true,
+			mode: 'local',
+			forceSelection: true,
+			triggerAction: 'all',
+			emptyText: '选择机构',
+			selectOnFocus: true
+		});
+
 		return comboBoxTree;
 	}
 
@@ -120,55 +148,3 @@ function GetGridDsssata()
 	arrayStone.loadData(getDData());
 	return arrayStone;
 }
-
-Ext.app.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
-    initComponent : function(){
-        // if(!this.store.baseParams){
-			// this.store.baseParams = {};
-		// }
-		Ext.app.SearchField.superclass.initComponent.call(this);
-		this.on('specialkey', function(f, e){
-            if(e.getKey() == e.ENTER){
-                this.onTrigger2Click();
-            }
-        }, this);
-    },
-
-    validationEvent:false,
-    validateOnBlur:false,
-    trigger1Class:'x-form-clear-trigger',
-    trigger2Class:'x-form-search-trigger',
-    hideTrigger1:true,
-    width:180,
-    hasSearch : false,
-    paramName : 'query',
-
-    onTrigger1Click : function(){
-        if(this.hasSearch){
-            this.store.baseParams[this.paramName] = '';
-			this.store.removeAll();
-			this.el.dom.value = '';
-            this.triggers[0].hide();
-            this.hasSearch = false;
-			this.focus();
-        }
-    },
-
-    onTrigger2Click : function(){
-        var v = this.getRawValue();
-        if(v.length < 1){
-            this.onTrigger1Click();
-            return;
-        }
-		if(v.length < 2){
-			Ext.Msg.alert('Invalid Search', 'You must enter a minimum of 2 characters to search the API');
-			return;
-		}
-		this.store.baseParams[this.paramName] = v;
-        var o = {start: 0};
-        this.store.reload({params:o});
-        this.hasSearch = true;
-        this.triggers[0].show();
-		this.focus();
-    }
-});
