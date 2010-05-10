@@ -3,7 +3,6 @@ var workerInfoWindow = null;
 function BuildWorkerInfoWindow ( flag, brachId) {
 
     var form = new Ext.form.FormPanel({
-		title: 'asdfasdfsdfad',
         baseCls: 'x-plain',
         labelWidth: 90,
         //url:'save-form.php',
@@ -56,22 +55,25 @@ function BuildWorkerInfoWindow ( flag, brachId) {
             name: 'subject',
             anchor: '100%'
         },{
-			xtype: 'fieldset',
-            title: '用户角色',
-            autoHeight: true,
+			xtype: 'checkboxgroup',
+            fieldLabel: '用户角色设置',
+            // autoHeight: true,
+			// layout: 'form',
+			columns: 3,
             defaultType: 'checkbox', // each item will be a checkbox
-            items: [{
-                checked: true,
-                boxLabel: '统计报表查询',
-                name: ''
-            }, {
-                boxLabel: 'Vip客户管理',
-                name: ''
-            }, {
-                boxLabel: '设备查询',
-                name: ''
-            }]
-
+            items: [
+                {boxLabel: 'Item 111', name: 'cb-vert-1'},
+                {boxLabel: 'Item 222', name: 'cb-vert-2', checked: true},
+                {boxLabel: 'Item 333', name: 'cb-vert-3'},
+                {boxLabel: 'Item 444', name: 'cb-vert-4'},
+                {boxLabel: 'Item 333', name: 'cb-vert-3'},
+                {boxLabel: 'Item 444', name: 'cb-vert-4'}, 
+				{boxLabel: 'Item 333', name: 'cb-vert-3'},
+                {boxLabel: 'Item 444', name: 'cb-vert-4'}, 
+				{boxLabel: 'Item 333', name: 'cb-vert-3'},
+                {boxLabel: 'Item 444', name: 'cb-vert-4'},
+                {boxLabel: 'Item 555', name: 'cb-vert-5'}
+            ]
 		}]
     });
 
@@ -79,9 +81,9 @@ function BuildWorkerInfoWindow ( flag, brachId) {
 		workerInfoWindow = new Ext.Window({
 			title: flag + ' ' + GetCompanyInfo(brachId, 'alias'),
 			width: 480,
-			height: 500,
+			height: 460,
 			minWidth: 480,
-			minHeight: 500,
+			minHeight: 460,
 			layout: 'fit',
 			plain: true,
 			bodyStyle: 'padding:5px;',
