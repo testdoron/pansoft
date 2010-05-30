@@ -70,6 +70,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\com.pan.csharp.TicketGetter.OptionService\com.pan.csharp.TicketGetter.OptionService.csproj">
+      <Project>{D964D954-181B-4AA1-BB9A-92E1975F3B7E}</Project>
+      <Name>com.pan.csharp.TicketGetter.OptionService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\com.pan.csharp.Utility\com.pan.csharp.Utility.csproj">
+      <Project>{6D1DF321-572E-4C1C-B590-F2C44D99E1D3}</Project>
+      <Name>com.pan.csharp.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
