@@ -22,7 +22,7 @@ namespace com.pan.csharp.TicketGetter.OptionService
         /// <summary>
         /// 仅供单建模式使用的内部类型
         /// </summary>
-        class Nested
+        private class Nested
         {
             static Nested() { }
             internal static readonly OptionService Instance = new OptionService();
