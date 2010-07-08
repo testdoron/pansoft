@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{20C93FE2-AE58-43B8-9F5F-E77FB3E427AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pansoft.Common.Options</RootNamespace>
+    <AssemblyName>Pansoft.Common.Options</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Pansoft.Common.Options.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Pansoft.Common.Options.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\OptionException.cs" />
+    <Compile Include="ImpL\XML\XmlOption.cs" />
+    <Compile Include="ImpL\XML\XmlOptionValue.cs" />
+    <Compile Include="ImpL\XML\XmlOptionSection.cs" />
+    <Compile Include="Manager\OptionWorker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Manager\OptionManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Manager\OptionManagerCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attribute\OptionAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attribute\OptionFileAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface\IOptionManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Manager\XmlConfigImpl\ConfigManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OptionHelper.cs" />
+    <Compile Include="Base\Option.cs" />
+    <Compile Include="Base\OptionCollection.cs" />
+    <Compile Include="Base\OptionOperatorEnum.cs" />
+    <Compile Include="Interface\IOption.cs" />
+    <Compile Include="Interface\IOptionSection.cs" />
+    <Compile Include="Interface\IOptionValue.cs" />
+    <Compile Include="Attribute\OptionSectionAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Base\OptionSection.cs" />
+    <Compile Include="Base\OptionValue.cs" />
+    <Compile Include="Base\OptionValueCollection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\cn.nsimple\Gean\Gean\Gean.Library\Gean.csproj">
+      <Project>{54E5A1F2-3684-4C25-BB2A-D1D412D17002}</Project>
+      <Name>Gean</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
