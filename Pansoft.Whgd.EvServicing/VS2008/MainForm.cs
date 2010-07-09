@@ -16,18 +16,18 @@ namespace Pansoft.Whgd.EvServicing
         {
             ServiceManager.Logger.LogWritedEvent += new Gean.SimpleLogger.SimpleLoggerWriter.LogWritedEventHandler(Logger_LogWritedEvent);
 
-            Thread thread = new Thread(CrossThreadFlush);
-            thread.IsBackground = true;
-            thread.Start();
-
             InitializeComponent();
 
             _versionLabel.Text = Application.ProductName + " v" + Application.ProductVersion + "R";
+
+            Thread thread = new Thread(CrossThreadFlush);
+            thread.IsBackground = true;
+            thread.Start();
         }
 
-        protected override void OnShown(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            base.OnShown(e);
+            base.OnLoad(e);
             if (!ServiceManager.OptionService.HasOption)
             {
                 DatabaseConfigDialog dialog = new DatabaseConfigDialog();
@@ -49,7 +49,6 @@ namespace Pansoft.Whgd.EvServicing
             }
         }
 
-
         private delegate void FlushClient();//代理
 
         private void CrossThreadFlush()
@@ -57,7 +56,7 @@ namespace Pansoft.Whgd.EvServicing
             while (true)
             {
                 //将sleep和无限循环放在等待异步的外面
-                Thread.Sleep(50);
+                Thread.Sleep(100);
                 ThreadFunction();
             }
         }

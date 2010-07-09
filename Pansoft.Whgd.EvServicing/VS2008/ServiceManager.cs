@@ -22,13 +22,33 @@ namespace Pansoft.Whgd.EvServicing
             ServiceManager.SetApplicationDataPath();//设置应用程序的数据存储路径
             string logFullPath = ApplicationDataPath + @"\Log\Log" + DateTime.Now.ToShortDateString() + ".log";
             _loggerWriter = SimpleLoggerWriter.InitializeComponent(logFullPath);
+            _loggerWriter.Write(SimpleLoggerLevel.Info, "日志开始");
 
-            string optionsFullPath = ApplicationDataPath + @"\" + Application.ProductName + ".option";
-            Options.Initializes(optionsFullPath);
-
-            SqlService.Instance.initializeService();
-
-            Application.Run(new MainForm());
+            try
+            {
+                string optionsFullPath = ApplicationDataPath + @"\" + Application.ProductName + ".option";
+                Options.Initializes(optionsFullPath);
+            }
+            catch (Exception e)
+            {
+                _loggerWriter.Write(SimpleLoggerLevel.Error, e.Message);
+            }
+            try
+            {
+                SqlService.Instance.initializeService();
+            }
+            catch (Exception e)
+            {
+                _loggerWriter.Write(SimpleLoggerLevel.Error, e.Message);
+            }
+            try
+            {
+                Application.Run(new MainForm());
+            }
+            catch (Exception e)
+            {
+                _loggerWriter.Write(SimpleLoggerLevel.Error, e.Message);
+            }
         }
 
         private static void SetApplicationDataPath()
