@@ -42,20 +42,10 @@ namespace Pansoft.Whgd.EvServicing
 
         #endregion
 
-        private System.Timers.Timer _timer = null;
+        private System.Threading.Timer _SqlTimer = null;
 
         public void initializeService()
         {
-            object timer;
-            if (ServiceManager.OptionService.TryGetOptionValue("TimerInterval", out timer))
-            {
-                _timer = new System.Timers.Timer(1000 * 60 * int.Parse((String)timer));
-            }
-            else
-            {
-                _timer = new System.Timers.Timer(1000 * 60 * 5);
-            }
-            
             this.SqlConnectionStringBuilder = new SqlConnectionStringBuilder();
             object text = new object();
             if (ServiceManager.OptionService.TryGetOptionValue("DbSrvIp", out text))
@@ -81,54 +71,82 @@ namespace Pansoft.Whgd.EvServicing
             this.SqlConnectionStringBuilder.ConnectTimeout = 5;
         }
 
+        private void SetTimer()
+        {
+            object timer;
+            if (ServiceManager.OptionService.TryGetOptionValue("TimerInterval", out timer))
+            {
+                _SqlTimer = new System.Threading.Timer(
+                    new System.Threading.TimerCallback(SqlTimerRunMethod),
+                    this,
+                    100,
+                    1000 * 60 * int.Parse((String)timer)
+                    );
+            }
+            else
+            {
+                _SqlTimer = new System.Threading.Timer(
+                    new System.Threading.TimerCallback(SqlTimerRunMethod),
+                    this,
+                    0,
+                    1000 * 60 * 5
+                    );
+            }
+        }
+
         private bool _startFlag = false;
         public void startService()
         {
             if (!_startFlag)
             {
-                object obj = ServiceManager.OptionService.GetOptionValue("EvServicingSqlList");
-                //ServiceManager.Logger.Write(SimpleLoggerLevel.Info, obj);
-                _timer.Elapsed += new System.Timers.ElapsedEventHandler(_timer_Elapsed);
-                _timer.Start();
+                SetTimer();
                 _startFlag = true;
             }
         }
 
-        void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        void SqlTimerRunMethod(object o)
         {
-            object obj = ServiceManager.OptionService.GetOptionValue("EvServicingSqlList");
-
+            bool isComplate = false;
             foreach (var item in ServiceManager.OptionService.GetOptionValue("EvServicingSqlList") as IEnumerable)
             {
                 string brachNo = ServiceManager.OptionService.GetOptionValue("BranchNo").ToString();
                 string sql = String.Format((String)item, _lastDoTime.ToString(), brachNo);
-                int i = SqlHelper.ExecuteNonQuery
-                    (
-                        SqlConnectionStringBuilder.ConnectionString,
-                        CommandType.Text,
-                        sql
-                    );
-                //ServiceManager.Logger.Write(SimpleLoggerLevel.Info, sql);
+                int i = 0;
+                try
+                {
+                    i = SqlHelper.ExecuteNonQuery
+                         (
+                             SqlConnectionStringBuilder.ConnectionString,
+                             CommandType.Text,
+                             sql
+                         );
+                    isComplate = true;
+                }
+                catch (Exception e)
+                {
+                    ServiceManager.Logger.Write(SimpleLoggerLevel.Info, "服务时。连接数据库失败.请点击<选项>配置数据库选项。");
+                }
                 ServiceManager.Logger.Write(SimpleLoggerLevel.Info, i + " 条记录被更新.");
             }
-            _lastDoTime = DateTime.Now;
+            if (isComplate)
+            {
+                _lastDoTime = DateTime.Now;
+            }
+            isComplate = false;
         }
 
         public void stopService()
         {
-            _timer.Stop();
+            _SqlTimer.Dispose();
             _startFlag = false;
         }
 
         public void reloadService()
         {
-            _timer.Stop();
-            _startFlag = false;
+            this.stopService();
+            this.SetTimer();
 
-            _timer.Elapsed += new System.Timers.ElapsedEventHandler(_timer_Elapsed);
-            _timer.Enabled = true;
-            _timer.Start();
-            ServiceManager.Logger.Write(SimpleLoggerLevel.Info, _timer + "启动...");
+            ServiceManager.Logger.Write(SimpleLoggerLevel.Info, _SqlTimer + "启动...");
         }
 
         public SqlConnectionStringBuilder SqlConnectionStringBuilder { get; set; }
@@ -147,7 +165,7 @@ namespace Pansoft.Whgd.EvServicing
             }
             catch//一切的错误信息都可以证明数据库连接是失败的
             {
-                ServiceManager.Logger.Write(SimpleLoggerLevel.Info, "连接数据库失败.请点击<选项>配置数据库选项。");
+                ServiceManager.Logger.Write(SimpleLoggerLevel.Info, "测试时。连接数据库失败.请点击<选项>配置数据库选项。");
                 return false;
             }
 
