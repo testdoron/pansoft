@@ -8,7 +8,7 @@ using Gean;
 namespace Pansoft.CQMS.Options
 {
 
-    public sealed class Option : ICloneable
+    public sealed class Option : ICloneable, Pansoft.CQMS.Options.Base.IOption
     {
         #region constructor
 
