@@ -6,10 +6,11 @@ using System.Collections.Specialized;
 using System.Reflection;
 using System.IO;
 using System.Xml;
+using Pansoft.CQMS.Options.Manager;
 
 namespace Pansoft.CQMS.Options
 {
-    public class OptionManager// : IOptionManager
+    public class OptionManager : IOptionManager
     {
         #region 单件实例
 

@@ -46,16 +46,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attribute\OptionAttribute.cs" />
+    <Compile Include="Interface\IOption.cs" />
     <Compile Include="Base\OptionCollection.cs" />
     <Compile Include="Base\OptionFile.cs" />
+    <Compile Include="Interface\IOptionManager.cs" />
     <Compile Include="Manager\OptionManager.cs" />
     <Compile Include="Base\Option.cs" />
     <Compile Include="Attribute\OptionValueAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="OptionsDiagram.cd" />
   </ItemGroup>

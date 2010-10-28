@@ -44,7 +44,9 @@ namespace Pansoft.CQMS.Options.Demo
             Console.WriteLine("--------");
             Console.WriteLine("选项值更改测试");
             OptionManager.Instance.Options["student"].SetOptionValue("studentName", "马英豪");
+            //!!!!!!!!!!!!!!!!!!!!
             student = (Student)OptionManager.Instance.Options["student"].Entity;
+
             Console.WriteLine("选项值Name：\t\t" + student.Name);
             Console.WriteLine("选项节名称：" + OptionManager.Instance.Options["student"].XmlElement.OuterXml);
 
