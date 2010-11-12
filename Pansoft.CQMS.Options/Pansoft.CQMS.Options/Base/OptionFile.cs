@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Windows.Forms;
 
-namespace Pansoft.CQMS.Options
+namespace Pansoft.ManagerDesktop.Options
 {
     public class OptionFile
     {

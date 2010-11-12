@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-namespace Pansoft.CQMS.Options.Manager
+namespace Pansoft.ManagerDesktop.Options.Manager
 {
     interface IOptionManager
     {
