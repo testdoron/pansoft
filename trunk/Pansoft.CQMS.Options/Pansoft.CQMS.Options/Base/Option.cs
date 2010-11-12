@@ -5,10 +5,10 @@ using System.Reflection;
 using System.Xml;
 using Gean;
 
-namespace Pansoft.CQMS.Options
+namespace Pansoft.ManagerDesktop.Options
 {
 
-    public sealed class Option : ICloneable, Pansoft.CQMS.Options.Base.IOption
+    public sealed class Option : ICloneable, Pansoft.ManagerDesktop.Options.Base.IOption
     {
         #region constructor
 

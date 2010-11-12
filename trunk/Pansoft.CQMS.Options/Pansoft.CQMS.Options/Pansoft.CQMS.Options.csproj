@@ -8,7 +8,7 @@
     <ProjectGuid>{2061A9E8-82B6-4B6B-884D-A1136D7ABB90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pansoft.CQMS.Options</RootNamespace>
+    <RootNamespace>Pansoft.ManagerDesktop.Options</RootNamespace>
     <AssemblyName>Pansoft.CQMS.Options</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

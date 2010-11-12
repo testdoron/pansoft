@@ -6,9 +6,9 @@ using System.Collections.Specialized;
 using System.Reflection;
 using System.IO;
 using System.Xml;
-using Pansoft.CQMS.Options.Manager;
+using Pansoft.ManagerDesktop.Options.Manager;
 
-namespace Pansoft.CQMS.Options
+namespace Pansoft.ManagerDesktop.Options
 {
     public class OptionManager : IOptionManager
     {

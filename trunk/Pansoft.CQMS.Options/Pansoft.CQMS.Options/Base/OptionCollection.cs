@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Gean;
-namespace Pansoft.CQMS.Options
+namespace Pansoft.ManagerDesktop.Options
 {
     /// <summary>
     /// 选项节集合
